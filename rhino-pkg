@@ -1,0 +1,24 @@
+#!/bin/bash
+
+tabs -4
+
+TEXTDOMAIN=rhino-pkg
+TEXTDOMAINDIR=/usr/local/share/locale
+
+function msg() {
+	local input="$*"
+	echo -e "$input"
+}
+
+function list() {
+	local input=($@)
+	local index=0
+	for	item in "${input[@]}"; do
+		msg "[$index]: $item"
+		(( index++ ))
+	done
+}
+
+if [[ -n $DEBUG ]]; then
+	msg $"Foobar"
+fi
