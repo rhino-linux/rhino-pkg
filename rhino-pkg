@@ -19,6 +19,30 @@ function list() {
     done
 }
 
-if [[ -n $DEBUG ]]; then
-    msg $"Foobar"
-fi
+function search_pacstall() {
+    if ! pacstall -S "$*" 2>&1 > /dev/null; then
+        return 1
+    else
+        # remove color codes
+        local contents=("$( pacstall -S "$*" | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g' | awk '{print $1}')")
+    fi
+    echo "${contents[@]}"
+}
+
+function search_apt() {
+    local contents=("$( apt-cache search "$*" | awk '{print $1}')")
+    if [[ -n $contents ]]; then
+        echo "${contents[@]}"
+    else
+        return 1
+    fi
+}
+
+function search_flatpak() {
+    local contents=("$( flatpak search --columns="application" "$*")")
+    if [[ ${contents[*]} == "No matches found"   ]]; then
+        return 1
+    else
+        echo "${contents[@]}"
+    fi
+}
