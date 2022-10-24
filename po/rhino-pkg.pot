@@ -1,3 +1,6 @@
-#: rhino-pkg:23
-msgid "Foobar"
+#: rhino-pkg:52
+msgid "Found packages matching $*:"
+msgstr ""
+#: rhino-pkg:69
+msgid "Select which package to install"
 msgstr ""

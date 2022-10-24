@@ -10,17 +10,15 @@ function msg() {
     echo -e "$input"
 }
 
-function list() {
-    local input=($@)
-    local index=0
-    for item in "${input[@]}"; do
-        msg "[$index]: $item"
-        ((index++))
-    done
+function prompt() {
+    local input="$1"
+    local index="$2"
+    echo -ne "$input [1-$index] "
+    read -r entered_input
 }
 
 function search_pacstall() {
-    if ! pacstall -S "$*" 2>&1 > /dev/null; then
+    if ! pacstall -S "$*" > /dev/null 2>&1; then
         return 1
     else
         # remove color codes
@@ -40,9 +38,32 @@ function search_apt() {
 
 function search_flatpak() {
     local contents=("$( flatpak search --columns="application" "$*")")
-    if [[ ${contents[*]} == "No matches found"   ]]; then
+    if [[ ${contents[*]} == "No matches found" ]]; then
         return 1
     else
         echo "${contents[@]}"
     fi
 }
+
+pacstall_search_list=( $(search_pacstall $*) )
+apt_search_list=( $(search_apt $*) )
+flatpak_search_list=( $(search_flatpak $*) )
+
+msg $"Found packages matching $*:"
+
+count=0
+
+for i in "${flatpak_search_list[@]}"; do
+    echo -e "[$count]: $i (flatpak)"
+    (( count++ ))
+done
+for i in "${apt_search_list[@]}"; do
+    echo -e "[$count]: $i (apt)"
+    (( count++ ))
+done
+for i in "${pacstall_search_list[@]}"; do
+    echo -e "[$count]: $i (pacstall)"
+    (( count++ ))
+done
+
+prompt $"Select which package to install" "$count"
