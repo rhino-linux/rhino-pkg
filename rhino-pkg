@@ -61,8 +61,8 @@ search_flatpak() {
 }
 
 pacstall_search_list=( $(search_pacstall $*) )
-apt_search_list=( $(search_apt $*) )
 flatpak_search_list=( $(search_flatpak $*) )
+apt_search_list=( $(search_apt $*) )
 
 msg $"Found packages matching $*:"
 
