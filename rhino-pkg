@@ -6,40 +6,56 @@ TEXTDOMAIN=rhino-pkg
 TEXTDOMAINDIR=/usr/local/share/locale
 
 function msg() {
+
     local input="$*"
+
     echo -e "$input"
 }
 
 function prompt() {
+
     local input="$1" index="$2"
+
     echo -ne "$input [1-$index] "
+
     read -r entered_input
 }
 
 function search_pacstall() {
+
     if ! pacstall -S "$*" > /dev/null 2>&1; then
+
         return 1
     else
         # remove color codes
         local contents=("$( pacstall -S "$*" | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g' | awk '{print $1}')")
     fi
+
     echo "${contents[@]}"
 }
 
 function search_apt() {
+
     local contents=("$( apt-cache search "$*" | awk '{print $1}')")
+
     if [[ -n $contents ]]; then
+
         echo "${contents[@]}"
     else
+
         return 1
     fi
 }
 
 function search_flatpak() {
+
     local contents=("$( flatpak search --columns="application" "$*")")
+
     if [[ ${contents[*]} == "No matches found" ]]; then
+
         return 1
     else
+
         echo "${contents[@]}"
     fi
 }
@@ -54,14 +70,19 @@ count=0
 
 for i in "${flatpak_search_list[@]}"; do
     echo -e "[$count]: $i (flatpak)"
+
     (( count++ ))
 done
+
 for i in "${apt_search_list[@]}"; do
     echo -e "[$count]: $i (apt)"
+
     (( count++ ))
 done
+
 for i in "${pacstall_search_list[@]}"; do
     echo -e "[$count]: $i (pacstall)"
+
     (( count++ ))
 done
 
