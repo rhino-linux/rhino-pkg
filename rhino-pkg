@@ -5,14 +5,14 @@ tabs -4
 TEXTDOMAIN=rhino-pkg
 TEXTDOMAINDIR=/usr/local/share/locale
 
-function msg() {
+msg() {
 
     local input="$*"
 
     echo -e "$input"
 }
 
-function prompt() {
+prompt() {
 
     local input="$1" index="$2"
 
@@ -21,7 +21,7 @@ function prompt() {
     read -r entered_input
 }
 
-function search_pacstall() {
+search_pacstall() {
 
     if ! pacstall -S "$*" > /dev/null 2>&1; then
 
@@ -34,7 +34,7 @@ function search_pacstall() {
     echo "${contents[@]}"
 }
 
-function search_apt() {
+search_apt() {
 
     local contents=("$( apt-cache search "$*" | awk '{print $1}')")
 
@@ -47,7 +47,7 @@ function search_apt() {
     fi
 }
 
-function search_flatpak() {
+search_flatpak() {
 
     local contents=("$( flatpak search --columns="application" "$*")")
 
