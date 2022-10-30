@@ -38,7 +38,7 @@ search_apt() {
 
     local contents=("$( apt-cache search "$*" | awk '{print $1}')")
 
-    if [[ -n $contents ]]; then
+    if [[ -n "$contents" ]]; then
 
         echo "${contents[@]}"
     else
@@ -51,7 +51,7 @@ search_flatpak() {
 
     local contents=("$( flatpak search --columns="application" "$*")")
 
-    if [[ ${contents[*]} == "No matches found" ]]; then
+    if [[ "${contents[*]}" == "No matches found" ]]; then
 
         return 1
     else
