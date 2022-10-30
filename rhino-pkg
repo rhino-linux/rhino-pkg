@@ -23,7 +23,7 @@ prompt() {
 
 search_pacstall() {
 
-    if ! pacstall -S "$*" > /dev/null 2>&1; then
+    if ! pacstall -S "$*" &> /dev/null; then
 
         return 1
     else
