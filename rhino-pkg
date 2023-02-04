@@ -22,13 +22,13 @@ function search_pacstall() {
         return 1
     else
         # remove color codes
-        local contents=("$( pacstall -S "$*" | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g' | awk '{print $1}')")
+        local contents=("$(pacstall -S "$*" | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g' | awk '{print $1}')")
     fi
     echo "${contents[@]}"
 }
 
 function search_apt() {
-    local contents=("$( apt-cache search "$*" | awk '{print $1}')")
+    local contents=("$(apt-cache search "$*" | awk '{print $1}')")
     if [[ -n $contents ]]; then
         echo "${contents[@]}"
     else
@@ -37,7 +37,7 @@ function search_apt() {
 }
 
 function search_flatpak() {
-    local contents=("$( flatpak search --columns="application" "$*")")
+    local contents=("$(flatpak search --columns="application" "$*")")
     if [[ ${contents[*]} == "No matches found" ]]; then
         return 1
     else
@@ -45,25 +45,34 @@ function search_flatpak() {
     fi
 }
 
-pacstall_search_list=( $(search_pacstall $*) )
-apt_search_list=( $(search_apt $*) )
-flatpak_search_list=( $(search_flatpak $*) )
+if [[ -z $* ]]; then
+    msg $"No input given!"
+    exit 1
+fi
 
-msg $"Found packages matching $*:"
+pacstall_search_list=($(search_pacstall $*))
+apt_search_list=($(search_apt $*))
+flatpak_search_list=($(search_flatpak $*))
+
+if [[ ${#pacstall_search_list} -eq 0 && ${#apt_search_list} -eq 0 && ${#flatpak_search_list} -eq 0 ]]; then
+    msg $"No packages found matching '$*'!"
+    exit 1
+fi
+msg $"Found packages matching '$*':"
 
 count=0
 
 for i in "${flatpak_search_list[@]}"; do
     echo -e "[$count]: $i (flatpak)"
-    (( count++ ))
+    ((count++))
 done
 for i in "${apt_search_list[@]}"; do
     echo -e "[$count]: $i (apt)"
-    (( count++ ))
+    ((count++))
 done
 for i in "${pacstall_search_list[@]}"; do
     echo -e "[$count]: $i (pacstall)"
-    (( count++ ))
+    ((count++))
 done
 
 prompt $"Select which package to install" "$count"
