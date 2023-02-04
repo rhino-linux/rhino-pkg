@@ -1,33 +1,33 @@
-#: rhino-pkg:72
+#: rhino-pkg:73
 msgid "No input given!"
 msgstr ""
-#: rhino-pkg:76
+#: rhino-pkg:77
 msgid "Searching Pacstall…"
 msgstr ""
-#: rhino-pkg:80
+#: rhino-pkg:81
 msgid "Searching apt…"
 msgstr ""
-#: rhino-pkg:84
+#: rhino-pkg:85
 msgid "Searching flatpak…"
 msgstr ""
-#: rhino-pkg:89
+#: rhino-pkg:90
 msgid "Searching snap…"
 msgstr ""
-#: rhino-pkg:95
+#: rhino-pkg:96
 msgid "No packages found matching '$*'!"
 msgstr ""
-#: rhino-pkg:98
+#: rhino-pkg:99
 msgid "Found packages matching '${BPurple}$*${NC}':"
 msgstr ""
-#: rhino-pkg:134
+#: rhino-pkg:135
 msgid "Select which package to install"
 msgstr ""
-#: rhino-pkg:137
+#: rhino-pkg:139
 msgid "'$entered_input' is not a valid number"
 msgstr ""
-#: rhino-pkg:141
+#: rhino-pkg:143
 msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
 msgstr ""
-#: rhino-pkg:166
+#: rhino-pkg:168
 msgid "Invalid repository name!"
 msgstr ""

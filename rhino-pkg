@@ -15,6 +15,7 @@ export BCyan='\033[1;36m'
 export BYellow='\033[1;33m'
 export BPurple='\033[1;35m'
 export BRed='\033[1;31m'
+export BWhite='\033[1;37m'
 
 function msg() {
     local input="$*"
@@ -24,7 +25,7 @@ function msg() {
 function prompt() {
     local input="$1"
     local index="$2"
-    echo -ne "$input [0-$index] "
+    echo -ne "$input [0-$index]: ${BWhite}"
 }
 
 function clearscr() {
@@ -133,6 +134,7 @@ echo
 
 prompt $"Select which package to install" "$count"
 read -r entered_input
+echo -ne "${NC}"
 if [[ ! $entered_input =~ ^[0-9]+$ ]] || [[ $entered_input -gt $count ]] || [[ ${entered_input:0:1} == "-" ]]; then
     msg $"'$entered_input' is not a valid number"
     exit 1
