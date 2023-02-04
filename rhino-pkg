@@ -2,8 +2,14 @@
 
 tabs -4
 
-TEXTDOMAIN=rhino-pkg
-TEXTDOMAINDIR=/usr/local/share/locale
+export TEXTDOMAIN=rhino-pkg
+export TEXTDOMAINDIR=/usr/local/share/locale
+
+export NC='\033[0m'
+export BGreen='\033[1;32m'
+export BCyan='\033[1;36m'
+export BYellow='\033[1;33m'
+export BPurple='\033[1;35m'
 
 function msg() {
     local input="$*"
@@ -13,8 +19,7 @@ function msg() {
 function prompt() {
     local input="$1"
     local index="$2"
-    echo -ne "$input [1-$index] "
-    read -r entered_input
+    echo -ne "$input [0-$index] "
 }
 
 function search_pacstall() {
@@ -50,29 +55,54 @@ if [[ -z $* ]]; then
     exit 1
 fi
 
+msg $"Searching Pacstall…"
 pacstall_search_list=($(search_pacstall $*))
+tput cuu 1 && tput el
+msg $"Searching apt…"
 apt_search_list=($(search_apt $*))
+tput cuu 1 && tput el
+msg $"Searching flatpak…"
 flatpak_search_list=($(search_flatpak $*))
+tput cuu 1 && tput el
 
 if [[ ${#pacstall_search_list} -eq 0 && ${#apt_search_list} -eq 0 && ${#flatpak_search_list} -eq 0 ]]; then
     msg $"No packages found matching '$*'!"
     exit 1
 fi
-msg $"Found packages matching '$*':"
+msg $"Found packages matching '${BPurple}$*${NC}':"
 
 count=0
+pkgs=()
+pkgrepo=()
 
 for i in "${flatpak_search_list[@]}"; do
-    echo -e "[$count]: $i (flatpak)"
+    echo -e "[${BCyan}$count${NC}]: $i (${BCyan}flatpak${NC})"
+    pkgs+=("$i")
+    pkgrepo+=("flatpak")
     ((count++))
 done
 for i in "${apt_search_list[@]}"; do
-    echo -e "[$count]: $i (apt)"
+    echo -e "[${BGreen}$count${NC}]: $i (${BGreen}apt${NC})"
+    pkgs+=("$i")
+    pkgrepo+=("apt")
     ((count++))
 done
 for i in "${pacstall_search_list[@]}"; do
-    echo -e "[$count]: $i (pacstall)"
+    echo -e "[${BYellow}$count${NC}]: $i (${BYellow}pacstall${NC})"
+    pkgs+=("$i")
+    pkgrepo+=("pacstall")
     ((count++))
 done
 
+((count--))
+
+echo
+
 prompt $"Select which package to install" "$count"
+read -r entered_input
+if [[ ! $entered_input =~ ^[0-9]+$ ]] || [[ $entered_input -gt $count ]] || [[ ${entered_input:0:1} == "-" ]]; then
+    msg $"'$entered_input' is not a valid number"
+    exit 1
+fi
+
+msg $"Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from repo '${BPurple}${pkgrepo[$entered_input]}${NC}'"
