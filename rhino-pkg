@@ -110,19 +110,25 @@ msg $"Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from repo '${BPurple}${
 case "${pkgrepo[$entered_input]}" in
     flatpak)
         flatpak install "${pkgs[$entered_input]}" -y
+        ret=$?
         ;;
     apt)
         if command -v nala &> /dev/null; then
             sudo nala install "${pkgs[$entered_input]}" -y
+            ret=$?
         else
             sudo apt install "${pkgs[$entered_input]}" -y
+            ret=$?
         fi
         ;;
     pacstall)
         pacstall -I "${pkgs[$entered_input]}"
+        ret=$?
         ;;
     *)
         msg $"Invalid repository name!"
         exit 1
         ;;
 esac
+
+exit "$ret"
