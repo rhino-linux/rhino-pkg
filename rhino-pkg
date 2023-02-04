@@ -14,6 +14,7 @@ export BGreen='\033[1;32m'
 export BCyan='\033[1;36m'
 export BYellow='\033[1;33m'
 export BPurple='\033[1;35m'
+export BRed='\033[1;31m'
 
 function msg() {
     local input="$*"
@@ -58,22 +59,39 @@ function search_flatpak() {
     fi
 }
 
+function search_snap() {
+    local contents=("$(snap find "$*" | awk '{ print $1 }' | tail -n +2)")
+    if [[ ${contents[*]} == "No matching snaps for"* ]]; then
+        return 1
+    else
+        echo "${contents[@]}"
+    fi
+}
+
 if [[ -z $* ]]; then
     msg $"No input given!"
     exit 1
 fi
-
-msg $"Searching Pacstall…"
-pacstall_search_list=($(search_pacstall $*))
-clearscr
+if command -v pacstall &> /dev/null; then
+    msg $"Searching Pacstall…"
+    pacstall_search_list=($(search_pacstall $*))
+    clearscr
+fi
 msg $"Searching apt…"
 apt_search_list=($(search_apt $*))
 clearscr
-msg $"Searching flatpak…"
-flatpak_search_list=($(search_flatpak $*))
-clearscr
+if command -v flatpak &> /dev/null; then
+    msg $"Searching flatpak…"
+    flatpak_search_list=($(search_flatpak $*))
+    clearscr
+fi
+if command -v snap &> /dev/null; then
+    msg $"Searching snap…"
+    snap_search_list=($(search_snap $*))
+    clearscr
+fi
 
-if [[ ${#pacstall_search_list} -eq 0 && ${#apt_search_list} -eq 0 && ${#flatpak_search_list} -eq 0 ]]; then
+if [[ ${#pacstall_search_list} -eq 0 && ${#apt_search_list} -eq 0 && ${#flatpak_search_list} -eq 0 && ${#snap_search_list} -eq 0 ]]; then
     msg $"No packages found matching '$*'!"
     exit 1
 fi
@@ -102,6 +120,12 @@ for i in "${pacstall_search_list[@]}"; do
     pkgrepo+=("pacstall")
     ((count++))
 done
+for i in "${snap_search_list[@]}"; do
+    echo -e "[${BRed}$count${NC}]: $i (${BRed}snap${NC})"
+    pkgs+=("$i")
+    pkgrepo+=("snap")
+    ((count++))
+done
 
 ((count--))
 
@@ -114,7 +138,7 @@ if [[ ! $entered_input =~ ^[0-9]+$ ]] || [[ $entered_input -gt $count ]] || [[ $
     exit 1
 fi
 
-msg $"Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from repo '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+msg $"Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
 
 case "${pkgrepo[$entered_input]}" in
     flatpak)
@@ -132,6 +156,10 @@ case "${pkgrepo[$entered_input]}" in
         ;;
     pacstall)
         pacstall -I "${pkgs[$entered_input]}"
+        ret=$?
+        ;;
+    snap)
+        sudo snap install "${pkgs[$entered_input]}"
         ret=$?
         ;;
     *)
