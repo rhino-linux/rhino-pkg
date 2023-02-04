@@ -3,7 +3,11 @@
 tabs -4
 
 export TEXTDOMAIN=rhino-pkg
-export TEXTDOMAINDIR=/usr/local/share/locale
+if [[ -n $RHINOPKG_DEBUG ]]; then
+    export TEXTDOMAINDIR="${PWD}/locale"
+else
+    export TEXTDOMAINDIR=/usr/local/share/locale
+fi
 
 export NC='\033[0m'
 export BGreen='\033[1;32m'
