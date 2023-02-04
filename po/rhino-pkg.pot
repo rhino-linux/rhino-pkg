@@ -25,3 +25,6 @@ msgstr ""
 #: rhino-pkg:108
 msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from repo '${BPurple}${pkgrepo[$entered_input]}${NC}'"
 msgstr ""
+#: rhino-pkg:125
+msgid "Invalid repository name!"
+msgstr ""

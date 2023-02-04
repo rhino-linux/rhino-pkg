@@ -106,3 +106,23 @@ if [[ ! $entered_input =~ ^[0-9]+$ ]] || [[ $entered_input -gt $count ]] || [[ $
 fi
 
 msg $"Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from repo '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+
+case "${pkgrepo[$entered_input]}" in
+    flatpak)
+        flatpak install "${pkgs[$entered_input]}" -y
+        ;;
+    apt)
+        if command -v nala &> /dev/null; then
+            sudo nala install "${pkgs[$entered_input]}" -y
+        else
+            sudo apt install "${pkgs[$entered_input]}" -y
+        fi
+        ;;
+    pacstall)
+        pacstall -I "${pkgs[$entered_input]}"
+        ;;
+    *)
+        msg $"Invalid repository name!"
+        exit 1
+        ;;
+esac
