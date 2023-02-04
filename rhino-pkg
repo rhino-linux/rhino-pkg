@@ -22,6 +22,10 @@ function prompt() {
     echo -ne "$input [0-$index] "
 }
 
+function clearscr() {
+    tput cuu 1 && tput el
+}
+
 function search_pacstall() {
     if ! pacstall -S "$*" > /dev/null 2>&1; then
         return 1
@@ -57,19 +61,20 @@ fi
 
 msg $"Searching Pacstall…"
 pacstall_search_list=($(search_pacstall $*))
-tput cuu 1 && tput el
+clearscr
 msg $"Searching apt…"
 apt_search_list=($(search_apt $*))
-tput cuu 1 && tput el
+clearscr
 msg $"Searching flatpak…"
 flatpak_search_list=($(search_flatpak $*))
-tput cuu 1 && tput el
+clearscr
 
 if [[ ${#pacstall_search_list} -eq 0 && ${#apt_search_list} -eq 0 && ${#flatpak_search_list} -eq 0 ]]; then
     msg $"No packages found matching '$*'!"
     exit 1
 fi
 msg $"Found packages matching '${BPurple}$*${NC}':"
+echo
 
 count=0
 pkgs=()
