@@ -52,7 +52,7 @@ function search_apt() {
 }
 
 function search_flatpak() {
-    local contents=("$(flatpak search --columns="application" "$*")")
+    local contents=("$(LC_ALL=C flatpak search --columns="application" "$*")")
     if [[ ${contents[*]} == "No matches found" ]]; then
         return 1
     else
