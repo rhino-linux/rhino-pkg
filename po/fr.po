@@ -1,0 +1,33 @@
+#: rhino-pkg:73
+msgid "No input given!"
+msgstr "Aucune entrée n'a été donnée"
+#: rhino-pkg:77
+msgid "Searching Pacstall…"
+msgstr "Recherche de Pacstall…"
+#: rhino-pkg:81
+msgid "Searching apt…"
+msgstr "Recherche de l'apt…"
+#: rhino-pkg:85
+msgid "Searching flatpak…"
+msgstr "Recherche de flatpak…"
+#: rhino-pkg:90
+msgid "Searching snap…"
+msgstr "Recherche de snap…"
+#: rhino-pkg:96
+msgid "No packages found matching '$*'!"
+msgstr "Aucun paquet trouvé correspondant à '$*' !"
+#: rhino-pkg:99
+msgid "Found packages matching '${BPurple}$*${NC}':"
+msgstr "Paquets trouvés correspondant à '${BPurple}$*${NC}':"
+#: rhino-pkg:135
+msgid "Select which package to install"
+msgstr "Sélectionnez le paquet à installer"
+#: rhino-pkg:139
+msgid "'$entered_input' is not a valid number"
+msgstr "'$entered_input' n'est pas un nombre valide"
+#: rhino-pkg:143
+msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+msgstr "Sélection de '${BPurple}${pkgs[$entered_input]}${NC}' dans le gestionnaire de paquets '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+#: rhino-pkg:168
+msgid "Invalid repository name!"
+msgstr "Nom de dépôt non valide !"
