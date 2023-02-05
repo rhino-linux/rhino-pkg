@@ -6,7 +6,7 @@ export TEXTDOMAIN=rhino-pkg
 if [[ -n $RHINOPKG_DEBUG ]]; then
     export TEXTDOMAINDIR="${PWD}/locale"
 else
-    export TEXTDOMAINDIR=/usr/local/share/locale
+    export TEXTDOMAINDIR=/usr/share/locale
 fi
 
 export NC='\033[0m'
