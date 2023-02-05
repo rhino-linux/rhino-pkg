@@ -43,7 +43,11 @@ function search_pacstall() {
 }
 
 function search_apt() {
-    local contents=("$(apt-cache search "$*" | awk '{print $1}')")
+    if [[ -n $EXACT ]]; then
+        local contents=("$(apt-cache search --names-only "$*" | awk '{print $1}')")
+    else
+        local contents=("$(apt-cache search "$*" | awk '{print $1}')")
+    fi
     if [[ -n $contents ]]; then
         echo "${contents[@]}"
     else
@@ -52,7 +56,11 @@ function search_apt() {
 }
 
 function search_flatpak() {
-    local contents=("$(LC_ALL=C flatpak search --columns="application" "$*")")
+    if [[ -n $EXACT ]]; then
+        local contents=("$(LC_ALL=C flatpak search --columns="application" "$*" | head -n +2 | grep -o "$*")")
+    else
+        local contents=("$(LC_ALL=C flatpak search --columns="application" "$*" | head -n +2)")
+    fi
     if [[ ${contents[*]} == "No matches found" ]]; then
         return 1
     else
@@ -61,7 +69,11 @@ function search_flatpak() {
 }
 
 function search_snap() {
-    local contents=("$(snap find "$*" | awk '{ print $1 }' | tail -n +2)")
+    if [[ -n $EXACT ]]; then
+        local contents=("$(snap find "$*" | awk '{ print $1 }' | tail -n +2 | grep -o "$*")")
+    else
+        local contents=("$(snap find "$*" | awk '{ print $1 }' | tail -n +2)")
+    fi
     if [[ ${contents[*]} == "No matching snaps for"* ]]; then
         return 1
     else
@@ -73,6 +85,12 @@ if [[ -z $* ]]; then
     msg $"No input given!"
     exit 1
 fi
+
+if [[ $1 == "-e" || $1 == "--exact" ]]; then
+    EXACT=true
+    shift
+fi
+
 if command -v pacstall &> /dev/null; then
     msg $"Searching Pacstall…"
     pacstall_search_list=($(search_pacstall $*))
