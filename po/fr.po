@@ -1,6 +1,6 @@
 #: rhino-pkg:73
 msgid "No input given!"
-msgstr "Aucune entrée n'a été donnée"
+msgstr "Aucune entrée n'a été donnée !"
 #: rhino-pkg:77
 msgid "Searching Pacstall…"
 msgstr "Recherche de Pacstall…"
