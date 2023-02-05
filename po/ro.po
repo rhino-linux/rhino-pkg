@@ -1,0 +1,33 @@
+#: rhino-pkg:73
+msgid "No input given!"
+msgstr "Nu am primit termeni de căutare!"
+#: rhino-pkg:77
+msgid "Searching Pacstall…"
+msgstr "Căutare în Pacstall…"
+#: rhino-pkg:81
+msgid "Searching apt…"
+msgstr "Căutare în apt…"
+#: rhino-pkg:85
+msgid "Searching flatpak…"
+msgstr "Căutare în flatpak…"
+#: rhino-pkg:90
+msgid "Searching snap…"
+msgstr "Căutare în snap…"
+#: rhino-pkg:96
+msgid "No packages found matching '$*'!"
+msgstr "Nu au fost găsite aplicații care să se potrivească cu '$*'!"
+#: rhino-pkg:99
+msgid "Found packages matching '${BPurple}$*${NC}':"
+msgstr "Următoarele aplicații care se potrivesc cu '${BPurple}$*${NC}' au fost găsite:"
+#: rhino-pkg:135
+msgid "Select which package to install"
+msgstr "Selectează care aplicație să fie instalată"
+#: rhino-pkg:139
+msgid "'$entered_input' is not a valid number"
+msgstr "'$entered_input' nu este un număr valid"
+#: rhino-pkg:143
+msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+msgstr "Ai selectat '${BPurple}${pkgs[$entered_input]}${NC}' din registrul de aplicații '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+#: rhino-pkg:168
+msgid "Invalid repository name!"
+msgstr "Acest registru de aplicații nu există"
