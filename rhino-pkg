@@ -9,6 +9,18 @@ else
     export TEXTDOMAINDIR=/usr/share/locale
 fi
 
+help_flag="$(basename "$0") 0.0.1
+    A package manager wrapper for Pacstall, apt, flatpak and snap
+    Developed by Henryws <hwengerstickel@protonmail.com> for the Rhino Linux distribution
+
+USAGE: rhino-pkg {flags} [input]
+
+input: Provide package name or description
+
+flags: 
+    --help/-h: Display this page
+    --exact/-e: Displays only packages with [input] in their name"
+
 export NC='\033[0m'
 export BGreen='\033[1;32m'
 export BCyan='\033[1;36m'
@@ -84,6 +96,9 @@ function search_snap() {
 if [[ -z $* ]]; then
     msg $"No input given!"
     exit 1
+elif [[ $1 == "-h" ]] || [[ $1 == "--help" ]]; then
+    echo "$help_flag"
+    exit
 fi
 
 if [[ $1 == "-e" || $1 == "--exact" ]]; then
