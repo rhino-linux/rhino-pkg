@@ -25,3 +25,7 @@ flags:
 * Romanian
 * Swedish
 * Italian
+
+<a href="https://weblate.makedeb.org/engage/rhino-linux/">
+<img src="https://weblate.makedeb.org/widgets/rhino-linux/-/rhino-pkg/multi-blue.svg" alt="Translation status" />
+</a>
