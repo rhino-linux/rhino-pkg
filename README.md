@@ -10,7 +10,7 @@ input: Provide package name or description
 
 flags:
     --help/-h: Display this page
-    --exact/-e: Displays only packages with [input] in their name"
+    --exact/-e: Displays only packages with [input] in their name
 ```
 
 #### Supported languages
