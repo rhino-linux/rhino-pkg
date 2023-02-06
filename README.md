@@ -7,6 +7,7 @@ A package manager wrapper for Pacstall, apt, flatpak and snap.
 
 #### Supported languages
 * English
+    - Middle English
 * Spanish
 * French
 * Bengali

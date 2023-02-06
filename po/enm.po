@@ -1,0 +1,33 @@
+#: rhino-pkg:85
+msgid "No input given!"
+msgstr "Input hath not been given!"
+#: rhino-pkg:95
+msgid "Searching Pacstall…"
+msgstr "Doth searching Pacstall…"
+#: rhino-pkg:99
+msgid "Searching apt…"
+msgstr "Doth searching apt…"
+#: rhino-pkg:103
+msgid "Searching flatpak…"
+msgstr "Doth searching flatpak…"
+#: rhino-pkg:108
+msgid "Searching snap…"
+msgstr "Doth searching snap…"
+#: rhino-pkg:114
+msgid "No packages found matching '$*'!"
+msgstr "No packages found matching doth name '$*'!"
+#: rhino-pkg:117
+msgid "Found packages matching '${BPurple}$*${NC}':"
+msgstr "Found packages doth matching '${BPurple}$*${NC}':"
+#: rhino-pkg:153
+msgid "Select which package to install"
+msgstr "Select doth packages to which to install"
+#: rhino-pkg:157
+msgid "'$entered_input' is not a valid number"
+msgstr "'$entered_input' is not a valid number"
+#: rhino-pkg:161
+msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+msgstr "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from thine package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+#: rhino-pkg:186
+msgid "Invalid repository name!"
+msgstr "Thou hast supplied an improper repository name!"
