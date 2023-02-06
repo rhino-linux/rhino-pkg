@@ -13,6 +13,9 @@ flags:
     --exact/-e: Displays only packages with [input] in their name
 ```
 
+### How you can help
+* Work on translations into languages not finished yet by either editing the `po/<language_code>.po` file *or* making a new one by running `cp po/rhino-pkg.pot po/<language_code>.po`. Once you have completed or partially completed a po file, make a PR and we will merge it!
+
 #### Supported languages
 * English
     - Middle English
