@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-06 11:12-0500\n"
-"PO-Revision-Date: 2023-02-06 17:12+0000\n"
+"PO-Revision-Date: 2023-02-06 20:02+0000\n"
 "Last-Translator: Sourajyoti Basak <wiz28@protonmail.com>\n"
 "Language-Team: Bengali <https://weblate.makedeb.org/projects/rhino-linux/"
 "rhino-pkg/bn/>\n"
@@ -52,7 +52,9 @@ msgstr "'$entered_input' একটি বৈধ সংখ্যা নয়"
 
 #: rhino-pkg:143
 msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
-msgstr "প্যাকেজ ম্যানেজার '${BPurple}${pkgrepo[$entered_input]}${NC}' থেকে '${BPurple}${pkgs[$entered_input]}${NC}' নির্বাচন করা হচ্ছে"
+msgstr ""
+"প্যাকেজ ম্যানেজার '${BPurple}${pkgs[$entered_input]}${NC}' থেকে "
+"'${BPurple}${pkgrepo[$entered_input]}${NC}' নির্বাচন করা হচ্ছে"
 
 #: rhino-pkg:168
 msgid "Invalid repository name!"
