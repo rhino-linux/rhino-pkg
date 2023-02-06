@@ -4,10 +4,6 @@ A package manager wrapper for Pacstall, apt, flatpak and snap.
 
 ### Usage
 ```
-rhino-pkg 0.0.1
-    A package manager wrapper for Pacstall, apt, flatpak and snap
-    Developed by Henryws <hwengerstickel@protonmail.com> for the Rhino Linux distribution
-
 USAGE: rhino-pkg {flags} [input]
 
 input: Provide package name or description
