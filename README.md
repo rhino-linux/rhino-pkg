@@ -12,3 +12,4 @@ A package manager wrapper for Pacstall, apt, flatpak and snap.
 * Bengali
 * Romanian
 * Swedish
+* Italian
