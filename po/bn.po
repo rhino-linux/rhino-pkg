@@ -1,33 +1,59 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 11:12-0500\n"
+"PO-Revision-Date: 2023-02-06 17:12+0000\n"
+"Last-Translator: Sourajyoti Basak <wiz28@protonmail.com>\n"
+"Language-Team: Bengali <https://weblate.makedeb.org/projects/rhino-linux/"
+"rhino-pkg/bn/>\n"
+"Language: bn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.15.2\n"
+
 #: rhino-pkg:73
 msgid "No input given!"
-msgstr " কোনো  ইনপুট দেওয়া হয়নি!"
+msgstr "কোনো ইনপুট দেওয়া হয়নি!"
+
 #: rhino-pkg:77
 msgid "Searching Pacstall…"
-msgstr "Pacstall-এ  খোঁজ করা হচ্ছে…"
+msgstr "Pacstall-এ খোঁজ করা হচ্ছে…"
+
 #: rhino-pkg:81
 msgid "Searching apt…"
-msgstr "apt-এ  খোঁজ করা হচ্ছে…"
+msgstr "apt-এ খোঁজ করা হচ্ছে…"
+
 #: rhino-pkg:85
 msgid "Searching flatpak…"
-msgstr "flatpak-এ  খোঁজ করা হচ্ছে…"
+msgstr "flatpak-এ খোঁজ করা হচ্ছে…"
+
 #: rhino-pkg:90
 msgid "Searching snap…"
-msgstr "snap-এ  খোঁজ করা হচ্ছে…"
+msgstr "snap-এ খোঁজ করা হচ্ছে…"
+
 #: rhino-pkg:96
 msgid "No packages found matching '$*'!"
 msgstr "'$*' এর সাথে মিলিত কোনো প্যাকেজ পাওয়া যায়নি!"
+
 #: rhino-pkg:99
 msgid "Found packages matching '${BPurple}$*${NC}':"
 msgstr "'${BPurple}$*${NC}' এর সাথে মিলিত প্যাকেজগুলি পাওয়া গেছে:"
+
 #: rhino-pkg:135
 msgid "Select which package to install"
 msgstr "কোন প্যাকেজ ইনস্টল করতে হবে তা নির্বাচন করুন"
+
 #: rhino-pkg:139
 msgid "'$entered_input' is not a valid number"
 msgstr "'$entered_input' একটি বৈধ সংখ্যা নয়"
+
 #: rhino-pkg:143
 msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
 msgstr "প্যাকেজ ম্যানেজার '${BPurple}${pkgrepo[$entered_input]}${NC}' থেকে '${BPurple}${pkgs[$entered_input]}${NC}' নির্বাচন করা হচ্ছে"
+
 #: rhino-pkg:168
 msgid "Invalid repository name!"
-msgstr "অবৈধ সংগ্রহস্থলের নাম"
+msgstr "অবৈধ সংগ্রহস্থলের নাম!"
