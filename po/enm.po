@@ -1,33 +1,59 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 08:38-0500\n"
+"PO-Revision-Date: 2023-02-06 14:38+0000\n"
+"Last-Translator: Twilight is-the-best <hwengerstickel@protonmail.com>\n"
+"Language-Team: English (Middle) <https://weblate.makedeb.org/projects/"
+"rhino-linux/rhino-pkg/enm/>\n"
+"Language: enm\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.15.2\n"
+
 #: rhino-pkg:85
 msgid "No input given!"
 msgstr "Input hath not been given!"
+
 #: rhino-pkg:95
 msgid "Searching Pacstall…"
 msgstr "Doth searching Pacstall…"
+
 #: rhino-pkg:99
 msgid "Searching apt…"
 msgstr "Doth searching apt…"
+
 #: rhino-pkg:103
 msgid "Searching flatpak…"
 msgstr "Doth searching flatpak…"
+
 #: rhino-pkg:108
 msgid "Searching snap…"
 msgstr "Doth searching snap…"
+
 #: rhino-pkg:114
 msgid "No packages found matching '$*'!"
 msgstr "No packages found matching doth name '$*'!"
+
 #: rhino-pkg:117
 msgid "Found packages matching '${BPurple}$*${NC}':"
 msgstr "Found packages doth matching '${BPurple}$*${NC}':"
+
 #: rhino-pkg:153
 msgid "Select which package to install"
 msgstr "Select doth packages to which to install"
+
 #: rhino-pkg:157
 msgid "'$entered_input' is not a valid number"
-msgstr "'$entered_input' is not a valid number"
+msgstr "'$entered_input' is not a proper number"
+
 #: rhino-pkg:161
 msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
 msgstr "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from thine package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+
 #: rhino-pkg:186
 msgid "Invalid repository name!"
 msgstr "Thou hast supplied an improper repository name!"
