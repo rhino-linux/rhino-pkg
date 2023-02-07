@@ -17,14 +17,6 @@ flags:
 * Work on translations into languages not finished yet by either editing the `po/<language_code>.po` file, making a new one by running `cp po/rhino-pkg.pot po/<language_code>.po`, or using weblate (https://weblate.makedeb.org/projects/rhino-linux/rhino-pkg/). Once you have completed or partially completed a po file, make a PR and we will merge it!
 
 #### Supported languages
-* English
-    - Middle English
-* Spanish
-* French
-* Bengali
-* Romanian
-* Swedish
-* Italian
 
 <a href="https://weblate.makedeb.org/engage/rhino-linux/">
 <img src="https://weblate.makedeb.org/widgets/rhino-linux/-/rhino-pkg/multi-blue.svg" alt="Translation status" />
