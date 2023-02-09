@@ -23,19 +23,19 @@ msgstr "주어진 입력 값이 없습니다! "
 
 #: rhino-pkg:110
 msgid "Searching Pacstall…"
-msgstr "Pacstall에서 찾고 있습니다..."
+msgstr "Pacstall 검색 중..."
 
 #: rhino-pkg:114
 msgid "Searching apt…"
-msgstr "APT에서 찾고 있습니다..."
+msgstr "APT 검색 중..."
 
 #: rhino-pkg:118
 msgid "Searching flatpak…"
-msgstr "Flatpak에서 찾고 있습니다..."
+msgstr "Flatpak 검색 중..."
 
 #: rhino-pkg:123
 msgid "Searching snap…"
-msgstr "Snap에서 찾고 있습니다..."
+msgstr "Snap 검색 중..."
 
 #: rhino-pkg:129
 msgid "No packages found matching '$*'!"
