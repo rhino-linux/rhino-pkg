@@ -16,7 +16,7 @@ msgstr ""
 
 #: rhino-pkg:97
 msgid "No input given!"
-msgstr "주어진 입력 값이 없습니다! "
+msgstr "주어진 입력 값이 없습니다!"
 
 #: rhino-pkg:110
 msgid "Searching Pacstall…"
