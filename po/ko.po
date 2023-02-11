@@ -1,7 +1,5 @@
 # Header entry was created by Lokalize.
 #
-#: rhino-pkg:110
-#: rhino-pkg:97
 # Electronics, 2023.
 msgid ""
 msgstr ""
@@ -16,7 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 22.12.2\n"
 
-#: rhino-pkg:110
 #: rhino-pkg:97
 msgid "No input given!"
 msgstr "주어진 입력 값이 없습니다! "
