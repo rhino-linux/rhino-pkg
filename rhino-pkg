@@ -176,41 +176,43 @@ fi
 echo
 
 prompt $"Select which package to install" "$count"
-read -r entered_input
+read -ra entered_input
 echo -ne "${NC}"
-if [[ ! $entered_input =~ ^[0-9]+$ ]] || [[ $entered_input -gt $count ]] || [[ ${entered_input:0:1} == "-" ]]; then
-    msg $"'$entered_input' is not a valid number"
+if [[ ! ${entered_input[*]} =~ ^(([0-9])\s?)+ ]]; then
+    msg $"'${entered_input[*]}' is not a valid number"
     exit 1
 fi
 
-msg $"Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+for i in "${!entered_input[@]}"; do
+    msg $"Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
 
-case "${pkgrepo[$entered_input]}" in
-    flatpak)
-        flatpak install "${pkgs[$entered_input]}" -y
-        ret=$?
-        ;;
-    apt)
-        if command -v nala &> /dev/null; then
-            sudo nala install "${pkgs[$entered_input]}" -y
+    case "${pkgrepo[i]}" in
+        flatpak)
+            flatpak install "${pkgs[i]}" -y
             ret=$?
-        else
-            sudo apt install "${pkgs[$entered_input]}" -y
+            ;;
+        apt)
+            if command -v nala &> /dev/null; then
+                sudo nala install "${pkgs[i]}" -y
+                ret=$?
+            else
+                sudo apt install "${pkgs[i]}" -y
+                ret=$?
+            fi
+            ;;
+        pacstall)
+            pacstall -I "${pkgs[i]}"
             ret=$?
-        fi
-        ;;
-    pacstall)
-        pacstall -I "${pkgs[$entered_input]}"
-        ret=$?
-        ;;
-    snap)
-        sudo snap install "${pkgs[$entered_input]}"
-        ret=$?
-        ;;
-    *)
-        msg $"Invalid repository name!"
-        exit 1
-        ;;
-esac
+            ;;
+        snap)
+            sudo snap install "${pkgs[i]}"
+            ret=$?
+            ;;
+        *)
+            msg $"Invalid repository name!"
+            exit 1
+            ;;
+    esac
+done
 
 exit "$ret"

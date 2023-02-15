@@ -52,11 +52,11 @@ msgstr "'$entered_input'은 유효한 번호가 아닙니다."
 
 #: rhino-pkg:176
 msgid ""
-"Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager"
-" '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+"Selecting '${BPurple}${pkgs[i]}${NC}' from package manager"
+" '${BPurple}${pkgrepo[i]}${NC}'"
 msgstr ""
-"패키지 관리자 '${BPurple}${pkgrepo[$entered_input]}${NC}'에서 Selecting"
-" '${BPurple}${pkgs[$entered_input]}${NC}'를 선택했습니다."
+"패키지 관리자 '${BPurple}${pkgrepo[i]}${NC}'에서 Selecting"
+" '${BPurple}${pkgs[i]}${NC}'를 선택했습니다."
 
 #: rhino-pkg:201
 msgid "Invalid repository name!"

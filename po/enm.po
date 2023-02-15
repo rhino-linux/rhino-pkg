@@ -51,8 +51,8 @@ msgid "'$entered_input' is not a valid number"
 msgstr "'$entered_input' is not a proper number"
 
 #: rhino-pkg:161
-msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
-msgstr "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from thine package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+msgstr "Selecting '${BPurple}${pkgs[i]}${NC}' from thine package manager '${BPurple}${pkgrepo[i]}${NC}'"
 
 #: rhino-pkg:186
 msgid "Invalid repository name!"

@@ -51,10 +51,10 @@ msgid "'$entered_input' is not a valid number"
 msgstr "'$entered_input' वैध संख्या नहीं है"
 
 #: rhino-pkg:176
-msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
 msgstr ""
-"पैकेज मैनेजर '${Bpurple}${pkgs[$entered_input]}${NC}' से "
-"'${Bpurple}${pkgrepo[$entered_input]}${NC}' चुने गए हैं"
+"पैकेज मैनेजर '${Bpurple}${pkgs[i]}${NC}' से "
+"'${Bpurple}${pkgrepo[i]}${NC}' चुने गए हैं"
 
 #: rhino-pkg:201
 msgid "Invalid repository name!"

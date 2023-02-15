@@ -26,8 +26,8 @@ msgstr "Seleccione el paquete que desea instalar"
 msgid "'$entered_input' is not a valid number"
 msgstr "'$entered_input' no es un número válido"
 #: rhino-pkg:143
-msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
-msgstr "Seleccionando '${BPurple}${pkgs[$entered_input]}${NC}' del gestor de paquetes '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+msgstr "Seleccionando '${BPurple}${pkgs[i]}${NC}' del gestor de paquetes '${BPurple}${pkgrepo[i]}${NC}'"
 #: rhino-pkg:168
 msgid "Invalid repository name!"
 msgstr "¡Nombre de repositorio inválido!"

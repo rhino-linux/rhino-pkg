@@ -26,8 +26,8 @@ msgstr "Selectează care aplicație să fie instalată"
 msgid "'$entered_input' is not a valid number"
 msgstr "'$entered_input' nu este un număr valid"
 #: rhino-pkg:143
-msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
-msgstr "Ai selectat '${BPurple}${pkgs[$entered_input]}${NC}' din registrul de aplicații '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+msgstr "Ai selectat '${BPurple}${pkgs[i]}${NC}' din registrul de aplicații '${BPurple}${pkgrepo[i]}${NC}'"
 #: rhino-pkg:168
 msgid "Invalid repository name!"
 msgstr "Acest registru de aplicații nu există"

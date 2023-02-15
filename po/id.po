@@ -50,11 +50,11 @@ msgstr "'$entered_input' bukan angka yang sah"
 
 #: rhino-pkg:176
 msgid ""
-"Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager "
-"'${BPurple}${pkgrepo[$entered_input]}${NC}'"
+"Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
+"'${BPurple}${pkgrepo[i]}${NC}'"
 msgstr ""
-"Memilih'${BPurple}${pkgs[$entered_input]}${NC}' dari manajemen paket "
-"'${BPurple}${pkgrepo[$entered_input]}${NC}'"
+"Memilih'${BPurple}${pkgs[i]}${NC}' dari manajemen paket "
+"'${BPurple}${pkgrepo[i]}${NC}'"
 
 #: rhino-pkg:201
 msgid "Invalid repository name!"

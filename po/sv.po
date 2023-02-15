@@ -26,8 +26,8 @@ msgstr "Välj vilket paket att installera"
 msgid "'$entered_input' is not a valid number"
 msgstr "'$entered_input' är inte ett giltigt nummer"
 #: rhino-pkg:143
-msgid "Selecting '${BPurple}${pkgs[$entered_input]}${NC}' from package manager '${BPurple}${pkgrepo[$entered_input]}${NC}'"
-msgstr "Väljer '${BPurple}${pkgs[$entered_input]}${NC}' från pakethanterare '${BPurple}${pkgrepo[$entered_input]}${NC}'"
+msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+msgstr "Väljer '${BPurple}${pkgs[i]}${NC}' från pakethanterare '${BPurple}${pkgrepo[i]}${NC}'"
 #: rhino-pkg:168
 msgid "Invalid repository name!"
 msgstr "Ojiltigt arkivnamn!"
