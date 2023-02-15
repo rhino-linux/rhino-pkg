@@ -101,6 +101,11 @@ elif [[ $1 == "-h" ]] || [[ $1 == "--help" ]]; then
     exit
 fi
 
+if [[ $1 == "search" ]]; then
+    SEARCH=true
+    shift
+fi
+
 if [[ $1 == "-d" || $1 == "--description" ]]; then
     DESCRIPTION=true
     shift
@@ -129,6 +134,7 @@ if [[ ${#pacstall_search_list} -eq 0 && ${#apt_search_list} -eq 0 && ${#flatpak_
     msg $"No packages found matching '$*'!"
     exit 1
 fi
+
 msg $"Found packages matching '${BPurple}$*${NC}':"
 echo
 
@@ -162,6 +168,10 @@ for i in "${snap_search_list[@]}"; do
 done
 
 ((count--))
+
+if [[ -n $SEARCH ]]; then
+    exit 0
+fi
 
 echo
 
