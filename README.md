@@ -4,13 +4,17 @@ A package manager wrapper for Pacstall, apt, flatpak and snap.
 
 ### Usage
 ```
-USAGE: rhino-pkg {flags} [input]
+USAGE: rhino-pkg [subcommand] {flags} [input]
 
 input: Provide package name or description
 
+subcommand:
+    install: install a package
+    remove: uninstall a package
+
 flags:
     --help/-h: Display this page
-    --exact/-e: Displays only packages with [input] in their name
+    --description/-d: Displays packages with [input] in their description (if available)
 ```
 
 ### How you can help
