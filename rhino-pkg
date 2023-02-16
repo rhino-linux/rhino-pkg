@@ -9,7 +9,7 @@ else
     export TEXTDOMAINDIR=/usr/share/locale
 fi
 
-help_flag="$(basename "$0") 0.0.1
+help_flag="$(basename "$0") 0.0.2
     A package manager wrapper for Pacstall, apt, flatpak and snap
     Developed by Henryws <hwengerstickel@protonmail.com> for the Rhino Linux distribution
 

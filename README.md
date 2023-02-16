@@ -10,7 +10,7 @@ input: Provide package name or description
 
 subcommand:
     install: install a package
-    remove: uninstall a package
+    search: searches for packages
 
 flags:
     --help/-h: Display this page
