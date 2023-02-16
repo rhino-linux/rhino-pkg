@@ -13,13 +13,17 @@ help_flag="$(basename "$0") 0.0.1
     A package manager wrapper for Pacstall, apt, flatpak and snap
     Developed by Henryws <hwengerstickel@protonmail.com> for the Rhino Linux distribution
 
-USAGE: rhino-pkg {flags} [input]
+USAGE: rhino-pkg [subcommand] {flags} [input]
 
 input: Provide package name or description
 
+subcommand:
+    install: install a package
+    remove: uninstall a package
+
 flags: 
     --help/-h: Display this page
-    --exact/-e: Displays only packages with [input] in their name"
+    --description/-d: Displays packages with [input] in their description (if available)"
 
 export NC='\033[0m'
 export BGreen='\033[1;32m'
