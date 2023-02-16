@@ -100,9 +100,11 @@ function search_snap() {
 case "${1}" in
     search)
         SEARCH=true
+        shift
         ;;
     install)
         INSTALL=true
+        shift
         ;;
     -h | --help)
         echo "$help_flag"
