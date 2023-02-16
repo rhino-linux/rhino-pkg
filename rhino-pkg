@@ -101,10 +101,18 @@ elif [[ $1 == "-h" ]] || [[ $1 == "--help" ]]; then
     exit
 fi
 
-if [[ $1 == "search" ]]; then
-    SEARCH=true
-    shift
-fi
+case "${1}" in
+    search)
+        SEARCH=true
+        ;;
+    install)
+        INSTALL=true
+        ;;
+    *)
+        echo "$help_flag"
+        exit 1
+        ;;
+esac
 
 if [[ $1 == "-d" || $1 == "--description" ]]; then
     DESCRIPTION=true
