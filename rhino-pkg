@@ -97,20 +97,15 @@ function search_snap() {
     fi
 }
 
-if [[ -z $* ]]; then
-    msg $"No input given!"
-    exit 1
-elif [[ $1 == "-h" ]] || [[ $1 == "--help" ]]; then
-    echo "$help_flag"
-    exit
-fi
-
 case "${1}" in
     search)
         SEARCH=true
         ;;
     install)
         INSTALL=true
+        ;;
+    -h | --help)
+        echo "$help_flag"
         ;;
     *)
         echo "$help_flag"
