@@ -1,20 +1,65 @@
 # rhino-pkg
-
-A package manager wrapper for Pacstall, apt, flatpak and snap.
+```
+       .;:;,.  .:       
+    'coooooooo:oo.';.   
+  ,oooooooooooooooo    ;
+ clllcccllloooooooo;c:'o
+.;';:::::::::cclooooooo'
+''',::::::::::::::ccclc.
+.''';::::::::::l::::::: 
+ '''',:::::::::kd.      
+ .''''',;::ck:oW;       
+   ''''''''kXOM.        
+     .,,:dXMK           
+       :k
+```
+A package manager wrapper for Pacstall, APT, Flatpak and snap.
 
 ### Usage
 ```
-USAGE: rhino-pkg [subcommand] {flags} [input]
+USAGE: rhino-pkg [function] {flag} <input>                                                  
 
-input: Provide package name or description
+functions:
+    install: Install package(s) - Prompts user to respond with 
+             the number(s) associated with the desired package(s).
+             
+    remove:  Uninstall package(s) - Prompts user to respond with
+             the number(s) associated with the desired package(s).
+             
+    search:  Search for package(s) - Does not have a second prompt.
+    
+    update:  Updates all packages accessible to the wrapper - does
+             not accept <input>, instead use install to update 
+             individual packages. Has confirmation prompt.
 
-subcommand:
-    install: install a package
-    search: searches for packages
-
-flags:
+flags: 
     --help/-h: Display this page
-    --description/-d: Displays packages with [input] in their description (if available)
+    
+    --description/-d: By default, rhino-pkg will only display packages 
+    that contain <input> within their name. Use this flag to increase 
+    range and display packages with <input> in their description.
+    
+input: 
+    Provide a package name or description.
+
+Example execution:
+       >>> rhino-pkg install foobar
+       Searching...
+       Found packages matching 'foobar':
+
+       [0]: pyfoobar (apt)
+       [1]: foobarshell (apt)
+       [2]: foobar (flatpak)
+       [3]: foobar-web (snap)
+       [4]: foobar-bin (pacstall)
+       [5]: foobar-theme (pacstall)
+
+       Select which package to install [0-5]: 3 4 5
+       Selecting 'foobar-web' from package manager 'snap'
+       Selecting 'foobar-bin' from package manager 'pacstall'
+       Selecting 'foobar-theme' from package manager 'pacstall'
+       Are you sure? (y/N)
+       [...]
 ```
 
 ### How you can help
