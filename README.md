@@ -31,7 +31,7 @@ input:
     Provide a package name or description.
 
 Example execution:
-       >>> rhino-pkg install foobar
+       $ rhino-pkg install foobar
        Found packages matching 'foobar':
 
        [0]: pyfoobar (apt)
