@@ -9,10 +9,18 @@ else
     export TEXTDOMAINDIR=/usr/share/locale
 fi
 
-c1=$'\u001b[38;5;104m' # light purple
-c2=$'\u001b[0m'        # white/reset
-c3=$'\u001b[38;5;55m'  # dark purple
-c4=$'\u001b[38;5;98m'  # medium purple
+export NC=$'\033[0m'
+export BGreen=$'\033[1;32m'
+export BCyan=$'\033[1;36m'
+export BYellow=$'\033[1;33m'
+export BPurple=$'\033[1;35m'
+export BRed=$'\033[1;31m'
+export BWhite=$'\033[1;37m'
+
+export c1=$'\u001b[38;5;104m' # light purple
+export c2=$'\u001b[0m'        # white/reset
+export c3=$'\u001b[38;5;55m'  # dark purple
+export c4=$'\u001b[38;5;98m'  # medium purple
 
 help_flag="USAGE: $(basename $0) [function] {flag} <input>
 
@@ -41,20 +49,20 @@ input:
 
 Example execution:
     \$ $(basename $0) install foobar
-    Found packages matching 'foobar':
+    Found packages matching '${BPurple}foobar${NC}':
 
-    [0]: pyfoobar (apt)
-    [1]: foobarshell (apt)
-    [2]: foobar (flatpak)
-    [3]: foobar-web (snap)
-    [4]: foobar-bin (pacstall)
-    [5]: foobar-theme (pacstall)
+    [${BGreen}0${NC}]: pyfoobar (${BGreen}apt${NC})
+    [${BGreen}1${NC}]: foobarshell (${BGreen}apt${NC})
+    [${BCyan}2${NC}]: foobar (${BCyan}flatpak${NC})
+    [${BRed}3${NC}]: foobar-web (${BRed}snap${NC})
+    [${BYellow}4${NC}]: foobar-bin (${BYellow}pacstall${NC})
+    [${BYellow}5${NC}]: foobar-theme (${BYellow}pacstall${NC})
 
     Select which package to install [0-5]: 3 4 5
-    Selecting 'foobar-web' from package manager 'snap'
-    Selecting 'foobar-bin' from package manager 'pacstall'
-    Selecting 'foobar-theme' from package manager 'pacstall'
-    Are you sure? (y/N)
+    Selecting '${BPurple}foobar-web${NC}' from package manager '${BPurple}snap${NC}'
+    Selecting '${BPurple}foobar-bin${NC}' from package manager '${BPurple}pacstall${NC}'
+    Selecting '${BPurple}foobar-theme${NC}' from package manager '${BPurple}pacstall${NC}'
+    Are you sure? (${BGreen}y${NC}/${BRed}N${NC})
     [...]
       
 ${c1}       .;:;,.  .:       
@@ -73,15 +81,6 @@ ${c3}       ${c2}:k
 $(basename "$0") 0.0.2
 A package manager wrapper for Pacstall, APT, Flatpak and snap
 Developed by Henryws <hwengerstickel@protonmail.com> for the Rhino Linux distribution"
-
-export NC='\033[0m'
-export BGreen='\033[1;32m'
-export BCyan='\033[1;36m'
-export BYellow='\033[1;33m'
-export BPurple='\033[1;35m'
-export BRed='\033[1;31m'
-export BWhite='\033[1;37m'
-
 function msg() {
     local input="$*"
     echo -e "$input"
