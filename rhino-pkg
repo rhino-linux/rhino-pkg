@@ -14,7 +14,7 @@ c2=$'\u001b[0m'        # white/reset
 c3=$'\u001b[38;5;55m'  # dark purple
 c4=$'\u001b[38;5;98m'  # medium purple
 
-help_flag="USAGE: rhino-pkg [function] {flag} <input>
+help_flag="USAGE: $(basename $0) [function] {flag} <input>
 
 functions:
     install: Install package(s) - Prompts user to respond with 
@@ -32,7 +32,7 @@ functions:
 flags: 
     --help/-h: Display this page
     
-    --description/-d: By default, rhino-pkg will only display packages 
+    --description/-d: By default, $(basename $0) will only display packages 
     that contain <input> within their name. Use this flag to increase 
     range and display packages with <input> in their description.
     
@@ -40,7 +40,7 @@ input:
     Provide a package name or description.
 
 Example execution:
-       \$ rhino-pkg install foobar
+       \$ $(basename $0) install foobar
        Found packages matching 'foobar':
 
        [0]: pyfoobar (apt)
