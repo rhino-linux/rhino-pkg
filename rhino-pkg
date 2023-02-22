@@ -14,7 +14,7 @@ BOLD=$(tput bold)
 declare -r BOLD
 NORMAL=$(tput sgr0)
 declare -r NORMAL
-declare -r NC=$$'\033[0m'
+declare -r NC=$'\033[0m'
 declare -r BLINK=$'\e[5m'
 
 export BOLD NORMAL NC BLINK
