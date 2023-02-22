@@ -1,18 +1,7 @@
 # rhino-pkg
-```
-       .;:;,.  .:       
-    'coooooooo:oo.';.   
-  ,oooooooooooooooo    ;
- clllcccllloooooooo;c:'o
-.;';:::::::::cclooooooo'
-''',::::::::::::::ccclc.
-.''';::::::::::l::::::: 
- '''',:::::::::kd.      
- .''''',;::ck:oW;       
-   ''''''''kXOM.        
-     .,,:dXMK           
-       :k
-```
+![Asset_32x-2](https://user-images.githubusercontent.com/104327997/220486568-1f94f31f-ff15-441a-b0c5-0f047c19b112.png)
+
+
 A package manager wrapper for Pacstall, APT, Flatpak and snap.
 
 ### Usage
