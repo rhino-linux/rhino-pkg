@@ -9,21 +9,70 @@ else
     export TEXTDOMAINDIR=/usr/share/locale
 fi
 
-help_flag="$(basename "$0") 0.0.2
-    A package manager wrapper for Pacstall, apt, flatpak and snap
-    Developed by Henryws <hwengerstickel@protonmail.com> for the Rhino Linux distribution
+c1=$'\u001b[38;5;104m' # light purple
+c2=$'\u001b[0m'        # white/reset
+c3=$'\u001b[38;5;55m'  # dark purple
+c4=$'\u001b[38;5;98m'  # medium purple
 
-USAGE: rhino-pkg [subcommand] {flags} [input]
+help_flag="USAGE: $(basename $0) [function] {flag} <input>
 
-input: Provide package name or description
-
-subcommand:
-    install: install a package
-    remove: uninstall a package
+functions:
+    install: Install package(s) - Prompts user to respond with 
+             the number(s) associated with the desired package(s).
+             
+    remove:  Uninstall package(s) - Prompts user to respond with
+             the number(s) associated with the desired package(s).
+             
+    search:  Search for package(s) - Does not have a second prompt.
+    
+    update:  Updates all packages accessible to the wrapper - does
+             not accept <input>, instead use install to update 
+             individual packages. Has confirmation prompt.
 
 flags: 
     --help/-h: Display this page
-    --description/-d: Displays packages with [input] in their description (if available)"
+    
+    --description/-d: By default, $(basename $0) will only display packages 
+    that contain <input> within their name. Use this flag to increase 
+    range and display packages with <input> in their description.
+    
+input: 
+    Provide a package name or description.
+
+Example execution:
+    \$ $(basename $0) install foobar
+    Found packages matching 'foobar':
+
+    [0]: pyfoobar (apt)
+    [1]: foobarshell (apt)
+    [2]: foobar (flatpak)
+    [3]: foobar-web (snap)
+    [4]: foobar-bin (pacstall)
+    [5]: foobar-theme (pacstall)
+
+    Select which package to install [0-5]: 3 4 5
+    Selecting 'foobar-web' from package manager 'snap'
+    Selecting 'foobar-bin' from package manager 'pacstall'
+    Selecting 'foobar-theme' from package manager 'pacstall'
+    Are you sure? (y/N)
+    [...]
+      
+${c1}       .;:;,.  .:       
+${c1}    'coooooooo:oo.';.   
+${c1}  ,oooooooooooooooo    ;
+${c1} clllcccllloooooooo;c:'o
+${c1}.${c3};${c4}';:::::::::${c1}cclooooooo'
+${c3}''',${c4}::::::::::::::${c1}ccclc.
+${c3}.'''${c4};::::::::::${c2}l${c4}::::::: 
+${c3} ''''${c4},:::::::::${c2}kd${c4}.      
+${c3} .'''''${c4},;::${c2}ck:${c2}oW${c4};       
+${c3}   ''''''''${c2}kXOM.        
+${c3}     .,,:${c2}dXMK           
+${c3}       ${c2}:k
+
+$(basename "$0") 0.0.2
+A package manager wrapper for Pacstall, APT, Flatpak and snap
+Developed by Henryws <hwengerstickel@protonmail.com> for the Rhino Linux distribution"
 
 export NC='\033[0m'
 export BGreen='\033[1;32m'
