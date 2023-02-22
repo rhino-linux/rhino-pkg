@@ -31,22 +31,22 @@ input:
     Provide a package name or description.
 
 Example execution:
-       $ rhino-pkg install foobar
-       Found packages matching 'foobar':
+    $ rhino-pkg install foobar
+    Found packages matching 'foobar':
 
-       [0]: pyfoobar (apt)
-       [1]: foobarshell (apt)
-       [2]: foobar (flatpak)
-       [3]: foobar-web (snap)
-       [4]: foobar-bin (pacstall)
-       [5]: foobar-theme (pacstall)
+    [0]: pyfoobar (apt)
+    [1]: foobarshell (apt)
+    [2]: foobar (flatpak)
+    [3]: foobar-web (snap)
+    [4]: foobar-bin (pacstall)
+    [5]: foobar-theme (pacstall)
 
-       Select which package to install [0-5]: 3 4 5
-       Selecting 'foobar-web' from package manager 'snap'
-       Selecting 'foobar-bin' from package manager 'pacstall'
-       Selecting 'foobar-theme' from package manager 'pacstall'
-       Are you sure? (y/N)
-       [...]
+    Select which package to install [0-5]: 3 4 5
+    Selecting 'foobar-web' from package manager 'snap'
+    Selecting 'foobar-bin' from package manager 'pacstall'
+    Selecting 'foobar-theme' from package manager 'pacstall'
+    Are you sure? (y/N)
+    [...]
 ```
 
 ### How you can help
