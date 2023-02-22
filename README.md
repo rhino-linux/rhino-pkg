@@ -32,7 +32,6 @@ input:
 
 Example execution:
        >>> rhino-pkg install foobar
-       Searching...
        Found packages matching 'foobar':
 
        [0]: pyfoobar (apt)
