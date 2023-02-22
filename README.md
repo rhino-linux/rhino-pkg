@@ -1,6 +1,5 @@
 # rhino-pkg
-![Asset_32x-2](https://user-images.githubusercontent.com/104327997/220486568-1f94f31f-ff15-441a-b0c5-0f047c19b112.png)
-
+![Untitled-1-01](https://user-images.githubusercontent.com/104327997/220489413-92c852e8-9247-4d40-8958-e8830101a82e.svg)
 
 A package manager wrapper for Pacstall, APT, Flatpak and snap.
 
