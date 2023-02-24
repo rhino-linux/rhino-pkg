@@ -1,36 +1,36 @@
-#: rhino-pkg:182
+#: rhino-pkg:186
 msgid "Searching Pacstall…"
 msgstr ""
-#: rhino-pkg:186
+#: rhino-pkg:190
 msgid "Searching apt…"
 msgstr ""
-#: rhino-pkg:190
+#: rhino-pkg:194
 msgid "Searching flatpak…"
 msgstr ""
-#: rhino-pkg:195
+#: rhino-pkg:199
 msgid "Searching snap…"
 msgstr ""
-#: rhino-pkg:201
+#: rhino-pkg:205
 msgid "No packages found matching '$*'!"
 msgstr ""
-#: rhino-pkg:205
+#: rhino-pkg:209
 msgid "Found packages matching '${BPurple}$*${NC}':"
 msgstr ""
-#: rhino-pkg:250
+#: rhino-pkg:254
 msgid "Select which package to install"
 msgstr ""
-#: rhino-pkg:256
+#: rhino-pkg:260
 msgid "Select which package to remove"
 msgstr ""
-#: rhino-pkg:262
+#: rhino-pkg:266
 msgid "'${entered_input[*]}' is not a valid number"
 msgstr ""
-#: rhino-pkg:267
+#: rhino-pkg:271
 msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
 msgstr ""
-#: rhino-pkg:270
+#: rhino-pkg:274
 msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
 msgstr ""
-#: rhino-pkg:305
+#: rhino-pkg:330
 msgid "Invalid repository name!"
 msgstr ""
