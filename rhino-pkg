@@ -122,7 +122,7 @@ function search_apt() {
 
 function search_flatpak() {
     if [[ -z $DESCRIPTION ]]; then
-        local contents=("$(LC_ALL=C flatpak search --columns="application" "$*" | head -n +2 | grep -o "$*")")
+        local contents=("$(LC_ALL=C flatpak search --columns="application" "$*" | head -n +2 | grep --color=never "$*")")
     else
         local contents=("$(LC_ALL=C flatpak search --columns="application" "$*" | head -n +2)")
     fi
