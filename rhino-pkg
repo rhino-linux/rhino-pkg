@@ -169,6 +169,9 @@ if [[ $1 == "-d" || $1 == "--description" ]]; then
     shift
 fi
 
+# Lowercase the rest of input
+set -- "${*,,}"
+
 if command -v pacstall &> /dev/null; then
     msg $"Searching Pacstall…"
     pacstall_search_list=($(search_pacstall $*))
