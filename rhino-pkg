@@ -10,17 +10,19 @@ else
 fi
 
 # Colors
-export NC=$'\033[0m'
-export BGreen=$'\033[1;32m'
-export BCyan=$'\033[1;36m'
-export BYellow=$'\033[1;33m'
-export BPurple=$'\033[1;35m'
-export BRed=$'\033[1;31m'
-export BWhite=$'\033[1;37m'
-export c1=$'\u001b[38;5;104m' # light purple
-export c2=$'\u001b[0m'        # white/reset
-export c3=$'\u001b[38;5;55m'  # dark purple
-export c4=$'\u001b[38;5;98m'  # medium purple
+if [[ -z $NO_COLOR ]]; then
+    export NC=$'\033[0m'
+    export BGreen=$'\033[1;32m'
+    export BCyan=$'\033[1;36m'
+    export BYellow=$'\033[1;33m'
+    export BPurple=$'\033[1;35m'
+    export BRed=$'\033[1;31m'
+    export BWhite=$'\033[1;37m'
+    export c1=$'\u001b[38;5;104m' # light purple
+    export c2=$'\u001b[0m'        # white/reset
+    export c3=$'\u001b[38;5;55m'  # dark purple
+    export c4=$'\u001b[38;5;98m'  # medium purple
+fi
 
 help_flag="USAGE: $(basename $0) [function] {flag} <input>
 
