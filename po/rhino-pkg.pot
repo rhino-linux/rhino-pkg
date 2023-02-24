@@ -26,7 +26,7 @@ msgstr ""
 msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
 msgstr ""
 #: rhino-pkg:253
-msgid "Are you sure? (${BGreen}Y${NC}/${BRed}N${NC}) "
+msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
 msgstr ""
 #: rhino-pkg:288
 msgid "Invalid repository name!"
