@@ -157,6 +157,10 @@ case "${1}" in
         INSTALL=true
         shift
         ;;
+    remove)
+        REMOVE=true
+        shift
+        ;;
     -h | --help)
         echo "$help_flag"
         ;;
@@ -238,7 +242,20 @@ fi
 
 echo
 
-prompt $"Select which package to install" "$count"
+if [[ -n $INSTALL ]]; then
+    flatpak_cmd="install"
+    snap_cmd="install"
+    apt_cmd="install"
+    pacstall_cmd="-I"
+    prompt $"Select which package to install" "$count"
+elif [[ -n $REMOVE ]]; then
+    flatpak_cmd="remove"
+    snap_cmd="remove"
+    apt_cmd="remove"
+    pacstall_cmd="-R"
+    prompt $"Select which package to remove" "$count"
+fi
+
 read -ra entered_input
 echo -ne "${NC}"
 if [[ ! ${entered_input[*]} =~ ^(([0-9])\s?)+ ]]; then
@@ -264,24 +281,24 @@ esac
 for i in "${entered_input[@]}"; do
     case "${pkgrepo[i]}" in
         flatpak)
-            flatpak install "${pkgs[i]}" -y
+            flatpak "${flatpak_cmd}" "${pkgs[i]}" -y
             ret=$?
             ;;
         apt)
             if command -v nala &> /dev/null; then
-                sudo nala install "${pkgs[i]}" -y
+                sudo nala "${apt_cmd}" "${pkgs[i]}" -y
                 ret=$?
             else
-                sudo apt install "${pkgs[i]}" -y
+                sudo apt "${apt_cmd}" "${pkgs[i]}" -y
                 ret=$?
             fi
             ;;
         pacstall)
-            pacstall -I "${pkgs[i]}"
+            pacstall "${pacstall_cmd}" "${pkgs[i]}"
             ret=$?
             ;;
         snap)
-            sudo snap install "${pkgs[i]}"
+            sudo snap "${snap_cmd}" "${pkgs[i]}"
             ret=$?
             ;;
         *)
