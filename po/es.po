@@ -31,3 +31,6 @@ msgstr "Seleccionando '${BPurple}${pkgs[i]}${NC}' del gestor de paquetes '${BPur
 #: rhino-pkg:168
 msgid "Invalid repository name!"
 msgstr "¡Nombre de repositorio inválido!"
+#: rhino-pkg:253
+msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
+msgstr "¿Estás seguro? (${BGreen}y${NC}/${BRed}N${NC}) "
