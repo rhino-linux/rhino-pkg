@@ -246,7 +246,7 @@ if [[ ! ${entered_input[*]} =~ ^(([0-9])\s?)+ ]]; then
     exit 1
 fi
 
-for i in "${!entered_input[@]}"; do
+for i in "${entered_input[@]}"; do
     msg $"Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
 
     case "${pkgrepo[i]}" in
