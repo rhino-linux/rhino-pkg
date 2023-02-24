@@ -248,7 +248,9 @@ fi
 
 for i in "${entered_input[@]}"; do
     msg $"Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+done
 
+for i in "${entered_input[@]}"; do
     case "${pkgrepo[i]}" in
         flatpak)
             flatpak install "${pkgs[i]}" -y
