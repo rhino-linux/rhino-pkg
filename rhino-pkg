@@ -167,6 +167,7 @@ case "${1}" in
         ;;
     -h | --help)
         echo "$help_flag"
+        exit 0
         ;;
     *)
         echo "$help_flag"
