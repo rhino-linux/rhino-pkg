@@ -183,6 +183,17 @@ if [[ -n $UPDATE ]]; then
     if [[ -n $* ]]; then
         exit 1
     fi
+    echo -n $"Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
+    read -ra read_update
+    echo -ne "${NC}"
+    case "${read_update}" in
+        Y* | y*)
+            true
+            ;;
+        *)
+            exit 1
+            ;;
+    esac
     if command -v pacstall &> /dev/null; then
         pacstall -Up
     fi
@@ -193,7 +204,7 @@ if [[ -n $UPDATE ]]; then
         sudo snap refresh
     fi
     if command -v nala &> /dev/null; then
-        sudo nala update
+        sudo nala upgrade
     else
         sudo apt update && sudo apt upgrade
     fi
