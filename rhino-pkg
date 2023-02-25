@@ -179,6 +179,27 @@ if [[ $1 == "-d" || $1 == "--description" ]]; then
     shift
 fi
 
+if [[ -n $UPDATE ]]; then
+    if [[ -n $* ]]; then
+        exit 1
+    fi
+    if command -v pacstall &> /dev/null; then
+        pacstall -Up
+    fi
+    if command -v flatpak &> /dev/null; then
+        flatpak update
+    fi
+    if command -v snap &> /dev/null; then
+        sudo snap refresh
+    fi
+    if command -v nala &> /dev/null; then
+        sudo nala update
+    else
+        sudo apt update && sudo apt upgrade
+    fi
+    exit 0
+fi
+
 # Lowercase the rest of input
 set -- "${*,,}"
 
@@ -281,27 +302,6 @@ case "${sure}" in
         exit 1
         ;;
 esac
-
-if [[ -n $UPDATE ]]; then
-    if [[ -n $* ]]; then
-        exit 1
-    fi
-    if command -v pacstall &> /dev/null; then
-        pacstall -Up
-    fi
-    if command -v flatpak &> /dev/null; then
-        flatpak update
-    fi
-    if command -v snap &> /dev/null; then
-        sudo snap refresh
-    fi
-    if command -v nala &> /dev/null; then
-        sudo nala update
-    else
-        sudo apt update && sudo apt upgrade
-    fi
-    exit 0
-fi
 
 for i in "${entered_input[@]}"; do
     case "${pkgrepo[i]}" in
