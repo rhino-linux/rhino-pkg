@@ -200,7 +200,7 @@ if [[ -n $UPDATE ]]; then
         pacstall -Up
     fi
     if command -v flatpak &> /dev/null; then
-        flatpak update
+        sudo flatpak update
     fi
     if command -v snap &> /dev/null; then
         sudo snap refresh
