@@ -165,6 +165,10 @@ case "${1}" in
     update)
         UPDATE=true
         shift
+        if [[ $1 == "-y" ]]; then
+            PROMPTLESS=true
+            shift
+        fi
         ;;
     -h | --help)
         echo "$help_flag"
@@ -188,27 +192,39 @@ if [[ -n $UPDATE ]]; then
     echo -n $"Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
     read -ra read_update
     echo -ne "${NC}"
-    case "${read_update}" in
-        Y* | y*)
-            true
-            ;;
-        *)
-            exit 1
-            ;;
+    case "${read_update[0]}" in
+        Y* | y*) ;;
+        *) exit 1 ;;
     esac
     if command -v pacstall &> /dev/null; then
-        pacstall -Up
+        if [[ -n $PROMPTLESS ]]; then
+            pacstall -PUp
+        else
+            pacstall -Up
+        fi
     fi
     if command -v flatpak &> /dev/null; then
-        sudo flatpak update
+        if [[ -n $PROMPTLESS ]]; then
+            sudo flatpak update -y
+        else
+            sudo flatpak update
+        fi
     fi
     if command -v snap &> /dev/null; then
         sudo snap refresh
     fi
     if command -v nala &> /dev/null; then
-        sudo nala upgrade
+        if [[ -n $PROMPTLESS ]]; then
+            sudo nala upgrade -y
+        else
+            sudo nala upgrade
+        fi
     else
-        sudo apt update && sudo apt upgrade
+        if [[ -n $PROMPTLESS ]]; then
+            sudo apt update && sudo apt upgrade -y
+        else
+            sudo apt update && sudo apt upgrade
+        fi
     fi
     exit 0
 fi
