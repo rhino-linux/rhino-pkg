@@ -189,9 +189,13 @@ if [[ -n $UPDATE ]]; then
     if [[ -n $* ]]; then
         exit 1
     fi
-    echo -n $"Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
-    read -ra read_update
-    echo -ne "${NC}"
+    if [[ -z $PROMPTLESS ]]; then
+        echo -n $"Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
+        read -ra read_update
+        echo -ne "${NC}"
+    else
+        read_update=("Y")
+    fi
     case "${read_update[0]}" in
         Y* | y*) ;;
         *) exit 1 ;;
