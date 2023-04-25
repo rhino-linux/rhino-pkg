@@ -219,15 +219,15 @@ if [[ -n $UPDATE ]]; then
     fi
     if command -v nala &> /dev/null; then
         if [[ -n $PROMPTLESS ]]; then
-            sudo nala upgrade -y
+            sudo nala upgrade -y -o Acquire::AllowReleaseInfoChange="true"
         else
-            sudo nala upgrade
+            sudo nala upgrade -o Acquire::AllowReleaseInfoChange="true"
         fi
     else
         if [[ -n $PROMPTLESS ]]; then
-            sudo apt update && sudo apt upgrade -y
+            sudo apt update --allow-releaseinfo-change && sudo apt upgrade -y
         else
-            sudo apt update && sudo apt upgrade
+            sudo apt update --allow-releaseinfo-change && sudo apt upgrade
         fi
     fi
     exit 0
