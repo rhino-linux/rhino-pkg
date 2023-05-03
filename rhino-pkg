@@ -200,6 +200,19 @@ if [[ -n $UPDATE ]]; then
         Y* | y*) ;;
         *) exit 1 ;;
     esac
+    if command -v nala &> /dev/null; then
+        if [[ -n $PROMPTLESS ]]; then
+            sudo nala upgrade -y -o Acquire::AllowReleaseInfoChange="true"
+        else
+            sudo nala upgrade -o Acquire::AllowReleaseInfoChange="true"
+        fi
+    else
+        if [[ -n $PROMPTLESS ]]; then
+            sudo apt update --allow-releaseinfo-change && sudo apt upgrade -y
+        else
+            sudo apt update --allow-releaseinfo-change && sudo apt upgrade
+        fi
+    fi
     if command -v pacstall &> /dev/null; then
         if [[ -n $PROMPTLESS ]]; then
             pacstall -PUp
@@ -216,19 +229,6 @@ if [[ -n $UPDATE ]]; then
     fi
     if command -v snap &> /dev/null; then
         sudo snap refresh
-    fi
-    if command -v nala &> /dev/null; then
-        if [[ -n $PROMPTLESS ]]; then
-            sudo nala upgrade -y -o Acquire::AllowReleaseInfoChange="true"
-        else
-            sudo nala upgrade -o Acquire::AllowReleaseInfoChange="true"
-        fi
-    else
-        if [[ -n $PROMPTLESS ]]; then
-            sudo apt update --allow-releaseinfo-change && sudo apt upgrade -y
-        else
-            sudo apt update --allow-releaseinfo-change && sudo apt upgrade
-        fi
     fi
     exit 0
 fi
