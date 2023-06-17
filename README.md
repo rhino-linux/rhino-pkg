@@ -1,5 +1,5 @@
 # rhino-pkg
-<img width="400" alt="rpk-logo" src="https://github.com/rhino-linux/rhino-pkg/assets/104327997/3d207d23-105c-4f8c-95c0-059ef0c364f7">
+<img width="400" alt="placeholder-rpk" src="https://github.com/rhino-linux/rhino-pkg/assets/104327997/f1089f8d-4caa-4b27-83b7-9cc0a12ab5dc">
 
 A package manager wrapper for Pacstall, APT, Flatpak and snap.
 
