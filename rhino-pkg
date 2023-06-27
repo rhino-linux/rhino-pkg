@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#
 tabs -4
 
 export TEXTDOMAIN=rhino-pkg
