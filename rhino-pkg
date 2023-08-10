@@ -125,9 +125,9 @@ function search_apt() {
 
 function search_flatpak() {
     if [[ -z $DESCRIPTION ]]; then
-        local contents=("$(LC_ALL=C flatpak search --columns="application" "$*" | head -n +2 | grep --color=never "$*")")
+        local contents=("$(LC_ALL=C flatpak search --columns="application" "$*" | sed '1d' | grep -i --color=never "$*")")
     else
-        local contents=("$(LC_ALL=C flatpak search --columns="application" "$*" | head -n +2)")
+        local contents=("$(LC_ALL=C flatpak search --columns="application" "$*" | sed '1d')")
     fi
     if [[ ${contents[*]} == "No matches found" ]]; then
         return 1
@@ -138,7 +138,7 @@ function search_flatpak() {
 
 function search_snap() {
     if [[ -z $DESCRIPTION ]]; then
-        local contents=("$(snap find "$*" | awk '{ print $1 }' | tail -n +2 | grep -o "$*")")
+        local contents=("$(snap find "$*" | awk '{ print $1 }' | tail -n +2 | grep -i --color=never "$*")")
     else
         local contents=("$(snap find "$*" | awk '{ print $1 }' | tail -n +2)")
     fi
