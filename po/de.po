@@ -12,7 +12,7 @@ msgid "Searching flatpak…"
 msgstr "Suche in Flatpak…"
 #: rhino-pkg:231
 msgid "Searching snap…"
-msgstr "Suche in Snap"
+msgstr "Suche in Snap…"
 #: rhino-pkg:237
 msgid "No packages found matching '$*'!"
 msgstr "Keine passenden Pakete zu '$*' gefunden!"
