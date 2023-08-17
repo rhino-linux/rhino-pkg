@@ -1,6 +1,6 @@
 #: rhino-pkg:186
 msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr ""
+msgstr "Sind Sie sicher, dass sie alle Pakete aktualisieren möchten? (${BGreen}y${NC}/${BRed}N${NC}) "
 #: rhino-pkg:218
 msgid "Searching Pacstall…"
 msgstr "Suche in Pacstall…"
