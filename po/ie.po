@@ -15,7 +15,9 @@ msgstr ""
 "X-Generator: Weblate 5.0-dev\n"
 
 #: rhino-pkg:186
-msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
+msgid ""
+"Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N"
+"${NC}) "
 msgstr ""
 "Esque vu vole actualisar omni paccages? (${BGreen}y${NC}/${BRed}N${NC}) "
 
@@ -56,7 +58,9 @@ msgid "'${entered_input[*]}' is not a valid number"
 msgstr "'${entered_input[*]}' ne es un valid númere"
 
 #: rhino-pkg:303
-msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+msgid ""
+"Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
+"'${BPurple}${pkgrepo[i]}${NC}'"
 msgstr ""
 "Selecte '${BPurple}${pkgs[i]}${NC}' del gerente de paccages "
 "'${BPurple}${pkgrepo[i]}${NC}'"
