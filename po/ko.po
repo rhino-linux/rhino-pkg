@@ -49,7 +49,7 @@ msgstr "설치할 패키지를 선택해주세요"
 
 #: rhino-pkg:172
 msgid "'$entered_input' is not a valid number"
-msgstr "'$entered_input'은 유효한 번호가 아닙니다."
+msgstr "'$entered_input'은 유효한 번호가 아닙니다"
 
 #: rhino-pkg:176
 msgid ""
