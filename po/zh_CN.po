@@ -3,16 +3,16 @@ msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${
 msgstr "确定更新全部软件包？ (${BGreen}y${NC}/${BRed}N${NC}) "
 #: rhino-pkg:218
 msgid "Searching Pacstall…"
-msgstr "正在检索Pacstall..."
+msgstr "正在检索Pacstall…"
 #: rhino-pkg:222
 msgid "Searching apt…"
-msgstr "正在检索apt..."
+msgstr "正在检索apt…"
 #: rhino-pkg:226
 msgid "Searching flatpak…"
-msgstr "正在检索flatpak..."
+msgstr "正在检索flatpak…"
 #: rhino-pkg:231
 msgid "Searching snap…"
-msgstr "正在检索snap..."
+msgstr "正在检索snap…"
 #: rhino-pkg:237
 msgid "No packages found matching '$*'!"
 msgstr "未找到匹配 '$*' 的软件包！"
