@@ -30,10 +30,10 @@ msgid "'${entered_input[*]}' is not a valid number"
 msgstr "'${entered_input[*]}' ist keine gültige Zahl"
 #: rhino-pkg:303
 msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
-msgstr "Wähle '${BPurple}${pkgs[i]}${NC}' von Paketmanager '${BPurple}${pkgrepo[i]}${NC}'"
+msgstr "'${BPurple}${pkgs[i]}${NC}' von Paketmanager '${BPurple}${pkgrepo[i]}${NC}' wird gewählt"
 #: rhino-pkg:306
 msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "Sind Sie sicher? (${BGreen}y${NC}/${BRed}N${NC}) "
+msgstr "Sind Sie sich sicher? (${BGreen}y${NC}/${BRed}N${NC}) "
 #: rhino-pkg:341
 msgid "Invalid repository name!"
 msgstr "Ungültiger Repository Name!"
