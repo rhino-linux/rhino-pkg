@@ -162,6 +162,10 @@ case "${1}" in
         REMOVE=true
         shift
         ;;
+    cleanup)
+        CLEANUP=true
+        shift
+        ;;
     update)
         UPDATE=true
         shift
@@ -231,6 +235,47 @@ if [[ -n $UPDATE ]]; then
     fi
     if command -v snap &> /dev/null; then
         sudo snap refresh
+    fi
+    exit 0
+fi
+
+if [[ -n $CLEANUP ]]; then
+    if [[ -n $* ]]; then
+        exit 1
+    fi
+    if [[ -z $PROMPTLESS ]]; then
+        echo -n $"This will attempt to repair broken dependencies and remove unused packages. Do you want to continue? (${BGreen}y${NC}/${BRed}N${NC}) "
+        read -ra read_update
+        echo -ne "${NC}"
+    else
+        read_update=("Y")
+    fi
+    case "${read_update[0]}" in
+        Y* | y*) ;;
+        *) exit 1 ;;
+    esac
+    if command -v nala &> /dev/null; then
+        if [[ -n $PROMPTLESS ]]; then
+            sudo nala install && sudo nala upgrade -y --full --no-update -o Acquire::AllowReleaseInfoChange="true"
+        else
+            sudo nala install && sudo nala upgrade --full --no-update -o Acquire::AllowReleaseInfoChange="true"
+        fi
+    else
+        if [[ -n $PROMPTLESS ]]; then
+            sudo apt --fix-broken install && sudo apt auto-remove -y
+        else
+            sudo apt --fix-broken install && sudo apt auto-remove
+        fi
+    fi
+    if command -v flatpak &> /dev/null; then
+        if [[ -n $PROMPTLESS ]]; then
+            flatpak repair && flatpak uninstall --unused -y
+        else
+            flatpak repair && flatpak uninstall --unused
+        fi
+    fi
+    if command -v snap &> /dev/null; then
+        LANG=C snap list --all | while read snapname ver rev trk pub notes; do if [[ $notes = *disabled* ]]; then sudo snap remove "$snapname" --revision="$rev"; fi; done
     fi
     exit 0
 fi
