@@ -27,7 +27,7 @@ functions:
 flags: 
     --help/-h: Display this page
     
-    --description/-d: By default, $(basename $0) will only display packages 
+    --description/-d: By default, rhino-pkg will only display packages 
     that contain <input> within their name. Use this flag to increase 
     range and display packages with <input> in their description.
 
