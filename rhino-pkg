@@ -125,9 +125,9 @@ function search_apt() {
 
 function search_flatpak() {
     if [[ -z $DESCRIPTION ]]; then
-        local contents=("$(LC_ALL=C flatpak search --columns="application" "$*" | grep -i --color=never "$*")")
+        local contents=("$(LC_ALL=C sudo flatpak search --columns="application" "$*" | grep -i --color=never "$*")")
     else
-        local contents=("$(LC_ALL=C flatpak search --columns="application" "$*")")
+        local contents=("$(LC_ALL=C sudo flatpak search --columns="application" "$*")")
     fi
     if [[ ${contents[*]} == "No matches found" ]]; then
         return 1
@@ -341,7 +341,7 @@ esac
 for i in "${entered_input[@]}"; do
     case "${pkgrepo[i]}" in
         flatpak)
-            flatpak "${flatpak_cmd}" "${pkgs[i]}" -y
+            sudo flatpak "${flatpak_cmd}" "${pkgs[i]}" -y
             ret=$?
             ;;
         apt)
