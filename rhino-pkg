@@ -37,7 +37,11 @@ functions:
     
     update:  Updates all packages accessible to the wrapper - does
              not accept <input>, instead use install to update 
-             individual packages. Has confirmation prompt.
+             individual packages. Has a confirmation prompt.
+
+    cleanup: Attempts to repair broken dependencies and remove any
+             unused packages. Does not accept <input>, but has 
+             a confirmation prompt.
 
 flags: 
     --help/-h: Display this page
@@ -45,6 +49,8 @@ flags:
     --description/-d: By default, $(basename $0) will only display packages 
     that contain <input> within their name. Use this flag to increase 
     range and display packages with <input> in their description.
+
+    -y: Makes functions with confirmation prompts run promptless.
     
 input: 
     Provide a package name or description.
@@ -165,6 +171,10 @@ case "${1}" in
     cleanup)
         CLEANUP=true
         shift
+        if [[ $1 == "-y" ]]; then
+            PROMPTLESS=true
+            shift
+        fi
         ;;
     update)
         UPDATE=true
@@ -244,7 +254,7 @@ if [[ -n $CLEANUP ]]; then
         exit 1
     fi
     if [[ -z $PROMPTLESS ]]; then
-        echo -n $"This will attempt to repair broken dependencies and remove unused packages. Do you want to continue? (${BGreen}y${NC}/${BRed}N${NC}) "
+        echo -n $"Attempting to repair dependencies and remove unused packages. Continue? (${BGreen}y${NC}/${BRed}N${NC}) "
         read -ra read_update
         echo -ne "${NC}"
     else
@@ -256,9 +266,9 @@ if [[ -n $CLEANUP ]]; then
     esac
     if command -v nala &> /dev/null; then
         if [[ -n $PROMPTLESS ]]; then
-            sudo nala install && sudo nala upgrade -y --full --no-update -o Acquire::AllowReleaseInfoChange="true"
+            sudo nala install --fix-broken && sudo nala autoremove -y
         else
-            sudo nala install && sudo nala upgrade --full --no-update -o Acquire::AllowReleaseInfoChange="true"
+            sudo nala install --fix-broken && sudo nala autoremove
         fi
     else
         if [[ -n $PROMPTLESS ]]; then
@@ -269,13 +279,15 @@ if [[ -n $CLEANUP ]]; then
     fi
     if command -v flatpak &> /dev/null; then
         if [[ -n $PROMPTLESS ]]; then
-            flatpak repair && flatpak uninstall --unused -y
+            flatpak repair && sudo flatpak uninstall --unused -y
         else
-            flatpak repair && flatpak uninstall --unused
+            flatpak repair && sudo flatpak uninstall --unused
         fi
     fi
     if command -v snap &> /dev/null; then
-        LANG=C snap list --all | while read snapname ver rev trk pub notes; do if [[ $notes = *disabled* ]]; then sudo snap remove "$snapname" --revision="$rev"; fi; done
+        if [[ -z "$(LANG=C snap list --all | while read snapname ver rev trk pub notes; do if [[ "$notes" == *disabled* ]]; then sudo snap remove "$snapname" --revision="$rev"; fi; done)" ]]; then
+            echo "Nothing for snap to clean."
+        fi
     fi
     exit 0
 fi
