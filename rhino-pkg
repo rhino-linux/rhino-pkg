@@ -80,7 +80,7 @@ ${c3}   ''''''''${c2}kXOM.
 ${c3}     .,,:${c2}dXMK           
 ${c3}       ${c2}:k
 
-$(basename "$0") 0.1.1
+$(basename "$0") 0.1.2
 A package manager wrapper for Pacstall, APT, Flatpak and snap
 Developed by Elsie19 <elsie19@pm.me> for
 the Rhino Linux distribution."
