@@ -202,9 +202,9 @@ if [[ -n $UPDATE ]]; then
     esac
     if command -v nala &> /dev/null; then
         if [[ -n $PROMPTLESS ]]; then
-            sudo nala upgrade -y -o Acquire::AllowReleaseInfoChange="true"
+            sudo nala upgrade -y --full --no-autoremove -o Acquire::AllowReleaseInfoChange="true"
         else
-            sudo nala upgrade -o Acquire::AllowReleaseInfoChange="true"
+            sudo nala upgrade --full --no-autoremove -o Acquire::AllowReleaseInfoChange="true"
         fi
     else
         if [[ -n $PROMPTLESS ]]; then
