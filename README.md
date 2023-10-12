@@ -18,7 +18,11 @@ functions:
     
     update:  Updates all packages accessible to the wrapper - does
              not accept <input>, instead use install to update 
-             individual packages. Has confirmation prompt.
+             individual packages. Has a confirmation prompt.
+
+    cleanup: Attempts to repair broken dependencies and remove any
+             unused packages. Does not accept <input>, but has 
+             a confirmation prompt.
 
 flags: 
     --help/-h: Display this page
@@ -26,6 +30,8 @@ flags:
     --description/-d: By default, rhino-pkg will only display packages 
     that contain <input> within their name. Use this flag to increase 
     range and display packages with <input> in their description.
+
+    -y: Makes functions with confirmation prompts run promptless.
     
 input: 
     Provide a package name or description.
