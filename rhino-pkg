@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 def translation-dir-path [] -> string {
-    "this/is/the/path/to/translation"
+    "translation_tomls"
 }
 def cmd-exist [input: string] -> bool {
     let stuff = (which $input)
