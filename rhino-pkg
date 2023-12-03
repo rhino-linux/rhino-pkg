@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 def translation-dir-path [] -> string {
-    "/translation_tomls/"
+    "this/is/the/path/to/translation"
 }
 def cmd-exist [input: string] -> bool {
     let stuff = (which $input)
@@ -136,7 +136,7 @@ def update [promptless: bool = false] {
     let r_u_sure = translation-dir-path| translate ask.upgrade 
     let sure = (input $"($r_u_sure) \((ansi green_bold)y(ansi reset)/(ansi red_bold)N(ansi reset)\)")
     # let sure = (input $"Are you sure you want to update all packages? \((ansi green_bold)y(ansi reset)/(ansi red_bold)N(ansi reset)\) ")
-    if ($sure | str starts-with -i "N") {
+    if (!($sure | str starts-with -i "Y")) and (!($sure | str starts-with -i "y")) {
         exit 1
     } 
     
@@ -195,7 +195,7 @@ def install [input: table, install: bool = true] {
     
     
     # let sure = (input $"Are you sure? \((ansi green_bold)y(ansi reset)/(ansi red_bold)N(ansi reset)\) ")
-    if ($sure | str starts-with -i "N") {
+    if (!($sure | str starts-with -i "Y")) and (!($sure | str starts-with -i "y")) {
         exit 1
     }
 
