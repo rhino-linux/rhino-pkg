@@ -5,10 +5,10 @@ modifier = "blank"
 [messages]
 
 
-found-matching = "Found ($matches) package(s) matching: ($search)\n"
-none-matching = "No packages found matching ($search)!"
-install-select = "Selecting ($package) from ($manager) for installation."
-remove-select = "Selecting ($package) from ($manager) for removal."
+found-matching = "Found ($matches) package(s) matching: (ansi color[lightyellow])($search)\n(ansi reset)"
+none-matching = "No packages found matching (ansi color[lightyellow])($search)(ansi reset)!"
+install-select = "Selecting (ansi color[purple] bold)($package)(ansi reset) from (ansi color[purple] bold)($package)($manager)(ansi reset) for installation."
+remove-select = "Selecting (ansi color[purple] bold)($package)(ansi reset) from (ansi color[purple] bold)($package)($manager)(ansi reset) for removal."
 
 
 [message.invalid]
@@ -16,10 +16,10 @@ number = "($number) is not a valid number!"
 repository = "($repo) is not a valid repository!"
 
 [message.ask]
-sure =      "Are you sure?"
+sure =      "Are you sure?: ((ansi color[green] bold)y(ansi reset)/(ansi color[red] bold)N(ansi reset))"
 which-install =   "Select which package(s) to install [0-($index)]:"
 which-remove =    "Select which package(s) to remove [0-($index)]:"
-upgrade = "Are you sure you want to upgrade all packages?"
+upgrade = "Are you sure you want to upgrade all packages?: ((ansi color[green] bold)y(ansi reset)/(ansi color[red] bold)N(ansi reset))"
 [messages.searching]
 apt =       "Searching apt…"
 pacstall =  "Searching pacstall…"
