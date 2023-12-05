@@ -210,55 +210,77 @@ def update [promptless: bool = false] {
 }
 
 def install [input: table, install: bool = true] {
-    mut user_input = 1
+    mut user_input = ""
     print ""
     let input_final_index = ($input | length) - 1
 
     if $install {
-        $user_input = (input (translation-dir-path| translate ask.which-install {index: $input_final_index}) | into int)
+        $user_input = (input (translation-dir-path| translate ask.which-install {index: $input_final_index}) | into string)
         #$user_input = (input $"Select which package to install [0-(($input | length) - 1)]: " | into int)
     } else {
-        $user_input = (input (translation-dir-path| translate ask.which-remove {index: $input_final_index}) | into int)
+        $user_input = (input (translation-dir-path| translate ask.which-remove {index: $input_final_index}) | into string)
         #$user_input = (input $"Select which package to remove [0-(($input | length) - 1)]: " | into int)
     }
-    if ($user_input > ($input_final_index)) {
-        error make -u { msg: "Input length is longer than amount of packages", }
-    }
-    let pkg = ($input | get $user_input | get package)
-    let provider = ($input | get $user_input | get provider)
-    
-    
-    #print $"Selecting '(ansi purple_bold)($pkg)(ansi reset)' from package manager '(ansi purple_bold)($provider)(ansi reset)'"
-    
-    if $install {
-        translation-dir-path | translate install-select {package: $pkg, manager: $provider } | print
-    } else {
-        translation-dir-path | translate remove-select {package: $pkg, manager: $provider } | print
-    }
 
-
-    let r_u_sure = translation-dir-path| translate ask.sure 
-    let sure = (input --numchar 1 $"($r_u_sure) ")
+    #uses regex to filter out non-number inputs, then converts to int
+    mut user_input_ints = ($user_input | split row ' ' | find --regex "[0-9]+" | find --regex "^[0-9]+" | into int) 
     
-    let no: bool = (($sure != "Y") and ($sure != "y"))
-    # let sure = (input $"Are you sure? \((ansi green_bold)y(ansi reset)/(ansi red_bold)N(ansi reset)\) ")
-    if $no {
-        exit 1
+    #screens the list for invalid indices
+    mut drop_list: list<int> = []
+    for i in 0..<($user_input_ints | length) {
+        if ($user_input_ints |select $i).0 > $input_final_index {
+            $drop_list = ($drop_list | append $i)
+        }  
+    }
+    #prunes invalid indices
+    for i in 0..<($drop_list|length) {
+        $user_input_ints = ($user_input_ints | drop nth ($drop_list| select $i).0)
     }
 
-    if $install {
-        match ($provider) {
-            "pacstall" => (^pacstall -I $pkg),
-            "snap" => (^sudo snap install $pkg),
-            "apt" => (^sudo apt install $pkg -y),
-            "flatpak" => (^sudo flatpak install $pkg -y),
+    #user provided no numbers that were valid
+    if ($user_input_ints | is-empty) {
+        let error_msg = translation-dir-path | translate invalid.integers
+        error make {msg: $error_msg}
+    }
+
+    $user_input_ints | each { |index|
+        let pkg = ($input | get $index | get package)
+        let provider = ($input | get $index | get provider)
+        
+        
+        #print $"Selecting '(ansi purple_bold)($pkg)(ansi reset)' from package manager '(ansi purple_bold)($provider)(ansi reset)'"
+        
+        if $install {
+            translation-dir-path | translate install-select {package: $pkg, manager: $provider } | print
+        } else {
+            translation-dir-path | translate remove-select {package: $pkg, manager: $provider } | print
         }
-    } else {
-        match ($provider) {
-            "pacstall" => (^pacstall -R $pkg),
-            "snap" => (^sudo snap remove $pkg),
-            "apt" => (^sudo apt remove $pkg -y),
-            "flatpak" => (^sudo flatpak remove $pkg -y),
+
+
+        let r_u_sure = translation-dir-path| translate ask.sure 
+        let sure = (input --numchar 1 $"($r_u_sure) ")
+        
+        let no: bool = (($sure != "Y") and ($sure != "y"))
+        # let sure = (input $"Are you sure? \((ansi green_bold)y(ansi reset)/(ansi red_bold)N(ansi reset)\) ")
+        if $no {
+            translation-dir-path | translate skipping {package: $pkg, manager: $provider} | print
+        } else {
+
+            if $install {
+                match ($provider) {
+                    "pacstall" => (^pacstall -I $pkg),
+                    "snap" => (^sudo snap install $pkg),
+                    "apt" => (^sudo apt install $pkg -y),
+                    "flatpak" => (^sudo flatpak install $pkg -y),
+                }
+            } else {
+                match ($provider) {
+                    "pacstall" => (^pacstall -R $pkg),
+                    "snap" => (^sudo snap remove $pkg),
+                    "apt" => (^sudo apt remove $pkg -y),
+                    "flatpak" => (^sudo flatpak remove $pkg -y),
+                }
+            }
         }
     }
 }
