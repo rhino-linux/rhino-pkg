@@ -95,7 +95,7 @@ def search [input: string, searching: bool = true, desc: bool = false, install: 
     #print $extra_prune_terms
     mut results =  ($flatpak | append $apt | append $pacstall | append $snap)
 
-    
+    #additional search terms management
     mut search_term: string = $input
     for i in 0..<($extra_prune_terms | length) {
         let prune_term: string = ($extra_prune_terms | select $i).0
@@ -269,24 +269,24 @@ def install [input: table, install: bool = true] {
 # functions:
 #     install: Install package(s) - Prompts user to respond with
 #              the number(s) associated with the desired package(s).
-#              Aliases: nstl, instll, instl, add 
+#              Aliases: nstl, instll, instl, add, i 
 #
 #     remove:  Uninstall package(s) - Prompts user to respond with
 #              the number(s) associated with the desired package(s).
-#              Aliases: rm, rmv, uninstall
+#              Aliases: rm, rmv, uninstall, r
 # 
 #     search:  Search for package(s) - Does not have a second prompt.
-#              Aliases: srch, find 
+#              Aliases: srch, find, s 
 # 
 #     update:  Updates all packages accessible to the wrapper - does
 #              not accept <input>, instead use install to update
 #              individual packages. Has a confirmation prompt.
-#              Aliases: updt
+#              Aliases: upgrade, updt, upd, upg, u
 # 
 #     cleanup: Attempts to repair broken dependencies and remove any
 #              unused packages. Does not accept <input>, but has
 #              a confirmation prompt.
-#              Aliases: clean, clnp, cln
+#              Aliases: clean, clnp, cln, c
 # 
 # flags:
 #     --help/-h: Display this page
@@ -347,12 +347,12 @@ def main [
     }
 
     # alias catching
-    mut command = match $rest.0 {
-        "install" | "instll" | "instl" | "add" | "nstl" => "install",
-        "remove" | "rmv" | "rm" | "uninstall" => "remove",
-        "search" | "srch" | "find" => "search",
-        "update" | "updt"  => "update",
-        "cleanup" | "clnp" | "cln" | "clean" => "cleanup",
+    mut command = match ($rest.0 | str downcase) {
+        "install" | "instll" | "instl" | "add" | "nstl" | "i" => "install",
+        "remove" | "rmv" | "rm" | "uninstall" | "r" => "remove",
+        "search" | "srch" | "find" | "s" => "search",
+        "update" | "updt" | "upgrade" | "upd" | "upg" | "u"  => "update",
+        "cleanup" | "clnp" | "cln" | "clean" | "c" => "cleanup",
         _ => "invalid"
    }
 
