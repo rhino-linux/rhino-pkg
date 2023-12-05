@@ -9,15 +9,16 @@ found-matching = "Found ($matches) package(s) matching '(ansi color[208] bold)($
 none-matching = "No packages found matching '(ansi color[208] bold)($search)(ansi reset)'!"
 install-select = "Selecting (ansi color[purple] bold)($package)(ansi reset) from (ansi color[purple] bold)($manager)(ansi reset) for installation."
 remove-select = "Selecting (ansi color[purple] bold)($package)(ansi reset) from (ansi color[purple] bold)($manager)(ansi reset) for removal."
-
+skipping = "Skipping (ansi color[purple] bold)($package)(ansi reset) from (ansi color[purple] bold)($manager)(ansi reset)."
 
 [messages.invalid]
+integers = "None of the inputs you provided were integers less than or equal to ($number)!"
 number = "($number) is not a valid number!"
 repository = "($repo) is not a valid repository!"
 search-arguments = "(ansi color[purple])rhino-pkg ($subcommand)(ansi reset) requires at least one search term argument."
 subcommand = "'(ansi color[red])($subcommand)(ansi reset)' is not a valid sub-command! To see a list of valid sub-commands run '(ansi color[purple])rhino-pkg -h(ansi reset)'"
 no-subcommand = "(ansi color[purple] bold)rhino-pkg(ansi reset) needs a sub-command in order to run. To see these run '(ansi color[purple])rhino-pkg -h(ansi reset)'."
-
+package-number = "($number) is not a valid package number!"
 
 
 [messages.ask]
