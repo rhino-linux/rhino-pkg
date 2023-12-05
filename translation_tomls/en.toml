@@ -5,24 +5,29 @@ modifier = "blank"
 [messages]
 
 
-found-matching = "Found ($matches) package(s) matching: (ansi color[lightyellow])($search)\n(ansi reset)"
-none-matching = "No packages found matching (ansi color[lightyellow])($search)(ansi reset)!"
-install-select = "Selecting (ansi color[purple] bold)($package)(ansi reset) from (ansi color[purple] bold)($package)($manager)(ansi reset) for installation."
-remove-select = "Selecting (ansi color[purple] bold)($package)(ansi reset) from (ansi color[purple] bold)($package)($manager)(ansi reset) for removal."
+found-matching = "Found ($matches) package(s) matching '(ansi color[208] bold)($search)(ansi reset)':\n"
+none-matching = "No packages found matching '(ansi color[208] bold)($search)(ansi reset)'!"
+install-select = "Selecting (ansi color[purple] bold)($package)(ansi reset) from (ansi color[purple] bold)($manager)(ansi reset) for installation."
+remove-select = "Selecting (ansi color[purple] bold)($package)(ansi reset) from (ansi color[purple] bold)($manager)(ansi reset) for removal."
 
 
-[message.invalid]
+[messages.invalid]
 number = "($number) is not a valid number!"
 repository = "($repo) is not a valid repository!"
+search-arguments = "(ansi color[purple])rhino-pkg ($subcommand)(ansi reset) requires at least one search term argument."
+subcommand = "'(ansi color[red])($subcommand)(ansi reset)' is not a valid sub-command! To see a list of valid sub-commands run '(ansi color[purple])rhino-pkg -h(ansi reset)'"
+no-subcommand = "(ansi color[purple] bold)rhino-pkg(ansi reset) needs a sub-command in order to run. To see these run '(ansi color[purple])rhino-pkg -h(ansi reset)'."
 
-[message.ask]
+
+
+[messages.ask]
 sure =      "Are you sure?: ((ansi color[green] bold)y(ansi reset)/(ansi color[red] bold)N(ansi reset))"
 which-install =   "Select which package(s) to install [0-($index)]:"
 which-remove =    "Select which package(s) to remove [0-($index)]:"
 upgrade = "Are you sure you want to upgrade all packages?: ((ansi color[green] bold)y(ansi reset)/(ansi color[red] bold)N(ansi reset))"
 [messages.searching]
-apt =       "Searching apt…"
-pacstall =  "Searching pacstall…"
-snap =      "Searching snap…"
-flatpak =   "Searching flatpak…"
+apt =       "Searching (ansi color[green] bold)apt(ansi reset)…"
+pacstall =  "Searching (ansi color[yellow] bold)pacstall(ansi reset)…"
+snap =      "Searching (ansi color[red] bold)snap(ansi reset)…"
+flatpak =   "Searching (ansi color[cyan] bold)flatpak(ansi reset)…"
 
