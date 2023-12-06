@@ -53,7 +53,11 @@ def prune-search-table [prune_term: string] -> table {
  
 def search-pacstall [input: string] -> table {
     if (cmd-exist 'pacstall') {
-        return (^pacstall -S $input | ansi strip | lines | parse "{package} @ {repo}" | reject repo | insert description '' | insert provider 'pacstall')
+        let pacstall = do { ^pacstall -S $input  } | complete 
+        return ($pacstall.stdout | ansi strip | lines | parse "{package} @ {repo}" | reject repo | insert description '' | insert provider 'pacstall')
+      #  if ($result | is-empty) {
+      #      print -n $"\e[A\e[K"
+       # }
     } else { return [] }
 }
 
@@ -79,19 +83,19 @@ def search [input: string, searching: bool = true, desc: bool = false, install: 
     translation-dir-path | translate searching.apt | print
     # print "Searching apt…"
     let apt = (search-apt $input $desc)
-  #  print -n $"\e[A\e[K"
+    print -n $"\e[A\e[K"
     # print "Searching Pacstall…"
     translation-dir-path | translate searching.pacstall | print
     let pacstall = (search-pacstall $input)
-  #  print -n $"\e[A\e[K"
+    print -n $"\e[A\e[K"
     # print "Searching flatpak…"
     translation-dir-path | translate searching.flatpak | print
     let flatpak = (search-flatpak $input $desc)
- #   print -n $"\e[A\e[K"
+    print -n $"\e[A\e[K"
     # print "Searching snap…"
     translation-dir-path | translate searching.snap | print
     let snap = (search-snap $input)
- #   print -n $"\e[A\e[K"
+    print -n $"\e[A\e[K"
     #print $extra_prune_terms
     mut results =  ($flatpak | append $apt | append $pacstall | append $snap)
 
