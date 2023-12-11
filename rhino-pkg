@@ -393,7 +393,9 @@ def search-cmd-no-args [ ] {
 # flags:
 #     --help/-h: Display this page
 #     
-#     --multiterm For commands with package search functionality, switches them to accept multiple arguments as additional filtering on a single search
+#     --multiterm: For commands with package search functionality,
+#       switches them to accept multiple arguments as additional 
+#       filtering on a single search.
 #
 #     --description/-d: By default, rpk will only display packages
 #     that contain <input> within their name. Use this flag to increase
