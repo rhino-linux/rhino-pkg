@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 def translation-dir-path [] -> string {
-    "/translation_tomls/"
+    "/usr/src/pacstall/rhino-pkg/translation_tomls"
 }
 
 def cmd-exist [input: string] -> bool {
@@ -48,9 +48,10 @@ def search-apt [input: string, desc: bool] -> table {
 
 def prune-search-table [prune_term: string] -> table {
     let input_table: table = $in
-    $input_table | filter { |row|    (($row.package | str contains $prune_term) or ($row.description | str contains $prune_term))}
+    let downcase_prune_term = ($prune_term |str downcase)
+    $input_table | filter { |row|    (($row.package | into string | str downcase | str contains $downcase_prune_term) or ($row.description | into string | str downcase | str contains $downcase_prune_term))}
 }
- 
+
 def search-pacstall [input: string] -> table {
     if (cmd-exist 'pacstall') {
         let pacstall = do { ^pacstall -S $input  } | complete 
@@ -79,7 +80,48 @@ def search-snap [input: string] -> table {
     } else { return [] }
 }
 
-def search [input: string, searching: bool = true, desc: bool = false, install: bool = false, extra_prune_terms: table = []] {
+#def search-zap [search_term: string] {
+#   if (cmd-exist 'zap') {
+#    let all_zap_pkgs = ( http get "https://g.srev.in/get-appimage/index.min.json" | select name summary | rename package description | insert provider zap) 
+#    $all_zap_pkgs | prune-search-table $search_term 
+#   } else { [] }
+#}
+
+#USAGE: adds whitespace to the end of a string $in until it is $length characters long
+def add-whitespace-until-string-length [length: int] -> string {
+    let input: string = $in
+    let amount = ($length - ($input | str length --grapheme-clusters))
+    mut whitespace_string = $input
+    for _ in 0..<$amount {
+        $whitespace_string += " "
+    }
+    $whitespace_string
+}
+
+#USAGE: restricts the string to a single line when it prints it
+def single-line-print [ input: any = ""] {
+    let pipeline: string = ($in | into string) 
+    let output :string = ((($pipeline + ($input | into string)) | str replace "\n" " »|« "))
+    let deansi_output = ($output | ansi strip)
+    let num_of_ansis: int = ($output | split row "\e" | length) - 1
+    let ansi_char_difference: int = ($output | str length --grapheme-clusters) - ($deansi_output | str length --grapheme-clusters)
+
+    mut terminal_width = 100;
+    if (cmd-exist 'tput') {
+        $terminal_width = ((tput cols) | into int)
+    } else if (cmd-exist 'stty') {
+        $terminal_width = ((stty size| split column " ").column2.0 | into int)
+    }
+    
+    if ($deansi_output | str length ) < ($terminal_width - 2) {
+        print $output
+    } else {
+
+        (($output | str substring --grapheme-clusters 0..<(($terminal_width - 2) - 3 + $ansi_char_difference - ($num_of_ansis * 2))) + $"(ansi reset)...") | print
+    }
+    
+}
+def search [input: string, desc: bool = false, extra_prune_terms: table = []] -> table {
     translation-dir-path | translate searching.apt | print
     # print "Searching apt…"
     let apt = (search-apt $input $desc)
@@ -97,11 +139,11 @@ def search [input: string, searching: bool = true, desc: bool = false, install: 
     let snap = (search-snap $input)
     print -n $"\e[A\e[K"
     #print $extra_prune_terms
-    mut results =  ($flatpak | append $apt | append $pacstall | append $snap)
+    mut results =  ($apt | append $pacstall | append $flatpak | append $snap )
 
     #additional search terms management
     mut search_term: string = $input
-    for i in 0..<($extra_prune_terms | length) {
+    for i in 0..<($extra_prune_terms | length ) {
         let prune_term: string = ($extra_prune_terms | select $i).0
         # prune the results based on other search terms
         $results = ($results | prune-search-table $prune_term)
@@ -114,45 +156,50 @@ def search [input: string, searching: bool = true, desc: bool = false, install: 
     # print -n $"\e[A\e[K"
     if ($results | is-empty) {
         # print -e $"No packages found matching '($input)'!"
-        translation-dir-path | translate none-matching {search: $search_term } | print
+        translation-dir-path | translate none-matching {search: $search_term, color: "magenta" } | print
         exit 1
     }
     let results_len = $results | length
 
-    translation-dir-path | translate found-matching {matches: $results_len, search: $search_term} | print
+    (translation-dir-path | translate found-matching {matches: $results_len, search: $search_term, color: "magenta"} ) + "\n" | print
    # print $"Found packages matching '(ansi purple_bold)($input)(ansi reset)':\n"
 
+    #preparation for descriptions
+    mut longest_package_name_length = 0
+    if $desc {
+        
+        #find length of longest package name
+        for i in 0..<$results_len {
+            if (($results.package | select $i).0 | str length --grapheme-clusters) > $longest_package_name_length {
+                $longest_package_name_length = (($results.package | select $i).0 | str length --grapheme-clusters)
+            }
+        }
+    }
     mut count = 0
     # Loop over results
     for $i in $results {
         let style = match $i.provider {
-            "pacstall" => "yellow_bold",
-            "apt" => "green_bold",
-            "flatpak" => "cyan_bold",
-            "snap" => "red_bold",
-            _ => "white_bold",
+            "pacstall" => $"(ansi yellow_bold)",
+            "apt" => $"(ansi green_bold)",
+            "flatpak" => $"(ansi cyan_bold)",
+            "snap" => $"(ansi red_bold)",
+
+             _ =>  $"(ansi white_bold)"
         }
         if $desc {
             if ($i.description | is-empty) {
-                print $"[(ansi $style)($count)(ansi reset)]:\t($i.package) \((ansi $style)($i.provider)(ansi reset)\)"
+                single-line-print $"[($style)($count)(ansi reset)]:\t($i.package) \(($style)($i.provider)(ansi reset)\)"
             } else {
-                print $"[(ansi $style)($count)(ansi reset)]:\t($i.package) (ansi white_bold)»|«(ansi reset) ($i.description) \((ansi $style)($i.provider)(ansi reset)\)"
+               
+                single-line-print $"[($style)($count)(ansi reset)]:\t($i.package | add-whitespace-until-string-length ($longest_package_name_length + 1))(ansi white_bold)»|«(ansi reset) ($i.description) \(($style)($i.provider)(ansi reset)\)"
             }
         } else {
-            print $"[(ansi $style)($count)(ansi reset)]:\t($i.package) \((ansi $style)($i.provider)(ansi reset)\)"
+            single-line-print $"[($style)($count)(ansi reset)]:\t($i.package) \(($style)($i.provider)(ansi reset)\)"
         }
         $count += 1
     }
-    if $searching {
-        return
-    }
-    if $install {
-        # To the install now!
-        install $results true
-    } else {
-        # Remove
-        install $results false
-    }
+
+    return $results
 }
 
 def cleanup [promptless: bool = false] {
@@ -211,19 +258,22 @@ def update [promptless: bool = false] {
     if (cmd-exist 'snap') {
         ^sudo snap refresh
     }
+    
 }
 
-def install [input: table, install: bool = true] {
+
+
+def user-package-selection [ input: table , purpose: string ] -> table {
     mut user_input = ""
     print ""
     let input_final_index = ($input | length) - 1
 
-    if $install {
-        $user_input = (input (translation-dir-path| translate ask.which-install {index: $input_final_index}) | into string)
-        #$user_input = (input $"Select which package to install [0-(($input | length) - 1)]: " | into int)
-    } else {
-        $user_input = (input (translation-dir-path| translate ask.which-remove {index: $input_final_index}) | into string)
-        #$user_input = (input $"Select which package to remove [0-(($input | length) - 1)]: " | into int)
+   $user_input = match $purpose {
+        "install" => (input (translation-dir-path| translate ask.which-install {index: $input_final_index}) | into string),
+        
+        "info" => (input (translation-dir-path |  translate ask.which-info{ index: $input_final_index }) |into string),
+        "remove" => (input (translation-dir-path| translate ask.which-remove {index: $input_final_index}) | into string),
+        _ => []
     }
 
     #uses regex to filter out non-number inputs, then converts to int
@@ -243,9 +293,17 @@ def install [input: table, install: bool = true] {
 
     #user provided no numbers that were valid
     if ($user_input_ints | is-empty) {
-        let error_msg = translation-dir-path | translate invalid.integers
+        let error_msg = translation-dir-path | translate invalid.integers {number: $input_final_index}
         error make {msg: $error_msg}
     }
+    $user_input_ints
+}
+
+
+
+def install-or-remove [install: bool = true] {
+    let input: table = $in
+    let user_input_ints = user-package-selection $input (if $install {"install"} else { "remove" })
 
     $user_input_ints | each { |index|
         let pkg = ($input | get $index | get package)
@@ -255,9 +313,9 @@ def install [input: table, install: bool = true] {
         #print $"Selecting '(ansi purple_bold)($pkg)(ansi reset)' from package manager '(ansi purple_bold)($provider)(ansi reset)'"
         
         if $install {
-            translation-dir-path | translate install-select {package: $pkg, manager: $provider } | print
+            translation-dir-path | translate install-select {package: $pkg, manager: $provider, color: "magenta" } | print
         } else {
-            translation-dir-path | translate remove-select {package: $pkg, manager: $provider } | print
+            translation-dir-path | translate remove-select {package: $pkg, manager: $provider, color: "magenta" } | print
         }
 
 
@@ -267,7 +325,7 @@ def install [input: table, install: bool = true] {
         let no: bool = (($sure != "Y") and ($sure != "y"))
         # let sure = (input $"Are you sure? \((ansi green_bold)y(ansi reset)/(ansi red_bold)N(ansi reset)\) ")
         if $no {
-            translation-dir-path | translate skipping {package: $pkg, manager: $provider} | print
+            translation-dir-path | translate skipping {package: $pkg, manager: $provider, color: "magenta"} | print
         } else {
 
             if $install {
@@ -276,6 +334,7 @@ def install [input: table, install: bool = true] {
                     "snap" => (^sudo snap install $pkg),
                     "apt" => (^sudo apt install $pkg -y),
                     "flatpak" => (^sudo flatpak install $pkg -y),
+                    "zap" =>    (^sudo zap install $pkg -q)
                 }
             } else {
                 match ($provider) {
@@ -283,11 +342,28 @@ def install [input: table, install: bool = true] {
                     "snap" => (^sudo snap remove $pkg),
                     "apt" => (^sudo apt remove $pkg -y),
                     "flatpak" => (^sudo flatpak remove $pkg -y),
+                    "zap" => (^sudo zap remove $pkg -q)
                 }
             }
         }
     }
 }
+
+def info [ ] {
+    let input: table = $in
+    let user_input_ints =  user-package-selection $input "info"
+}
+
+
+
+
+def search-cmd-no-args [ ] { 
+    let command: string = $in
+    let error_msg = translation-dir-path | translate invalid.search-arguments {subcommand: $command}
+    error make -u {msg: $error_msg}
+    exit 1
+}
+
 
 
 # USAGE: rpk [function] {flag} <input>
@@ -316,7 +392,9 @@ def install [input: table, install: bool = true] {
 # 
 # flags:
 #     --help/-h: Display this page
-# 
+#     
+#     --multiterm For commands with package search functionality, switches them to accept multiple arguments as additional filtering on a single search
+#
 #     --description/-d: By default, rpk will only display packages
 #     that contain <input> within their name. Use this flag to increase
 #     range and display packages with <input> in their description.
@@ -364,6 +442,7 @@ def install [input: table, install: bool = true] {
 def main [
     --description (-d) # Increase range and display packages with <input> in their description
     --yes (-y) # Makes functions with confirmation prompts run promptless
+    --multiterm  # Makes functions with search features use multiple terms, filtering by each term
     ...rest: string # 'install', 'remove', 'search', 'update', 'cleanup'
 ] -> int {
     if ($rest | is-empty) {
@@ -371,7 +450,7 @@ def main [
        error make -u { msg: $error_msg} 
         exit 1
     }
-
+    
     # alias catching
     mut command = match ($rest.0 | str downcase) {
         "install" | "instll" | "instl" | "add" | "nstl" | "i" => "install",
@@ -379,9 +458,11 @@ def main [
         "search" | "srch" | "find" | "s" => "search",
         "update" | "updt" | "upgrade" | "upd" | "upg" | "u"  => "update",
         "cleanup" | "clnp" | "cln" | "clean" | "c" => "cleanup",
+        
         _ => "invalid"
+        
    }
-
+# "info" | "information" | "data" | "query" | "qry" | "q" => "info",
     if $command == "invalid" {
         let error_msg = translation-dir-path | translate invalid.subcommand {subcommand: $rest.0}
         error make -u { msg: $error_msg, }
@@ -389,29 +470,50 @@ def main [
 
     if $command == "install" {
         if ($rest | length) < 2 { #install was called without a search term
-            let error_msg = translation-dir-path | translate invalid.search-arguments {subcommand: $command}
-            error make -u {msg: $error_msg}
-            exit 1
+            $command | search-cmd-no-args
         } else {
-            (search $rest.1 false $description true ($rest | skip 2))
+            if $multiterm {
+                (search $rest.1 $description ($rest | skip 2)) | install-or-remove true
+            } else {
+                ($rest | skip 1) | each { |searchterm|
+                    (search $searchterm $description) | install-or-remove true
+                }
+            }
         }
     }
     if $command == "remove" {
         if ($rest | length) < 2 { #remove was called without a search term
-            let error_msg = translation-dir-path | translate invalid.search-arguments {subcommand: $command}
-            error make -u {msg: $error_msg}
-            exit 1
+            $command | search-cmd-no-args
         } else {
-            (search $rest.1 false $description false ($rest | skip 2))
+            if $multiterm {
+                (search $rest.1 $description ($rest | skip 2)) | install-or-remove false
+            } else {
+                ($rest | skip 1) | each { |searchterm|
+                    (search $searchterm $description) | install-or-remove false
+                }
+            }
         }
     }
     if $command == "search" {
         if ($rest | length) < 2 { #search was called without a search term
-            let error_msg = translation-dir-path | translate invalid.search-arguments {subcommand: $command}
-            error make -u {msg: $error_msg}
-            exit 1
+            $command | search-cmd-no-args
         } else {
-            (search $rest.1 true $description true ($rest | skip 2))
+            if $multiterm {
+                let search = (search $rest.1 $description ($rest | skip 2))
+            } else {
+                ($rest | skip 1) | each { |searchterm|
+                    (search $searchterm $description)
+                }
+            }
+        }
+    }
+
+    #currently removed
+    if $command == "info" { 
+        if ($rest | length) < 2 { #info was called without a search term
+        $command | search-cmd-no-args
+        } else {
+            (search $rest.1 $description ($rest | skip 2)) | info
         }
     }
 
@@ -424,3 +526,4 @@ def main [
 
 
 }
+
