@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 def translation-dir-path [] -> string {
-    "/usr/src/pacstall/rhino-pkg/translation_tomls"
+    "/usr/src/pacstall/rhino-pkg/translation_tomls/"
 }
 
 def cmd-exist [input: string] -> bool {
@@ -156,12 +156,12 @@ def search [input: string, desc: bool = false, extra_prune_terms: table = []] ->
     # print -n $"\e[A\e[K"
     if ($results | is-empty) {
         # print -e $"No packages found matching '($input)'!"
-        translation-dir-path | translate none-matching {search: $search_term, color: "magenta" } | print
+        translation-dir-path | translate none-matching {search: $search_term, color: magenta } | print
         exit 1
     }
     let results_len = $results | length
 
-    (translation-dir-path | translate found-matching {matches: $results_len, search: $search_term, color: "magenta"} ) + "\n" | print
+    (translation-dir-path | translate found-matching {matches: $results_len, search: $search_term, color: magenta} ) + "\n" | print
    # print $"Found packages matching '(ansi purple_bold)($input)(ansi reset)':\n"
 
     #preparation for descriptions
@@ -349,6 +349,19 @@ def install-or-remove [install: bool = true] {
     }
 }
 
+def sync [ ] {
+    if (cmd-exist 'nala') {
+        ^sudo nala update
+    } else {
+        ^sudo apt update
+    }
+    if (cmd-exist 'flatpak') {
+        ^flatpak update --appstream
+    }
+}
+
+
+
 def info [ ] {
     let input: table = $in
     let user_input_ints =  user-package-selection $input "info"
@@ -393,9 +406,7 @@ def search-cmd-no-args [ ] {
 # flags:
 #     --help/-h: Display this page
 #     
-#     --multiterm: For commands with package search functionality,
-#       switches them to accept multiple arguments as additional 
-#       filtering on a single search.
+#     --multiterm For commands with package search functionality, switches them to accept multiple arguments as additional filtering on a single search
 #
 #     --description/-d: By default, rpk will only display packages
 #     that contain <input> within their name. Use this flag to increase
@@ -460,7 +471,7 @@ def main [
         "search" | "srch" | "find" | "s" => "search",
         "update" | "updt" | "upgrade" | "upd" | "upg" | "u"  => "update",
         "cleanup" | "clnp" | "cln" | "clean" | "c" => "cleanup",
-        
+        "sync" | "refresh" | "rfrsh" | "S" => "sync"
         _ => "invalid"
         
    }
@@ -522,10 +533,8 @@ def main [
     match $command {
         "update" => (update $yes),
         "cleanup" => (cleanup $yes)
+        "sync" => (sync )
     }
-
-
-
 
 }
 
