@@ -9,16 +9,16 @@ fallback = "en"
 [messages]
 
 # Declares $matches package(s) were found matching $search 
-found-matching = "Paquetes encontrados que coinciden con '(ansi color[($color) bold]$search(ansi reset)':"
+found-matching = "Paquetes encontrados que coinciden con '(ansi color[($color)] bold)($search)(ansi reset)':"
 
 # Declares no packages were found matching $search ($search is $color)
-none-matching = "¡Fueron encontrados paquetes que coinciden con '(ansi color[($color) bold]$search(ansi reset)'!"
+none-matching = "¡Fueron encontrados paquetes que coinciden con '(ansi color[($color)] bold)($search)(ansi reset)'!"
 # Declares $package from $manager is being selected for installation ($package & $manager are $color)
-install-select = "Seleccionando (ansi color[magenta] bold)($package)(ansi reset) del gestor de paquetes (ansi color[($color))] bold)($manager)(ansi reset)."
+install-select = "Seleccionando (ansi color[magenta] bold)($package)(ansi reset) del gestor de paquetes (ansi color[($color)] bold)($manager)(ansi reset)."
 # Declares $package from $manager is being selected for removal ($package & $manager are $color)
 remove-select = "Seleccionando (ansi color[magenta] bold)($package)(ansi reset) del gestor de paquetes (ansi color[($color)] bold)($manager)(ansi reset)."
 # Declares the $package from $manager is being skipped (in the process of installation/removal) ($package & $manager are $color)
-skipping = "Skipping (ansi color[magenta] bold)($package)(ansi reset) from (ansi color[magenta bold)($manager)(ansi reset)."
+skipping = "Skipping (ansi color[magenta] bold)($package)(ansi reset) from (ansi color[magenta] bold)($manager)(ansi reset)."
 
 # Various error conditions, when user enters wrong data
 [messages.invalid]

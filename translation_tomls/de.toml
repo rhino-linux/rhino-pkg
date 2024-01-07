@@ -14,9 +14,9 @@ found-matching = "Pakete passend zu '(ansi color[($color)] bold)($search)(ansi r
 # Declares no packages were found matching $search ($search is $color)
 none-matching = "Keine passenden Pakete zu '(ansi color[($color)] bold)($search)(ansi reset)' gefunden!"
 # Declares $package from $manager is being selected for installation ($package & $manager are $color)
-install-select = "(ansi color[$color] bold)($package)(ansi reset) von Paketmanager (ansi color[($color))] bold)($manager)(ansi reset) wird gewählt"
+install-select = "(ansi color[$color] bold)($package)(ansi reset) von Paketmanager (ansi color[($color)] bold)($manager)(ansi reset) wird gewählt"
 # Declares $package from $manager is being selected for removal ($package & $manager are $color)
-remove-select = "(ansi color[$color] bold)($package)(ansi reset) von Paketmanager (ansi color[($color))] bold)($manager)(ansi reset) wird gewählt"
+remove-select = "(ansi color[$color] bold)($package)(ansi reset) von Paketmanager (ansi color[($color)] bold)($manager)(ansi reset) wird gewählt"
 # Declares the $package from $manager is being skipped (in the process of installation/removal) ($package & $manager are $color)
 skipping = "Skipping (ansi color[magenta] bold)($package)(ansi reset) from (ansi color[magenta bold)($manager)(ansi reset)."
 
