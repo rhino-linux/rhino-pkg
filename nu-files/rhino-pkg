@@ -1,0 +1,175 @@
+#!/usr/bin/nu 
+
+use "./commands/" [rpk-cleanup, rpk-install-or-remove, rpk-search, rpk-sync, rpk-update]
+use "./helper-scripts/" translation-dir-path 
+
+def search-cmd-no-args [ ] { 
+    let command: string = $in
+    let error_msg = translation-dir-path | translate invalid.search-arguments {subcommand: $command}
+    error make -u {msg: $error_msg}
+    exit 1
+}
+
+# USAGE: rpk [function] {flag} <input>
+# 
+# functions:
+#     install: Install package(s) - Prompts user to respond with
+#              the number(s) associated with the desired package(s).
+#              Aliases: nstl, instll, instl, add, i 
+#
+#     remove:  Uninstall package(s) - Prompts user to respond with
+#              the number(s) associated with the desired package(s).
+#              Aliases: rm, rmv, uninstall, r
+# 
+#     search:  Search for package(s) - Does not have a second prompt.
+#              Aliases: srch, find, s 
+# 
+#     update:  Updates all packages accessible to the wrapper - does
+#              not accept <input>, instead use install to update
+#              individual packages. Has a confirmation prompt.
+#              Aliases: upgrade, updt, upd, upg, u
+# 
+#     cleanup: Attempts to repair broken dependencies and remove any
+#              unused packages. Does not accept <input>, but has
+#              a confirmation prompt.
+#              Aliases: clean, clnp, cln, c
+# 
+# flags:
+#     --help/-h: Display this page
+#     
+#     --multiterm For commands with package search functionality, switches them to accept multiple arguments as additional filtering on a single search
+#
+#     --description/-d: By default, rpk will only display packages
+#     that contain <input> within their name. Use this flag to increase
+#     range and display packages with <input> in their description.
+# 
+#     -y: Makes functions with confirmation prompts run promptless.
+# 
+# input:
+#     Provide a package name or description.
+# 
+# Example execution:
+#     $ rpk install foobar
+#     Found packages matching: 'foobar':
+# 
+#     [0]: pyfoobar (apt)
+#     [1]: foobarshell (apt)
+#     [2]: foobar (flatpak)
+#     [3]: foobar-web (snap)
+#     [4]: foobar-bin (pacstall)
+#     [5]: foobar-theme (pacstall)
+# 
+#     Select which package to install [0-5]: 3 4 5
+#     Selecting 'foobar-web' from package manager 'snap'
+#     Selecting 'foobar-bin' from package manager 'pacstall'
+#     Selecting 'foobar-theme' from package manager 'pacstall'
+#     Are you sure? (y/N)
+#     [...]
+# 
+#        .;:;,.  .:
+#     'coooooooo:oo.';.
+#   ,oooooooooooooooo    ;
+#  clllcccllloooooooo;c:'o
+# .;';:::::::::cclooooooo'
+# ''',::::::::::::::ccclc.
+# .''';::::::::::l:::::::
+#  '''',:::::::::kd.
+#  .''''',;::ck:oW;
+#    ''''''''kXOM.
+#      .,,:dXMK
+#        :k
+# 
+# rpk 0.1.2
+# A package manager wrapper for Pacstall, APT, Flatpak and snap
+# Developed by Elsie19 <elsie19@pm.me> for
+# the Rhino Linux distribution.
+def main [
+    --description (-d) # Increase range and display packages with <input> in their description
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+    --multiterm  # Makes functions with search features use multiple terms, filtering by each term
+    ...rest: string # 'install', 'remove', 'search', 'update', 'cleanup', etc.
+] -> int {
+    if ($rest | is-empty) {
+        let error_msg = translation-dir-path | translate invalid.no-subcommand
+       error make -u { msg: $error_msg} 
+        exit 1
+    }
+    
+    # alias catching
+    mut command = match ($rest.0 | str downcase) {
+        "install" | "instll" | "instl" | "add" | "nstl" | "i" => "install",
+        "remove" | "rmv" | "rm" | "uninstall" | "r" => "remove",
+        "search" | "srch" | "find" | "s" => "search",
+        "update" | "updt" | "upgrade" | "upd" | "upg" | "u"  => "update",
+        "cleanup" | "clnp" | "cln" | "clean" | "c" => "cleanup",
+        "sync" | "refresh" | "rfrsh" | "S" => "sync"
+        _ => "invalid"
+        
+   }
+# "info" | "information" | "data" | "query" | "qry" | "q" => "info",
+    if $command == "invalid" {
+        let error_msg = translation-dir-path | translate invalid.subcommand {subcommand: $rest.0}
+        error make -u { msg: $error_msg, }
+    }
+
+    
+
+    if $command == "install" {
+        if ($rest | length) < 2 { #install was called without a search term
+            $command | search-cmd-no-args
+        } else {
+            if $multiterm {
+                ((rpk-search $rest.1 $description ($rest | skip 2)) | rpk-install-or-remove true)
+            } else {
+                ($rest | skip 1) | each { |searchterm|
+                    let search_results: table = (rpk-search $searchterm $description)
+                    $search_results | rpk-install-or-remove true
+                }
+            }
+        }
+    }
+    if $command == "remove" {
+        if ($rest | length) < 2 { #remove was called without a search term
+            $command | search-cmd-no-args
+        } else {
+            if $multiterm {
+                (rpk-search $rest.1 $description ($rest | skip 2)) | rpk-install-or-remove false
+            } else {
+                ($rest | skip 1) | each { |searchterm|
+                    let search_results = (rpk-search $searchterm $description) 
+                    $search_results | rpk-install-or-remove false
+                }
+            }
+        }
+    }
+    if $command == "search" {
+        if ($rest | length) < 2 { #search was called without a search term
+            $command | search-cmd-no-args
+        } else {
+            if $multiterm {
+                let search = (rpk-search $rest.1 $description ($rest | skip 2))
+            } else {
+                ($rest | skip 1) | each { |searchterm|
+                    (rpk-search $searchterm $description)
+                }
+            }
+        }
+    }
+
+    #currently removed
+    if $command == "info" { 
+        if ($rest | length) < 2 { #info was called without a search term
+        $command | search-cmd-no-args
+        } else {
+            (rpk-search $rest.1 $description ($rest | skip 2)) | info
+        }
+    }
+
+    match $command {
+        "update" => (rpk-update $yes), 
+        "cleanup" => (rpk-cleanup $yes)
+        "sync" => (rpk-sync )
+    }
+
+}
+
