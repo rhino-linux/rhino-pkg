@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-25 23:52+0200\n"
-"PO-Revision-Date: 2024-01-26 04:55+0000\n"
-"Last-Translator: mohammed abdelhak <hakougn@gmail.com>\n"
+"PO-Revision-Date: 2024-02-08 13:02+0000\n"
+"Last-Translator: 7A9Oo <med.ahk.2018@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/ar/>\n"
 "Language: ar\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: rhino-pkg:186
 msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "هل أنت متأكد من تحديث كل الحزم؟ (${BGreen}y${NC}/${BRed}N${NC}) "
+msgstr "هل أنت متأكد من تحديث كل الحزم؟ (${BGreen}y${NC}/${BRed}N${NC}). "
 
 #: rhino-pkg:218
 msgid "Searching Pacstall…"
@@ -58,12 +58,12 @@ msgstr "'${entered_input[*]}' رقم غير مطابق"
 #: rhino-pkg:303
 msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
 msgstr ""
-"إختيار '${BPurple}${pkgs[i]}${NC}' from package manager "
+"إختيار '${BPurple}${pkgs[i]}${NC}' من مدير الحزم "
 "'${BPurple}${pkgrepo[i]}${NC}'"
 
 #: rhino-pkg:306
 msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "هل أنت متأكد ؟ (${BGreen}y${NC}/${BRed}N${NC}) "
+msgstr "هل أنت متأكد ؟ (${BGreen}y${NC}/${BRed}N${NC}). "
 
 #: rhino-pkg:341
 msgid "Invalid repository name!"
