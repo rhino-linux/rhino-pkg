@@ -2,7 +2,7 @@ use "./cmd-exist.nu" *
 #USAGE: restricts the string to a single line when it prints it
 export def main [ input: any = ""] {
     let pipeline: string = ($in | into string) 
-    let output :string = ((($pipeline + ($input | into string)) | str replace "\n" " »|« "))
+    let output: string = ((($pipeline + ($input | into string)) | str replace "\n" " »|« "))
     let deansi_output = ($output | ansi strip)
     let num_of_ansis: int = ($output | split row "\e" | length) - 1
     let ansi_char_difference: int = ($output | str length --grapheme-clusters) - ($deansi_output | str length --grapheme-clusters)

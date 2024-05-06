@@ -8,7 +8,8 @@ def search-cmd-no-args [ ] {
     let error_msg = translation-dir-path | translate invalid.search-arguments {subcommand: $command}
     error make -u {msg: $error_msg}
     exit 1
-}
+} 
+
 
 # USAGE: rpk [function] {flag} <input>
 # 
@@ -172,4 +173,3 @@ def main [
     }
 
 }
-

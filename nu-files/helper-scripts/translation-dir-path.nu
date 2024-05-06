@@ -1,5 +1,6 @@
-#!/usr/bin/env nu
+#returns the path to the translation-tomls dir
 export def main [] -> string {
-    # "/usr/src/pacstall/rhino-pkg/translation_tomls/"
-    "/home/wren/Programming/Rhino Linux/rhino-pkg/rhino-pkg-dev/translation_tomls"
+    use ./get-install-dir.nu
+    let install_dir: path = get-install-dir 
+    [ $install_dir , "translation-tomls"] | str join 
 }
