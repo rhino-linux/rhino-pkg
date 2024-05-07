@@ -15,7 +15,7 @@ export def main [] -> path {
         # gets the new dir from dpkg
         let new_install_path: path = request-dpkg-for-install-path
         # obtains the path of the raw-install-dir.nu file
-        let raw_install_dir_nu_path: path = ([$new_install_path, "nu-files/helper-scripts/get-install-dir/raw-install-dir.nu"] | str join)
+        let raw_install_dir_nu_path: path = ([$new_install_path, "nu-files/helper-scripts/raw-install-dir.nu"] | str join)
         # opens raw-install-dir.nu
         let old_raw_install_dir_nu = open $raw_install_dir_nu_path
         # obtains the outdated dir
