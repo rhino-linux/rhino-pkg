@@ -4,7 +4,7 @@ export def main [] -> path {
     let rhino_pkg_path: string = ([ raw-install-dir, "nu-files/rhino-pkg"] | str join)
     let rhino_pkg_exists: bool = ( $rhino_pkg_path | path exists)
 
-    if rhino-pkg-exists {
+    if $rhino_pkg_exists {
          raw-install-dir
 
 # This code is a remnant of when I was making rhino-pkg check to see if the given path contained an outdated installation.
