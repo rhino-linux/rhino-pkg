@@ -1,0 +1,59 @@
+#two letters matching the ISO 639-1 code for your language
+language = "zh"
+#if you are doing a general translation, leave this xx, otherwise, match this to the 2 letter ISO 3166-1 code for the territory you are coding for
+territory = "cn"
+#this will almost alway be left as "blank". If you are making a specific translation for a POSIX locale code, this is what follows the @ symbol
+modifier = "blank"
+#name of language toml (without the extension) to fall back to in case of incomplete translation
+fallback = "en"
+[messages]
+
+# Declares $matches package(s) were found matching $search 
+found-matching = "找到匹配 '(ansi color[($color)] bold)($search)(ansi reset)' 的软件包:"
+
+# Declares no packages were found matching $search ($search is $color)
+none-matching = "未找到匹配 '(ansi color[($color)] bold)($search)(ansi reset)' 的软件包!"
+# Declares $package from $manager is being selected for installation ($package & $manager are $color)
+install-select = "从软件包管理器 (ansi color[($color)] bold)($manager)(ansi reset) 中选择 (ansi color[($color))] bold)($package)(ansi reset) for installation."
+# Declares $package from $manager is being selected for removal ($package & $manager are $color)
+remove-select = "Selecting (ansi color[($color)] bold)($package)(ansi reset) from (ansi color[($color)] bold)($manager)(ansi reset) for removal."
+# Declares the $package from $manager is being skipped (in the process of installation/removal) ($package & $manager are $color)
+skipping = "Skipping (ansi color[($color)] bold)($package)(ansi reset) from (ansi color[($color)] bold)($manager)(ansi reset)."
+
+# Various error conditions, when user enters wrong data
+[messages.invalid]
+# Declares that the user entered no integers <= $number
+integers = "None of the inputs you provided were integers less than or equal to ($number)!"
+# Currently out of use
+# Declares $number is not a valid number
+number = "($number) 不是一个有效数字!"
+#Currently out of use
+# Declares $repo to not be a valid repository
+repo = "无效仓库名称!"
+# Informs the user that they entered the command "rhino-pkg $subcommand" without a search term, which it requires
+search-arguments = "(ansi color[magenta])rhino-pkg ($subcommand)(ansi reset) requires at least one search term argument."
+# Declares $subcommand is not a valid rhino-pkg command. Instructs user to help page
+subcommand = "'(ansi color[red])($subcommand)(ansi reset)' is not a valid sub-command! To see a list of valid sub-commands run '(ansi color[magenta])rhino-pkg -h(ansi reset)'"
+# Declares that the user entered no sub-command, which rhino-pkg needs. Instructs user to help page
+no-subcommand = "(ansi color[magenta] bold)rhino-pkg(ansi reset) needs a sub-command in order to run. To see these run '(ansi color[magenta])rhino-pkg -h(ansi reset)'."
+
+
+#Questions to ask the user
+[messages.ask]
+# Asks  a generic "Are you sure", **make sure the y and N in the prompt are not changed, y and N are not to be translated**
+sure =      "是否确定?: ((ansi color[green] bold)y(ansi reset)/(ansi color[red] bold)N(ansi reset))"
+# Asks user to select package(s) 0- $index to install
+which-install =   "选择要安装的软件包 [0-($index)]:"
+# Asks user to select package(s) 0- $index to remove
+which-remove =    "选择要移除的软件包 [0-($index)]:"
+# Asks user to select packages(s) 0- $index to recieve information about
+which-info = "Select which package(s) to recieve info about [0-($index)]:"
+# Asks user if they are sure to upgrade all packages **make sure y and N in the prompt are not changed, y and N are not to be translated**
+upgrade = "确定更新全部软件包?: ((ansi color[green] bold)y(ansi reset)/(ansi color[red] bold)N(ansi reset))"
+
+# Declare "Searching [package manager]…"
+[messages.searching]
+apt =       "正在检索(ansi color[green] bold)apt(ansi reset)…"
+pacstall =  "正在检索(ansi color[yellow] bold)Pacstall(ansi reset)…"
+snap =      "正在检索(ansi color[red] bold)snap(ansi reset)…"
+flatpak =   "正在检索(ansi color[cyan] bold)flatpak(ansi reset)…"
