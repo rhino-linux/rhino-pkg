@@ -12,8 +12,8 @@ all:: make-dirs translation-tomls rhino-pkg
 install: all
 
 make-dirs:
-mkdir -p $(DESTDIR)/usr/bin
-mkdir -p $(DESTDIR)/usr/share/rhino-pkg/
+	mkdir -p $(DESTDIR)/usr/bin
+	mkdir -p $(DESTDIR)/usr/share/rhino-pkg/
 
 
 # Copies translation-tomls recursively. 
