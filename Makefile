@@ -19,3 +19,4 @@ install::
 # Sets up the usr/bin directory and symlinks the rhino-pkg executable into it as rhino-pkg and rpk 
 	ln -sf /usr/share/rhino-pkg/nu-files/rhino-pkg $(DESTDIR)/usr/bin/rhino-pkg
 	ln -sf /usr/share/rhino-pkg/nu-files/rhino-pkg $(DESTDIR)/usr/bin/rpk
+	chmod -R 755 $(DESTDIR)/usr/
