@@ -2,7 +2,7 @@ export def main [] -> path {
 
     use ./raw-install-dir.nu
     let rhino_pkg_path: string = ([ raw-install-dir, "nu-files/rhino-pkg"] | str join)
-    let rhino_pkg_exists: bool = ( rhino-pkg-path | path exists)
+    let rhino_pkg_exists: bool = ( rhino_pkg_path | path exists)
 
     if rhino-pkg-exists {
          raw-install-dir
