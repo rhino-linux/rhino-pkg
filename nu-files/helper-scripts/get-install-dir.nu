@@ -31,7 +31,7 @@ export def main [] -> path {
         # creates a new version of raw-install-dir.nu with the updated path
         let new_raw_install_dir_nu = $old_raw_install_dir_nu | str replace $old_line $new_line 
         # saves the updated version to the file
-        $new_raw_install_dir_nu | save $raw_install_dir_nu_path
+        $new_raw_install_dir_nu | save -f $raw_install_dir_nu_path
         
         $new_install_path
 
