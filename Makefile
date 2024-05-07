@@ -22,7 +22,7 @@ translation-tomls:
 
 rhino-pkg:
 # Copies over rhino-pkg's nu-files
-	cp -r ./nu-files $(DESTDIR)/usr/share/rhino-pkg-git
+	cp -r ./nu-files $(DESTDIR)/usr/share/rhino-pkg
 # Sets up the usr/bin directory and symlinks the rhino-pkg executable into it as rhino-pkg and rpk 
 	ln -sf $(DESTDIR)/usr/share/rhino-pkg/nu-files/rhino-pkg $(DESTDIR)/usr/bin/rhino-pkg
 	ln -sf $(DESTDIR)usr/share/rhino-pkg/nu-files/rhino-pkg $(DESTDIR)/usr/bin/rpk
