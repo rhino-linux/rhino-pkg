@@ -13,16 +13,16 @@ install: all
 
 make-dirs:
 mkdir -p $(DESTDIR)/usr/bin
-mkdir -p $(DESTDIR)/usr/share/rhino-pkg/
+mkdir -p $(DESTDIR)/usr/share/rhino-pkg-git/
 
 
 # Copies translation-tomls recursively. 
 translation-tomls:
-	cp -r ./translation-tomls $(DESTDIR)/usr/share/rhino-pkg
+	cp -r ./translation-tomls $(DESTDIR)/usr/share/rhino-pkg-git
 
 rhino-pkg:
 # Copies over rhino-pkg's nu-files
-	cp -r ./nu-files $(DESTDIR)/usr/share/rhino-pkg
+	cp -r ./nu-files $(DESTDIR)/usr/share/rhino-pkg-git
 # Sets up the usr/bin directory and symlinks the rhino-pkg executable into it as rhino-pkg and rpk 
-	ln -sf $(DESTDIR)/usr/share/rhino-pkg/nu-files/rhino-pkg $(DESTDIR)/usr/bin/rhino-pkg
-	ln -sf $(DESTDIR)usr/share/rhino-pkg/nu-files/rhino-pkg $(DESTDIR)/usr/bin/rpk
+	ln -sf $(DESTDIR)/usr/share/rhino-pkg-git/nu-files/rhino-pkg $(DESTDIR)/usr/bin/rhino-pkg
+	ln -sf $(DESTDIR)usr/share/rhino-pkg-git/nu-files/rhino-pkg $(DESTDIR)/usr/bin/rpk
