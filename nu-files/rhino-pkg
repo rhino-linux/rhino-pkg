@@ -1,7 +1,8 @@
-#!/usr/bin/nu 
+#!/usr/bin/nu --plugins /usr/local/bin/nu_plugins_nu-tongues
 
 use "./commands/" [rpk-cleanup, rpk-install-or-remove, rpk-search, rpk-sync, rpk-update]
 use "./helper-scripts/" translation-dir-path 
+plugin use nu-tongues
 
 def search-cmd-no-args [ ] { 
     let command: string = $in
