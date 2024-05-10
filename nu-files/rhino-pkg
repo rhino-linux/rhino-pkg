@@ -1,4 +1,4 @@
-#!/usr/bin/nu --plugins /usr/local/bin/nu_plugins_nu-tongues
+#!/usr/bin/nu 
 
 use "./commands/" [rpk-cleanup, rpk-install-or-remove, rpk-search, rpk-sync, rpk-update]
 use "./helper-scripts/" translation-dir-path 
