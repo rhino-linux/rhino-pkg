@@ -1,19 +1,18 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-08 11:52+0200\n"
-"PO-Revision-Date: 2023-07-08 09:52+0000\n"
-"Last-Translator: beppeilgommista <enrico.ghignatti@gmail.com>\n"
+"PO-Revision-Date: 2024-06-04 16:09+0000\n"
+"Last-Translator: Dario <ddafre@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #: rhino-pkg:73
 msgid "No input given!"
@@ -21,27 +20,27 @@ msgstr "Nessun input fornito!"
 
 #: rhino-pkg:77
 msgid "Searching Pacstall…"
-msgstr "Cercando su Pacstall…"
+msgstr "Cerco su Pacstall…"
 
 #: rhino-pkg:81
 msgid "Searching apt…"
-msgstr "Cercando su apt…"
+msgstr "Cerco su apt…"
 
 #: rhino-pkg:85
 msgid "Searching flatpak…"
-msgstr "Cercando su flatpak…"
+msgstr "Cerco su flatpak…"
 
 #: rhino-pkg:90
 msgid "Searching snap…"
-msgstr "Cercando su snap…"
+msgstr "Cerco su snap…"
 
 #: rhino-pkg:96
 msgid "No packages found matching '$*'!"
-msgstr "Nessun pacchetto corrispondente a '$*' trovato!"
+msgstr "Nessun pacchetto corrisponde a '$*'!"
 
 #: rhino-pkg:99
 msgid "Found packages matching '${BPurple}$*${NC}':"
-msgstr "Sono stati trovati pacchetti corrispondenti a '${BPurple}$*${NC}':"
+msgstr "Trovati pacchetti corrispondenti a '${BPurple}$*${NC}':"
 
 #: rhino-pkg:135
 msgid "Select which package to install"
@@ -53,8 +52,10 @@ msgstr "'$entered_input' non è un numero valido"
 
 #: rhino-pkg:143
 msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
-msgstr "Selezionando '${BPurple}${pkgs[i]}${NC}' dal gestore di pacchetti '${BPurple}${pkgrepo[i]}${NC}'"
+msgstr ""
+"Seleziono '${BPurple}${pkgs[i]}${NC}' dal gestore di pacchetti "
+"'${BPurple}${pkgrepo[i]}${NC}'"
 
 #: rhino-pkg:168
 msgid "Invalid repository name!"
-msgstr "Nome del repository non valido!"
+msgstr "Nome repository errato!"
