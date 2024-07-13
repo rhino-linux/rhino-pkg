@@ -1,33 +1,60 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-14 00:43+0200\n"
+"PO-Revision-Date: 2024-07-13 22:43+0000\n"
+"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-pkg/fr/>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.7-dev\n"
+
 #: rhino-pkg:73
 msgid "No input given!"
 msgstr "Aucune entrée n'a été donnée !"
+
 #: rhino-pkg:77
 msgid "Searching Pacstall…"
 msgstr "Recherche de Pacstall…"
+
 #: rhino-pkg:81
 msgid "Searching apt…"
 msgstr "Recherche de l'apt…"
+
 #: rhino-pkg:85
 msgid "Searching flatpak…"
 msgstr "Recherche de flatpak…"
+
 #: rhino-pkg:90
 msgid "Searching snap…"
 msgstr "Recherche de snap…"
+
 #: rhino-pkg:96
 msgid "No packages found matching '$*'!"
 msgstr "Aucun paquet trouvé correspondant à '$*' !"
+
 #: rhino-pkg:99
 msgid "Found packages matching '${BPurple}$*${NC}':"
 msgstr "Paquets trouvés correspondant à '${BPurple}$*${NC}':"
+
 #: rhino-pkg:135
 msgid "Select which package to install"
 msgstr "Sélectionnez le paquet à installer"
+
 #: rhino-pkg:139
 msgid "'$entered_input' is not a valid number"
 msgstr "'$entered_input' n'est pas un nombre valide"
+
 #: rhino-pkg:143
 msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
 msgstr "Sélection de '${BPurple}${pkgs[i]}${NC}' dans le gestionnaire de paquets '${BPurple}${pkgrepo[i]}${NC}'"
+
 #: rhino-pkg:168
 msgid "Invalid repository name!"
-msgstr "Nom de dépôt non valide !"
+msgstr "Nom de dépôt non valide !"
