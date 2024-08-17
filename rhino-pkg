@@ -107,11 +107,20 @@ function clearscr() {
 }
 
 function search_pacstall() {
-    if ! pacstall -S "$*" > /dev/null 2>&1; then
-        return 1
+    if [[ -z $DESCRIPTION ]]; then
+        if ! pacstall -S "$*" > /dev/null 2>&1; then
+            return 1
+        else
+            # remove color codes
+            local contents=("$(pacstall -S "$*" | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g' | awk '{print $1}')")
+        fi
     else
-        # remove color codes
-        local contents=("$(pacstall -S "$*" | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g' | awk '{print $1}')")
+        if ! pacstall -Sd "$*" > /dev/null 2>&1; then
+            return 1
+        else
+            # remove color codes
+            local contents=("$(pacstall -Sd "$*" | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g' | awk '{print $1}')")
+        fi
     fi
     echo "${contents[@]}"
 }
