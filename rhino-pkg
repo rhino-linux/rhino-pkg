@@ -92,8 +92,13 @@ def "main search" [
     --multiterm # Makes functions with search features use multiple terms, filtering by each term
     rest: string # Search query
 ] {
-    use "/usr/share/rhino-pkg/modules/pluggables/" [pacstall]
+    use "/usr/share/rhino-pkg/modules/pluggables/" [pacstall flatpak]
     print "Searching pacstall..."
-    let pac_results = (pacstall pacstall-search $rest --description)
+    let pac_results = (pacstall search $rest --description)
     screen clearscr
+    print "Searching flatpak..."
+    let flatpak_results = (flatpak search $rest --description)
+    screen clearscr
+    let total = $pac_results | append $flatpak_results
+    $total
 }
