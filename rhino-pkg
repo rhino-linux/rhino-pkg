@@ -1,0 +1,99 @@
+#!/usr/bin/env nu
+
+use "/usr/share/rhino-pkg/modules/lib/" [screen]
+
+# USAGE: rpk [function] {flag} <input>
+# 
+# functions:
+#     install: Install package(s) - Prompts user to respond with
+#              the number(s) associated with the desired package(s).
+#              Aliases: nstl, instll, instl, add, i 
+#
+#     remove:  Uninstall package(s) - Prompts user to respond with
+#              the number(s) associated with the desired package(s).
+#              Aliases: rm, rmv, uninstall, r
+# 
+#     search:  Search for package(s) - Does not have a second prompt.
+#              Aliases: srch, find, s 
+# 
+#     update:  Updates all packages accessible to the wrapper - does
+#              not accept <input>, instead use install to update
+#              individual packages. Has a confirmation prompt.
+#              Aliases: upgrade, updt, upd, upg, u
+# 
+#     cleanup: Attempts to repair broken dependencies and remove any
+#              unused packages. Does not accept <input>, but has
+#              a confirmation prompt.
+#              Aliases: clean, clnp, cln, c
+# 
+# flags:
+#     --help/-h: Display this page
+#     
+#     --multiterm For commands with package search functionality, switches them to accept multiple arguments as additional filtering on a single search
+#
+#     --description/-d: By default, rpk will only display packages
+#     that contain <input> within their name. Use this flag to increase
+#     range and display packages with <input> in their description.
+# 
+#     -y: Makes functions with confirmation prompts run promptless.
+# 
+# input:
+#     Provide a package name or description.
+# 
+# Example execution:
+#     $ rpk install foobar
+#     Found packages matching: 'foobar':
+# 
+#     [0]: pyfoobar (apt)
+#     [1]: foobarshell (apt)
+#     [2]: foobar (flatpak)
+#     [3]: foobar-web (snap)
+#     [4]: foobar-bin (pacstall)
+#     [5]: foobar-theme (pacstall)
+# 
+#     Select which package to install [0-5]: 3 4 5
+#     Selecting 'foobar-web' from package manager 'snap'
+#     Selecting 'foobar-bin' from package manager 'pacstall'
+#     Selecting 'foobar-theme' from package manager 'pacstall'
+#     Are you sure? (y/N)
+#     [...]
+# 
+#        .;:;,.  .:
+#     'coooooooo:oo.';.
+#   ,oooooooooooooooo    ;
+#  clllcccllloooooooo;c:'o
+# .;';:::::::::cclooooooo'
+# ''',::::::::::::::ccclc.
+# .''';::::::::::l:::::::
+#  '''',:::::::::kd.
+#  .''''',;::ck:oW;
+#    ''''''''kXOM.
+#      .,,:dXMK
+#        :k
+# 
+# rpk 1.0.0
+# A package manager wrapper for Pacstall, APT, Flatpak and snap
+# Developed by Elsie19 <elsie19@pm.me> for
+# the Rhino Linux distribution.
+def main [
+    --description (-d) # Increase range and display packages with <input> in their description
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+    --multiterm # Makes functions with search features use multiple terms, filtering by each term
+    ...rest: string # 'install', 'remove', 'search', 'update', 'cleanup', etc
+] -> int {
+    if ($rest | is-empty) {
+        error make -u { msg: "No valid subcommand passed", label: { text: "Failed here", span: (metadata $rest).span } }
+        exit 1
+    }
+}
+
+def "main search" [
+    --description (-d) # Increase range and display packages with <input> in their description
+    --multiterm # Makes functions with search features use multiple terms, filtering by each term
+    rest: string # Search query
+] {
+    use "/usr/share/rhino-pkg/modules/pluggables/" [pacstall]
+    print "Searching pacstall..."
+    let pac_results = (pacstall pacstall-search $rest --description)
+    screen clearscr
+}
