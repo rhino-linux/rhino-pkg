@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use "/usr/share/rhino-pkg/modules/lib/" [screen]
+use "/usr/share/rhino-pkg/modules/lib/" [screen, cmd]
 
 # USAGE: rpk [function] {flag} <input>
 # 
@@ -99,6 +99,11 @@ def "main search" [
     print "Searching flatpak..."
     let flatpak_results = (flatpak search $rest --description)
     screen clearscr
-    let total = $pac_results | append $flatpak_results
-    $total
+    let total = $flatpak_results | append $pac_results
+    mut idx = 0
+    for bla in $total {
+        let le_color = (cmd print-color $bla.provider)
+        print $"[($le_color)($idx)(ansi reset)]: ($bla.pkg) \(($le_color)($bla.provider)(ansi reset)\)"
+        $idx += 1
+    }
 }
