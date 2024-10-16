@@ -82,6 +82,7 @@ def main [
     ...rest: string # 'install', 'remove', 'search', 'update', 'cleanup', etc
 ] -> int {
     if ($rest | is-empty) {
+        print -e "Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
         error make -u { msg: "No valid subcommand passed", label: { text: "Failed here", span: (metadata $rest).span } }
         exit 1
     }
@@ -94,10 +95,10 @@ def "main search" [
 ] {
     use "/usr/share/rhino-pkg/modules/pluggables/" [pacstall flatpak]
     print "Searching pacstall..."
-    let pac_results = (pacstall search $rest --description)
+    let pac_results = (pacstall search $rest $description)
     screen clearscr
     print "Searching flatpak..."
-    let flatpak_results = (flatpak search $rest --description)
+    let flatpak_results = (flatpak search $rest $description)
     screen clearscr
     let total = $flatpak_results | append $pac_results
     mut idx = 0

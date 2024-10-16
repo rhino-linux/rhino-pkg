@@ -16,13 +16,14 @@ export def list-installed [] {
         }
 }
 
-export def search [input: string, --description] -> table {
+export def search [input: string, description: bool] -> table {
     # Description here is a dummy flag, because flatpak searches by both name and description with no way
     # to change that afaik.
     if (cmd exists "flatpak") {
-        ^flatpak search $input --columns=application:f
+        ^flatpak search $input --columns=application:f,remotes:f
             | lines
-            | wrap 'pkg'
+            | parse -r '^([\w.-]+)\s+(\w+)$'
+            | rename pkg remote
             | insert provider 'flatpak'
             | merge (^flatpak search $input --columns=description:f
                 | lines

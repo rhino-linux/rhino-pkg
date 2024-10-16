@@ -12,7 +12,7 @@ export def list-installed [] {
         } | sort-by name
 }
 
-export def search [input: string, --description] -> table {
+export def search [input: string, description: bool] -> table {
     if (cmd exists "pacstall") {
         if $description {
             # We are searching for something in description
