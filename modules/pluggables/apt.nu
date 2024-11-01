@@ -1,4 +1,4 @@
-use "/usr/share/rhino-pkg/modules/lib/" [cmd]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 
 export def list-installed [] {
     ^dpkg-query -W
@@ -7,7 +7,7 @@ export def list-installed [] {
 }
 
 export def search [input: string, description: bool] -> table {
-    if (cmd exists "aptitude") {
+    if (exists "aptitude") {
         if $description {
             # We are searching for something in description
             ^aptitude search --quiet --disable-columns '?name(visual) | ?description(visual) ?architecture(native) !?section(Pacstall)' -F "%p|%d"
@@ -27,7 +27,7 @@ export def search [input: string, description: bool] -> table {
 }
 
 export def upgrade [--promptless] {
-    if (cmd exists "apt") {
+    if (exists "apt") {
         if $promptless {
             ^sudo apt update -y
             ^sudo apt upgrade -y

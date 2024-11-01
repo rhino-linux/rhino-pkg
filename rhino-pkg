@@ -1,6 +1,7 @@
 #!/usr/bin/env nu
 
-use "/usr/share/rhino-pkg/modules/lib/" [screen, cmd]
+use "/usr/share/rhino-pkg/modules/lib/" [search]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt]
 
 # USAGE: rpk [function] {flag} <input>
 # 
@@ -93,23 +94,21 @@ def "main search" [
     --multiterm # Makes functions with search features use multiple terms, filtering by each term
     rest: string # Search query
 ] {
-    use "/usr/share/rhino-pkg/modules/pluggables/" [pacstall flatpak apt snap]
-    print "Searching pacstall..."
-    let pac_results = (pacstall search $rest $description)
-    screen clearscr
-    print "Searching flatpak..."
-    let flatpak_results = (flatpak search $rest $description)
-    screen clearscr
-    print "Searching apt..."
-    let apt_results = (apt search $rest $description)
-    print "Searching snap..."
-    let snap_results = (snap search $rest $description)
-    screen clearscr
-    let total = $snap_results | append $flatpak_results | append $apt_results | append $pac_results
-    mut idx = 0
-    for bla in $total {
-        let le_color = (cmd print-color $bla.provider)
-        print $"[($le_color)($idx)(ansi reset)]: ($bla.pkg) \(($le_color)($bla.provider)(ansi reset)\)"
-        $idx += 1
+    # Block output from `return` here.
+    let dummy = (search search-pkgs --description --multiterm $rest)
+}
+
+def "main install" [
+    --description (-d) # Increase range and display packages with <input> in their description
+    --multiterm # Makes functions with search features use multiple terms, filtering by each term
+    rest: string # Search query
+] {
+    # Block output from `return` here.
+    let dummy = (search search-pkgs --description --multiterm $rest)
+    let which = (prompt "Select which package to install" (($dummy | length) - 1))
+    # Did the user input something stupid?
+    if (($which | into int) not-in (seq 0 (($dummy | length) - 1))) {
+        print -e $"'packages[($which)]' does not exist"
+        exit 1
     }
 }

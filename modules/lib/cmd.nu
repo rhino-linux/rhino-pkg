@@ -12,3 +12,12 @@ export def print-color [type: string] {
         _ => (ansi grey_bold)
     }
 }
+
+export def prompt [ask: string, index: int] -> int {
+    let input = (input $"($ask) [0-($index)]: ")
+    if ($input | is-empty) {
+        0
+    } else {
+        $input
+    }
+}

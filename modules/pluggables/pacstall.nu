@@ -1,4 +1,4 @@
-use "/usr/share/rhino-pkg/modules/lib/" [cmd]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 
 export def list-installed [] {
     # I'm using par-each because it's wayyy quicker and I can just sort the stuff afterwards
@@ -13,7 +13,7 @@ export def list-installed [] {
 }
 
 export def search [input: string, description: bool] -> table {
-    if (cmd exists "pacstall") {
+    if (exists "pacstall") {
         if $description {
             # We are searching for something in description
             ^pacstall -Sd $input
@@ -36,7 +36,7 @@ export def search [input: string, description: bool] -> table {
 }
 
 export def upgrade [--promptless] {
-    if (cmd exists "pacstall") {
+    if (exists "pacstall") {
         if $promptless {
             ^pacstall -PUp
         } else {

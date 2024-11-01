@@ -1,4 +1,4 @@
-use "/usr/share/rhino-pkg/modules/lib/" [cmd]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 
 export def list-installed [] {
     ^snap list
@@ -9,7 +9,7 @@ export def list-installed [] {
 }
 
 export def search [input: string, description: bool] -> table {
-    if (cmd exists "snap") {
+    if (exists "snap") {
         ^snap search $input
             | detect columns --guess
             | reject Publisher Version
@@ -22,7 +22,7 @@ export def search [input: string, description: bool] -> table {
 }
 
 export def upgrade [--promptless] {
-    if (cmd exists "snap") {
+    if (exists "snap") {
         ^sudo snap refresh
     }
 }

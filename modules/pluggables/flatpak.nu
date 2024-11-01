@@ -1,4 +1,4 @@
-use "/usr/share/rhino-pkg/modules/lib/" [cmd]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 
 export def list-installed [] {
     ^flatpak list --app --columns=application:f
@@ -19,7 +19,7 @@ export def list-installed [] {
 export def search [input: string, description: bool] -> table {
     # Description here is a dummy flag, because flatpak searches by both name and description with no way
     # to change that afaik.
-    if (cmd exists "flatpak") {
+    if (exists "flatpak") {
         ^flatpak search $input --columns=application:f,remotes:f
             | lines
             | parse -r '^([\w.-]+)\s+(\w+)$'
@@ -34,7 +34,7 @@ export def search [input: string, description: bool] -> table {
 }
 
 export def upgrade [--promptless] {
-    if (cmd exists "flatpak") {
+    if (exists "flatpak") {
         if $promptless {
             ^flatpak update -y
         } else {
