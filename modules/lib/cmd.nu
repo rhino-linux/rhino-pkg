@@ -60,3 +60,31 @@ export def install-pkg [
         }
     }
 }
+
+export def cleanup-pkg [promptless: bool] {
+    if $promptless {
+        if (exists "apt") {
+            ^sudo apt --fix-broken install
+            ^sudo apt apt-remove -y
+        }
+        if (exists "flatpak") {
+            ^sudo flatpak repair
+            ^sudo flatpak uninstall --unused -y
+        }
+    } else {
+        if (exists "apt") {
+            ^sudo apt --fix-broken install
+            ^sudo apt apt-remove
+        }
+        if (exists "flatpak") {
+            ^sudo flatpak repair
+            ^sudo flatpak uninstall --unused
+        }
+    }
+    if (exists "snap") {
+        ^snap list --all
+            | detect columns
+            | where Notes =~ "disabled"
+            | each {|pkg| ^sudo snap remove $pkg.Name}
+    }
+}

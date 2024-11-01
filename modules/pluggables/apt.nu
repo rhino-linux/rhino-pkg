@@ -10,12 +10,12 @@ export def search [input: string, description: bool] -> table {
     if (exists "aptitude") {
         if $description {
             # We are searching for something in description
-            ^aptitude search --quiet --disable-columns '?name(visual) | ?description(visual) ?architecture(native) !?section(Pacstall)' -F "%p|%d"
+            ^aptitude search --quiet --disable-columns $"?name\(($input)\) | ?description\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p|%d"
                 | lines
                 | parse "{pkg}|{desc}"
                 | insert provider 'apt'
         } else {
-            ^aptitude search --quiet --disable-columns '?name(visual) ?architecture(native) !?section(Pacstall)' -F "%p"
+            ^aptitude search --quiet --disable-columns $"?name\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p"
                 | lines
                 | parse "{pkg}"
                 | insert desc ''
