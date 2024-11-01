@@ -93,7 +93,7 @@ def "main search" [
     --multiterm # Makes functions with search features use multiple terms, filtering by each term
     rest: string # Search query
 ] {
-    use "/usr/share/rhino-pkg/modules/pluggables/" [pacstall flatpak apt]
+    use "/usr/share/rhino-pkg/modules/pluggables/" [pacstall flatpak apt snap]
     print "Searching pacstall..."
     let pac_results = (pacstall search $rest $description)
     screen clearscr
@@ -102,8 +102,10 @@ def "main search" [
     screen clearscr
     print "Searching apt..."
     let apt_results = (apt search $rest $description)
+    print "Searching snap..."
+    let snap_results = (snap search $rest $description)
     screen clearscr
-    let total = $flatpak_results | append $apt_results | append $pac_results
+    let total = $snap_results | append $flatpak_results | append $apt_results | append $pac_results
     mut idx = 0
     for bla in $total {
         let le_color = (cmd print-color $bla.provider)
