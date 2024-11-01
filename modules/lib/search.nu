@@ -2,8 +2,7 @@ use "/usr/share/rhino-pkg/modules/lib/screen.nu" [clearscr]
 use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [print-color]
 
 export def search-pkgs [
-    --description (-d)
-    --multiterm
+    description: bool
     rest: string
 ] -> table {
     use "/usr/share/rhino-pkg/modules/pluggables/" [pacstall flatpak apt snap]
