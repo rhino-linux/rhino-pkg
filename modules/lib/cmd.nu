@@ -13,8 +13,8 @@ export def print-color [type: string] {
     }
 }
 
-export def prompt [ask: string, pkgs: table] -> table {
-    let input = (input $"($ask) [0-($pkgs | length)]: ")
+export def prompt [ask: string, pkgs: list] -> table {
+    let input = (input $"($ask) [0-(($pkgs | length) - 1)]: ")
     if ($input | is-empty) {
         [($pkgs | enumerate).0.item]
     } else {
@@ -42,23 +42,23 @@ export def install-pkg [
     match $pkg.provider {
         "pacstall" => {
             if $promptless {
-                (^pacstall -PI $"($pkg.pkg)@($pkg.repo)")
+                ^pacstall -PI $"($pkg.pkg)@($pkg.repo)"
             } else {
-                (^pacstall -I $"($pkg.pkg)@($pkg.repo)")
+                ^pacstall -I $"($pkg.pkg)@($pkg.repo)"
             }
         }
         "apt" => {
             if $promptless {
-                (^sudo apt install $pkg.pkg -y)
+                ^sudo apt install $pkg.pkg -y
             } else {
-                (^sudo apt install $pkg.pkg)
+                ^sudo apt install $pkg.pkg
             }
         }
         "flatpak" => {
             if $promptless {
-                (^flatpak install $pkg.remote $pkg.pkg -y)
+                ^flatpak install $pkg.remote $pkg.pkg -y
             } else {
-                (^flatpak install $pkg.remote $pkg.pkg)
+                ^flatpak install $pkg.remote $pkg.pkg
             }
         }
         # So snap is weird because some packages need classic installation
@@ -66,9 +66,9 @@ export def install-pkg [
         # But on the plus side it doesn't have the ability for -y.
         "snap" => {
             if ($pkg.Notes == "classic") {
-                (^sudo snap install --classic $pkg.pkg)
+                ^sudo snap install --classic $pkg.pkg
             } else {
-                (^sudo snap install $pkg.pkg)
+                ^sudo snap install $pkg.pkg
             }
         }
     }
@@ -81,27 +81,27 @@ export def remove-pkg [
     match $pkg.provider {
         "pacstall" => {
             if $promptless {
-                (^pacstall -PR $pkg.pkg)
+                ^pacstall -PR $pkg.pkg
             } else {
-                (^pacstall -R $pkg.pkg)
+                ^pacstall -R $pkg.pkg
             }
         }
         "apt" => {
             if $promptless {
-                (^sudo apt remove $pkg.pkg -y)
+                ^sudo apt remove $pkg.pkg -y
             } else {
-                (^sudo apt remove $pkg.pkg)
+                ^sudo apt remove $pkg.pkg
             }
         }
         "flatpak" => {
             if $promptless {
-                (^flatpak remove $pkg.pkg -y)
+                ^flatpak remove $pkg.pkg -y
             } else {
-                (^flatpak remove $pkg.pkg)
+                ^flatpak remove $pkg.pkg
             }
         }
         "snap" => {
-            (^sudo snap remove $pkg.pkg --purge)
+            ^sudo snap remove $pkg.pkg --purge
         }
     }
 }
