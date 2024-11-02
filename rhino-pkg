@@ -103,11 +103,11 @@ def "main install" [
     let which = (prompt "Select which package to install" $dummy)
     for part in $which {
         print $"Installing '($part.pkg)' from '($part.provider)'"
-        try {
+        do -s {
             install-pkg ($part | reject index) $yes
         } catch {
             |err|
-            print -e $"Failed to install '($part.pkg)'."
+            print -e $"Failed to install '($part.pkg)'. Exited with code '($env.LAST_EXIT_CODE)'"
         }
     }
 }
