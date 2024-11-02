@@ -49,9 +49,9 @@ export def install-pkg [
         }
         "apt" => {
             if $promptless {
-                ^sudo apt install $pkg.pkg -y
+                ^sudo apt-get install $pkg.pkg -y
             } else {
-                ^sudo apt install $pkg.pkg
+                ^sudo apt-get install $pkg.pkg
             }
         }
         "flatpak" => {
@@ -88,9 +88,9 @@ export def remove-pkg [
         }
         "apt" => {
             if $promptless {
-                ^sudo apt remove $pkg.pkg -y
+                ^sudo apt-get remove $pkg.pkg -y
             } else {
-                ^sudo apt remove $pkg.pkg
+                ^sudo apt-get remove $pkg.pkg
             }
         }
         "flatpak" => {
@@ -109,8 +109,8 @@ export def remove-pkg [
 export def cleanup-pkg [promptless: bool] {
     if $promptless {
         if (exists "apt") {
-            ^sudo apt --fix-broken install
-            ^sudo apt apt-remove -y
+            ^sudo apt-get --fix-broken install
+            ^sudo apt-get apt-remove -y
         }
         if (exists "flatpak") {
             ^sudo flatpak repair
@@ -118,8 +118,8 @@ export def cleanup-pkg [promptless: bool] {
         }
     } else {
         if (exists "apt") {
-            ^sudo apt --fix-broken install
-            ^sudo apt apt-remove
+            ^sudo apt-get --fix-broken install
+            ^sudo apt-get apt-remove
         }
         if (exists "flatpak") {
             ^sudo flatpak repair
