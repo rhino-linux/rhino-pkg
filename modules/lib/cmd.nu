@@ -13,12 +13,25 @@ export def print-color [type: string] {
     }
 }
 
-export def prompt [ask: string, index: int] -> int {
-    let input = (input $"($ask) [0-($index)]: ")
+export def prompt [ask: string, pkgs: table] -> table {
+    let input = (input $"($ask) [0-($pkgs | length)]: ")
     if ($input | is-empty) {
-        0
+        [($pkgs | enumerate).0.item]
     } else {
-        $input
+        let parsed = ($input
+            | split row ' '
+            | find --regex "[0-9]+" --regex "^[0-9]+"
+            | into int
+            | filter {|key| $key in 0..<($pkgs | length)}
+        )
+        if ($parsed | is-empty) {
+            print -e "No valid inputs given"
+            exit 1
+        }
+        $pkgs
+            | enumerate
+            | where index in $parsed
+            | flatten
     }
 }
 

@@ -100,17 +100,11 @@ def "main install" [
         print -e $"No packages found matching '($rest)'"
         return
     }
-    let which = (prompt "Select which package to install" (($dummy | length) - 1) | into int)
-    # Did the user input something stupid?
-    if ($which not-in (seq 0 (($dummy | length) - 1))) {
-        print -e $"'packages[($which)]' does not exist"
-        exit 1
+    let which = (prompt "Select which package to install" $dummy)
+    $which | each {|part|
+        print $"Installing '($part.pkg)' from '($part.provider)'"
+        install-pkg ($part | reject index) $yes
     }
-    let pkg = ($dummy
-        | enumerate
-        | get $which
-        | get item)
-    install-pkg $pkg $yes
 }
 
 def "main remove" [
@@ -123,17 +117,11 @@ def "main remove" [
         print -e $"No packages found matching '($rest)'"
         return
     }
-    let which = (prompt "Select which package to remove" (($dummy | length) - 1) | into int)
-    # Did the user input something stupid?
-    if ($which not-in (seq 0 (($dummy | length) - 1))) {
-        print -e $"'packages[($which)]' does not exist"
-        exit 1
+    let which = (prompt "Select which package to remove" $dummy)
+    $which | each {|part|
+        print $"Removing '($part.pkg)' from '($part.provider)'"
+        remove-pkg ($part | reject index) $yes
     }
-    let pkg = ($dummy
-        | enumerate
-        | get $which
-        | get item)
-    remove-pkg $pkg $yes
 }
 
 def "main cleanup" [
