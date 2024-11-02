@@ -96,6 +96,10 @@ def "main install" [
 ] {
     # Block output from `return` here.
     let dummy = (search search-pkgs $description $rest)
+    if (($dummy | length) <= 0) {
+        print -e $"No packages found matching '($rest)'"
+        return
+    }
     let which = (prompt "Select which package to install" (($dummy | length) - 1) | into int)
     # Did the user input something stupid?
     if ($which not-in (seq 0 (($dummy | length) - 1))) {
@@ -115,6 +119,10 @@ def "main remove" [
 ] {
     # Block output from `return` here.
     let dummy = (search search-local-pkgs $rest)
+    if (($dummy | length) <= 0) {
+        print -e $"No packages found matching '($rest)'"
+        return
+    }
     let which = (prompt "Select which package to remove" (($dummy | length) - 1) | into int)
     # Did the user input something stupid?
     if ($which not-in (seq 0 (($dummy | length) - 1))) {

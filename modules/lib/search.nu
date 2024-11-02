@@ -43,7 +43,6 @@ export def search-local-pkgs [search: string] -> table {
     clearscr
     let total = $snap_results | append $flatpak_results | append $apt_results | append $pac_results
     mut idx = 0
-    print $total
     for bla in $total {
         let le_color = (print-color $bla.provider)
         print $"[($le_color)($idx)(ansi reset)]: ($bla.pkg) \(($le_color)($bla.provider)(ansi reset)\)"
