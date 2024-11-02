@@ -1,15 +1,19 @@
 use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 
-export def list-installed [] {
+export def list-installed [search: string] {
     # I'm using par-each because it's wayyy quicker and I can just sort the stuff afterwards
-    ^pacstall -L
-        | lines
-        | par-each {
-            |pkg| {
-                "name": $pkg,
-                "version": (^pacstall -Ci $pkg version)
-            }
-        } | sort-by name
+    if (exists "pacstall") {
+        ^pacstall -L
+            | lines
+            | par-each {
+                |pkg| {
+                    "pkg": $pkg,
+                    "version": (^pacstall -Ci $pkg version)
+                }
+            } | sort-by pkg
+            | where pkg =~ $search
+            | insert provider "pacstall"
+    }
 }
 
 export def search [input: string, description: bool] -> table {

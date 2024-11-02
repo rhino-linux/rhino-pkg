@@ -1,7 +1,7 @@
 #!/usr/bin/env nu
 
 use "/usr/share/rhino-pkg/modules/lib/" [search]
-use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt, install-pkg, cleanup-pkg]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt, install-pkg, cleanup-pkg, remove-pkg]
 
 # USAGE: rpk [function] {flag} <input>
 # 
@@ -107,6 +107,25 @@ def "main install" [
         | get $which
         | get item)
     install-pkg $pkg $yes
+}
+
+def "main remove" [
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+    rest: string # Search query
+] {
+    # Block output from `return` here.
+    let dummy = (search search-local-pkgs $rest)
+    let which = (prompt "Select which package to remove" (($dummy | length) - 1) | into int)
+    # Did the user input something stupid?
+    if ($which not-in (seq 0 (($dummy | length) - 1))) {
+        print -e $"'packages[($which)]' does not exist"
+        exit 1
+    }
+    let pkg = ($dummy
+        | enumerate
+        | get $which
+        | get item)
+    remove-pkg $pkg $yes
 }
 
 def "main cleanup" [

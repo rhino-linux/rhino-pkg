@@ -1,9 +1,12 @@
 use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 
-export def list-installed [] {
-    ^dpkg-query -W
-        | lines
-        | parse "{pkg}\t{version}"
+export def list-installed [search: string] {
+    if (exists "aptitude") {
+        ^aptitude search $"~i($search) !?section\(Pacstall\)" -F '%p|%v'
+            | lines
+            | parse "{pkg}|{version}"
+            | insert provider "apt"
+    }
 }
 
 export def search [input: string, description: bool] -> table {

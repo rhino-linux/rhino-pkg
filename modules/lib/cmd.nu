@@ -61,6 +61,38 @@ export def install-pkg [
     }
 }
 
+export def remove-pkg [
+        pkg: record,
+        promptless: bool
+    ] {
+    match $pkg.provider {
+        "pacstall" => {
+            if $promptless {
+                (^pacstall -PR $pkg.pkg)
+            } else {
+                (^pacstall -R $pkg.pkg)
+            }
+        }
+        "apt" => {
+            if $promptless {
+                (^sudo apt remove $pkg.pkg -y)
+            } else {
+                (^sudo apt remove $pkg.pkg)
+            }
+        }
+        "flatpak" => {
+            if $promptless {
+                (^flatpak remove $pkg.pkg -y)
+            } else {
+                (^flatpak remove $pkg.pkg)
+            }
+        }
+        "snap" => {
+            (^sudo snap remove $pkg.pkg --purge)
+        }
+    }
+}
+
 export def cleanup-pkg [promptless: bool] {
     if $promptless {
         if (exists "apt") {
@@ -85,6 +117,6 @@ export def cleanup-pkg [promptless: bool] {
         ^snap list --all
             | detect columns
             | where Notes =~ "disabled"
-            | each {|pkg| ^sudo snap remove $pkg.Name}
+            | each {|pkg| ^sudo snap remove $pkg.Name --revision=($pkg.Version)}
     }
 }

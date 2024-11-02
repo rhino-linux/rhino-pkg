@@ -1,19 +1,14 @@
 use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 
-export def list-installed [] {
-    ^flatpak list --app --columns=application:f
-        | lines
-        | uniq
-        | par-each {
-            |pkg| {
-                "name": $pkg,
-                "version": (^flatpak info $pkg
-                    | grep Version
-                    | str trim
-                    | parse "{bla}: {version}"
-                    | reject bla).version.0
-            }
-        }
+export def list-installed [search: string] {
+    if (exists "flatpak") {
+        ^flatpak list --columns=application:f,version:f --app
+            | lines
+            | uniq
+            | parse "{pkg}\t{version}"
+            | where pkg =~ $search
+            | insert provider "flatpak"
+    }
 }
 
 export def search [input: string, description: bool] -> table {
