@@ -107,7 +107,7 @@ def "main install" [
             install-pkg ($part | reject index) $yes
         } catch {
             |err|
-            print -e $"Failed to install '($part.pkg)' with error message:\n\n($err.msg)"
+            print -e $"Failed to install '($part.pkg)'."
         }
     }
 }
