@@ -101,7 +101,7 @@ def "main install" [
         return
     }
     let which = (prompt "Select which package to install" $dummy)
-    $which | each {|part|
+    for part in $which {
         print $"Installing '($part.pkg)' from '($part.provider)'"
         install-pkg ($part | reject index) $yes
     }
