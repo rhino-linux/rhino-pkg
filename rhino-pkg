@@ -108,6 +108,7 @@ def "main install" [
         } catch {
             |err|
             print -e $"Failed to install '($part.pkg)'."
+            exit $env.LAST_EXIT_CODE
         }
     }
 }
