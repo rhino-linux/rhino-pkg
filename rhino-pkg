@@ -136,7 +136,7 @@ def "main cleanup" [
     if not $yes {
         if (input $"Attempting to repair dependencies and remove unused packages. Continue? \((ansi green_bold)y(ansi reset)/(ansi red_bold)N(ansi reset)\) "
                 | str downcase
-                | starts-with "n") {
+                | str starts-with "n") {
             exit 1
         }
     }
