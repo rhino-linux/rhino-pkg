@@ -45,7 +45,7 @@ export def search-local-pkgs [search: string] -> table {
     mut idx = 0
     for bla in $total {
         let le_color = (print-color $bla.provider)
-        print $"[($le_color)($idx)(ansi reset)]: ($bla.pkg) ~ ($bla.version | ansi gradient --fgstart '0x40c9ff' --fgend '0xe81cff') \(($le_color)($bla.provider)(ansi reset)\)"
+        print $"[($le_color)($idx)(ansi reset)]: ($bla.pkg) ~ (ansi defb)($bla.version)(ansi reset) \(($le_color)($bla.provider)(ansi reset)\)"
         $idx += 1
     }
     # Just because someone else might need the table.
