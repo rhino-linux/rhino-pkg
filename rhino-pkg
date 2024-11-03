@@ -101,8 +101,8 @@ def "main install" [
         return
     }
     let which = (prompt "Select which package to install" $dummy)
+    $which | each {|part| print $"Selecting '(ansi purple_bold)($part.pkg)(ansi reset)' from package manager '(ansi purple_bold)($part.provider)(ansi reset)'" }
     for part in $which {
-        print $"Installing '($part.pkg)' from '($part.provider)'"
         try {
             install-pkg ($part | reject index) $yes
         } catch {
