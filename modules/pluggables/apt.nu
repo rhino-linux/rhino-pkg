@@ -29,7 +29,7 @@ export def search [input: string, description: bool] -> table {
     }
 }
 
-export def upgrade [--promptless] {
+export def upgrade [promptless: bool] {
     if (exists "apt") {
         if $promptless {
             ^sudo apt update -y
