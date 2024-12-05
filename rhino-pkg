@@ -1,0 +1,154 @@
+#!/usr/bin/env nu
+
+use "/usr/share/rhino-pkg/modules/lib/" [search]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt, install-pkg, cleanup-pkg, remove-pkg]
+
+# USAGE: rpk [function] {flag} <input>
+# 
+# functions:
+#     install: Install package(s) - Prompts user to respond with
+#              the number(s) associated with the desired package(s).
+#
+#     remove:  Uninstall package(s) - Prompts user to respond with
+#              the number(s) associated with the desired package(s).
+# 
+#     search:  Search for package(s) - Does not have a second prompt.
+# 
+#     update:  Updates all packages accessible to the wrapper - does
+#              not accept <input>, instead use install to update
+#              individual packages. Has a confirmation prompt.
+# 
+#     cleanup: Attempts to repair broken dependencies and remove any
+#              unused packages. Does not accept <input>, but has
+#              a confirmation prompt.
+# 
+# flags:
+#     --help/-h: Display this page
+#     
+#     --description/-d: By default, rpk will only display packages
+#     that contain <input> within their name. Use this flag to increase
+#     range and display packages with <input> in their description.
+# 
+#     -y: Makes functions with confirmation prompts run promptless.
+# 
+# input:
+#     Provide a package name or description.
+# 
+# Example execution:
+#     $ rpk install foobar
+#     Found packages matching: 'foobar':
+# 
+#     [0]: pyfoobar (apt)
+#     [1]: foobarshell (apt)
+#     [2]: foobar (flatpak)
+#     [3]: foobar-web (snap)
+#     [4]: foobar-bin (pacstall)
+#     [5]: foobar-theme (pacstall)
+# 
+#     Select which package to install [0-5]: 3 4 5
+#     Selecting 'foobar-web' from package manager 'snap'
+#     Selecting 'foobar-bin' from package manager 'pacstall'
+#     Selecting 'foobar-theme' from package manager 'pacstall'
+#     Are you sure? (y/N)
+#     [...]
+# 
+#        .;:;,.  .:
+#     'coooooooo:oo.';.
+#   ,oooooooooooooooo    ;
+#  clllcccllloooooooo;c:'o
+# .;';:::::::::cclooooooo'
+# ''',::::::::::::::ccclc.
+# .''';::::::::::l:::::::
+#  '''',:::::::::kd.
+#  .''''',;::ck:oW;
+#    ''''''''kXOM.
+#      .,,:dXMK
+#        :k
+# 
+# rpk 1.0.0
+# A package manager wrapper for Pacstall, APT, Flatpak and snap
+# Developed by Elsie19 <elsie19@pm.me> for
+# the Rhino Linux distribution.
+def main [
+    --description (-d) # Increase range and display packages with <input> in their description
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+    ...rest: string # 'install', 'remove', 'search', 'update', 'cleanup', etc
+] -> int {
+    if ($rest | is-empty) {
+        print -e "Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
+        error make -u { msg: "No valid subcommand passed", label: { text: "Failed here", span: (metadata $rest).span } }
+        exit 1
+    }
+}
+
+def "main search" [
+    --description (-d) # Increase range and display packages with <input> in their description
+    rest: string # Search query
+] {
+    # Block output from `return` here.
+    let dummy = (search search-pkgs $description $rest)
+}
+
+def "main install" [
+    --description (-d) # Increase range and display packages with <input> in their description
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+    rest: string # Search query
+] {
+    # Block output from `return` here.
+    let dummy = (search search-pkgs $description $rest)
+    if (($dummy | length) <= 0) {
+        print -e $"No packages found matching '($rest)'"
+        return
+    }
+    let which = (prompt "Select which package to install" $dummy)
+    $which | each {|part| print $"Selecting '(ansi purple_bold)($part.pkg)(ansi reset)' from package manager '(ansi purple_bold)($part.provider)(ansi reset)'" }
+    for part in $which {
+        try {
+            install-pkg ($part | reject index) $yes
+        } catch {
+            |err|
+            print -e $"Failed to install '($part.pkg)'."
+            exit $env.LAST_EXIT_CODE
+        }
+    }
+}
+
+def "main remove" [
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+    rest: string # Search query
+] {
+    # Block output from `return` here.
+    let dummy = (search search-local-pkgs $rest)
+    if (($dummy | length) <= 0) {
+        print -e $"No packages found matching '($rest)'"
+        return
+    }
+    let which = (prompt "Select which package to remove" $dummy)
+    $which | each {|part|
+        print $"Removing '($part.pkg)' from '($part.provider)'"
+        remove-pkg ($part | reject index) $yes
+    }
+}
+
+def "main cleanup" [
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+] {
+    if not $yes {
+        if (input $"Attempting to repair dependencies and remove unused packages. Continue? \((ansi green_bold)y(ansi reset)/(ansi red_bold)N(ansi reset)\) "
+                | str downcase
+                | str starts-with "n") {
+            exit 1
+        }
+    }
+    cleanup-pkg $yes
+}
+
+def "main update" [
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+] {
+    use "/usr/share/rhino-pkg/modules/pluggables/" [apt, flatpak, pacstall, snap]
+    apt upgrade $yes
+    flatpak upgrade $yes
+    pacstall upgrade $yes
+    snap upgrade $yes
+}
