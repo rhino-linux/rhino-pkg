@@ -1,19 +1,18 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-14 00:52+0200\n"
-"PO-Revision-Date: 2024-07-13 22:52+0000\n"
-"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"PO-Revision-Date: 2024-12-29 13:01+0000\n"
+"Last-Translator: Patrik Nilsson <perfecttaste@pm.me>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: rhino-pkg:73
 msgid "No input given!"
@@ -57,4 +56,4 @@ msgstr "Väljer '${BPurple}${pkgs[i]}${NC}' från pakethanterare '${BPurple}${pk
 
 #: rhino-pkg:168
 msgid "Invalid repository name!"
-msgstr "Ojiltigt arkivnamn!"
+msgstr "Ogiltigt arkivnamn!"
