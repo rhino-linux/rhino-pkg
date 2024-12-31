@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-05 08:57-0500\n"
+"PO-Revision-Date: 2023-06-05 14:08+0000\n"
+"Last-Translator: Raul Dipeas <rdipeas+weblate@proton.me>\n"
+"Language-Team: Portuguese (Brazil) <https://weblate.makedeb.org/projects/"
+"rhino-linux/rhino-pkg/pt_BR/>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#: rhino-pkg:186
+msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
+msgstr ""
+"Tem certeza de que deseja atualizar todos os pacotes? "
+"(${BGreen}y${NC}/${BRed}N${NC}) "
+
+#: rhino-pkg:218
+msgid "Searching Pacstall…"
+msgstr "Procurando Pacstall…"
+
+#: rhino-pkg:222
+msgid "Searching apt…"
+msgstr "Procurando apt…"
+
+#: rhino-pkg:226
+msgid "Searching flatpak…"
+msgstr "Procurando flatpak…"
+
+#: rhino-pkg:231
+msgid "Searching snap…"
+msgstr "Procurando snap…"
+
+#: rhino-pkg:237
+msgid "No packages found matching '$*'!"
+msgstr "Nenhum pacote encontrado correspondente a '$*'!"
+
+#: rhino-pkg:241
+msgid "Found packages matching '${BPurple}$*${NC}':"
+msgstr "Pacotes encontrados correspondentes a '${BPurple}$*${NC}':"
+
+#: rhino-pkg:286
+msgid "Select which package to install"
+msgstr "Selecione qual pacote instalar"
+
+#: rhino-pkg:292
+msgid "Select which package to remove"
+msgstr "Selecione qual pacote remover"
+
+#: rhino-pkg:298
+msgid "'${entered_input[*]}' is not a valid number"
+msgstr "'${entered_input[*]}' não é um número válido"
+
+#: rhino-pkg:303
+msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+msgstr ""
+"Selecionando '${BPurple}${pkgs[i]}${NC}' do gerenciador de pacotes "
+"'${BPurple}${pkgrepo[i]}${NC}'"
+
+#: rhino-pkg:306
+msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
+msgstr "Tem certeza? (${BGreen}y${NC}/${BRed}N${NC}) "
+
+#: rhino-pkg:341
+msgid "Invalid repository name!"
+msgstr "Nome de repositório inválido!"

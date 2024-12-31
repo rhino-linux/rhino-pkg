@@ -1,0 +1,74 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-08 10:55+0200\n"
+"PO-Revision-Date: 2024-01-09 13:06+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-pkg/ka/>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.4-dev\n"
+
+#: rhino-pkg:186
+msgid ""
+"Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}"
+"N${NC}) "
+msgstr ""
+"მართლა გნებავთ ყველა პაკეტის განახლება? (${BGreen}y${NC}/${BRed}N${NC}) "
+
+#: rhino-pkg:218
+msgid "Searching Pacstall…"
+msgstr "ძებნა Pacstall-ში…"
+
+#: rhino-pkg:222
+msgid "Searching apt…"
+msgstr "ძებნა apt-ში…"
+
+#: rhino-pkg:226
+msgid "Searching flatpak…"
+msgstr "ძებნა flatpak-ში…"
+
+#: rhino-pkg:231
+msgid "Searching snap…"
+msgstr "ძებნა snap-ში…"
+
+#: rhino-pkg:237
+msgid "No packages found matching '$*'!"
+msgstr "ვერ ვიპოვე პაკეტი, რომელიც ემთხვევა სტრიქონს '$*'!"
+
+#: rhino-pkg:241
+msgid "Found packages matching '${BPurple}$*${NC}':"
+msgstr "ნაპოვნი პაკეტები, რომლებიც ემთხვევა სტრიქონს '${BPurple}$*${NC}':"
+
+#: rhino-pkg:286
+msgid "Select which package to install"
+msgstr "აირჩიეთ, რომელი პაკეტი დავაყენო"
+
+#: rhino-pkg:292
+msgid "Select which package to remove"
+msgstr "აირჩიეთ, რომელი პაკეტი წავშალო"
+
+#: rhino-pkg:298
+msgid "'${entered_input[*]}' is not a valid number"
+msgstr "'${entered_input[*]}' სწორი რიცხვი არაა"
+
+#: rhino-pkg:303
+msgid ""
+"Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
+"'${BPurple}${pkgrepo[i]}${NC}'"
+msgstr ""
+"ავირჩიე '${BPurple}${pkgs[i]}${NC}' პაკეტების მმართველიდან "
+"'${BPurple}${pkgrepo[i]}${NC}'"
+
+#: rhino-pkg:306
+msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
+msgstr "დარწმუნებულ ბრძანდებით? (${BGreen}y${NC}/${BRed}N${NC}) "
+
+#: rhino-pkg:341
+msgid "Invalid repository name!"
+msgstr "არასწორი რეპოზიტორიის სახელი!"
