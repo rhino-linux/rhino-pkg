@@ -1,39 +1,74 @@
-#: rhino-pkg:186
-msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
+#, fuzzy
+msgid ""
 msgstr ""
-#: rhino-pkg:218
-msgid "Searching Pacstall…"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: rhino-pkg
+msgid ""
+"Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
 msgstr ""
-#: rhino-pkg:222
-msgid "Searching apt…"
+
+#: rhino-pkg
+msgid "No valid subcommand passed"
 msgstr ""
-#: rhino-pkg:226
-msgid "Searching flatpak…"
+
+#: rhino-pkg
+msgid "Failed here"
 msgstr ""
-#: rhino-pkg:231
-msgid "Searching snap…"
+
+#: rhino-pkg
+msgid "No packages found matching '{rest}'"
 msgstr ""
-#: rhino-pkg:237
-msgid "No packages found matching '$*'!"
-msgstr ""
-#: rhino-pkg:241
-msgid "Found packages matching '${BPurple}$*${NC}':"
-msgstr ""
-#: rhino-pkg:286
+
+#: rhino-pkg
 msgid "Select which package to install"
 msgstr ""
-#: rhino-pkg:292
+
+#: rhino-pkg
+msgid "Selecting '{pkg}' from package manager '{provider}'"
+msgstr ""
+
+#: rhino-pkg
+msgid "Failed to install '{pkg}'."
+msgstr ""
+
+#: rhino-pkg
 msgid "Select which package to remove"
 msgstr ""
-#: rhino-pkg:298
-msgid "'${entered_input[*]}' is not a valid number"
+
+#: rhino-pkg
+msgid "Removing '{part}' from '{provider}'"
 msgstr ""
-#: rhino-pkg:303
-msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+
+#: rhino-pkg
+msgid ""
+"Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
+"{n}) "
 msgstr ""
-#: rhino-pkg:306
-msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
+
+#: cmd.nu
+msgid "No valid inputs given"
 msgstr ""
-#: rhino-pkg:341
-msgid "Invalid repository name!"
+
+#: search.nu
+msgid "Searching pacstall..."
+msgstr ""
+
+#: search.nu
+msgid "Searching flatpak..."
+msgstr ""
+
+#: search.nu
+msgid "Searching apt..."
+msgstr ""
+
+#: search.nu
+msgid "Searching snap..."
+msgstr ""
+
+#: search.nu
+msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""
