@@ -6,69 +6,69 @@ msgstr ""
 "Content-Transfer-Encoding: ENCODING\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: rhino-pkg
+#: rhino-pkg:83
 msgid ""
 "Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
 msgstr ""
 
-#: rhino-pkg
+#: rhino-pkg:84
 msgid "No valid subcommand passed"
 msgstr ""
 
-#: rhino-pkg
+#: rhino-pkg:84
 msgid "Failed here"
 msgstr ""
 
-#: rhino-pkg
+#: rhino-pkg:105 rhino-pkg:128
 msgid "No packages found matching '{rest}'"
 msgstr ""
 
-#: rhino-pkg
+#: rhino-pkg:108
 msgid "Select which package to install"
 msgstr ""
 
-#: rhino-pkg
+#: rhino-pkg:109
 msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr ""
 
-#: rhino-pkg
+#: rhino-pkg:115
 msgid "Failed to install '{pkg}'."
 msgstr ""
 
-#: rhino-pkg
+#: rhino-pkg:131
 msgid "Select which package to remove"
 msgstr ""
 
-#: rhino-pkg
+#: rhino-pkg:133
 msgid "Removing '{part}' from '{provider}'"
 msgstr ""
 
-#: rhino-pkg
+#: rhino-pkg:142
 msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
 
-#: cmd.nu
+#: cmd.nu:28
 msgid "No valid inputs given"
 msgstr ""
 
-#: search.nu
+#: search.nu:9 search.nu:33
 msgid "Searching Pacstall…"
 msgstr ""
 
-#: search.nu
+#: search.nu:12
 msgid "Searching flatpak…"
 msgstr ""
 
-#: search.nu
+#: search.nu:15 search.nu:39
 msgid "Searching apt…"
 msgstr ""
 
-#: search.nu
+#: search.nu:17 search.nu:41
 msgid "Searching snap…"
 msgstr ""
 
-#: search.nu
+#: search.nu:24
 msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""
