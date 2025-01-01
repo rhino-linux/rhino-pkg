@@ -96,25 +96,3 @@ msgstr "Doth searching snap…"
 #, python-brace-format
 msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""
-
-#~ msgid "No input given!"
-#~ msgstr "Input hath not been given!"
-
-#~ msgid "No packages found matching '$*'!"
-#~ msgstr "No packages found matching doth name '$*'!"
-
-#~ msgid "Found packages matching '${BPurple}$*${NC}':"
-#~ msgstr "Found packages doth matching '${BPurple}$*${NC}':"
-
-#~ msgid "'$entered_input' is not a valid number"
-#~ msgstr "'$entered_input' is not a proper number"
-
-#~ msgid ""
-#~ "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-#~ msgstr ""
-#~ "Selecting '${BPurple}${pkgs[i]}${NC}' from thine package manager "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-
-#~ msgid "Invalid repository name!"
-#~ msgstr "Thou hast supplied an improper repository name!"

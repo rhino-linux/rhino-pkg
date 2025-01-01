@@ -96,25 +96,3 @@ msgstr "Söker i snap…"
 #, python-brace-format
 msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""
-
-#~ msgid "No input given!"
-#~ msgstr "Ingen input given!"
-
-#~ msgid "No packages found matching '$*'!"
-#~ msgstr "Inga paket hittas som liknar '$*'!"
-
-#~ msgid "Found packages matching '${BPurple}$*${NC}':"
-#~ msgstr "Hittade paket som liknar '${BPurple}$*${NC}':"
-
-#~ msgid "'$entered_input' is not a valid number"
-#~ msgstr "'$entered_input' är inte ett giltigt nummer"
-
-#~ msgid ""
-#~ "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-#~ msgstr ""
-#~ "Väljer '${BPurple}${pkgs[i]}${NC}' från pakethanterare "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-
-#~ msgid "Invalid repository name!"
-#~ msgstr "Ogiltigt arkivnamn!"

@@ -96,25 +96,3 @@ msgstr "स्नैप में खोजा जा रहा है…"
 #, python-brace-format
 msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""
-
-#~ msgid "No input given!"
-#~ msgstr "कोई इनपुट नहीं दिया!"
-
-#~ msgid "No packages found matching '$*'!"
-#~ msgstr "'$*' से मेल खाता कोई पैकेज नहीं मिला!"
-
-#~ msgid "Found packages matching '${BPurple}$*${NC}':"
-#~ msgstr "'${Bpurple}$*${NC}' से मेल खाने वाले पैकेज मिले:"
-
-#~ msgid "'$entered_input' is not a valid number"
-#~ msgstr "'$entered_input' वैध संख्या नहीं है"
-
-#~ msgid ""
-#~ "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-#~ msgstr ""
-#~ "पैकेज मैनेजर '${Bpurple}${pkgs[i]}${NC}' से '${Bpurple}${pkgrepo[i]}${NC}' चुने "
-#~ "गए हैं"
-
-#~ msgid "Invalid repository name!"
-#~ msgstr "अवैध भंडार का नाम!"

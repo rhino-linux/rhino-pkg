@@ -97,30 +97,3 @@ msgstr "Поиск в snap…"
 #, python-brace-format
 msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""
-
-#~ msgid ""
-#~ "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}"
-#~ "N${NC}) "
-#~ msgstr "Обновить все пакеты? (${BGreen}y${NC} да/${BRed}N${NC} нет) "
-
-#~ msgid "No packages found matching '$*'!"
-#~ msgstr "Не найдены пакеты по шаблону '$*'!"
-
-#~ msgid "Found packages matching '${BPurple}$*${NC}':"
-#~ msgstr "Пакеты по шаблону '${BPurple}$*${NC}':"
-
-#~ msgid "'${entered_input[*]}' is not a valid number"
-#~ msgstr "'${entered_input[*]}' не является числом"
-
-#~ msgid ""
-#~ "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-#~ msgstr ""
-#~ "Выбран '${BPurple}${pkgs[i]}${NC}' из менеджера пакетов "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-
-#~ msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-#~ msgstr "Вы уверены? (${BGreen}y${NC} да/${BRed}N${NC} нет) "
-
-#~ msgid "Invalid repository name!"
-#~ msgstr "Неверное имя репозитория!"

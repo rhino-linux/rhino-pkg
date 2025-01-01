@@ -96,31 +96,3 @@ msgstr "Serchante snap…"
 #, python-brace-format
 msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""
-
-#~ msgid ""
-#~ "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}"
-#~ "N${NC}) "
-#~ msgstr ""
-#~ "Esque vu vole actualisar omni paccages? (${BGreen}y${NC}/${BRed}N${NC}) "
-
-#~ msgid "No packages found matching '$*'!"
-#~ msgstr "Null paccages trovat quel corresponde a '$*'!"
-
-#~ msgid "Found packages matching '${BPurple}$*${NC}':"
-#~ msgstr "Trovat paccages correspondente a '${BPurple}$*${NC}':"
-
-#~ msgid "'${entered_input[*]}' is not a valid number"
-#~ msgstr "'${entered_input[*]}' ne es un valid númere"
-
-#~ msgid ""
-#~ "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-#~ msgstr ""
-#~ "Selecte '${BPurple}${pkgs[i]}${NC}' del gerente de paccages "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-
-#~ msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-#~ msgstr "Esque vu es cert? (${BGreen}y${NC}/${BRed}N${NC}) "
-
-#~ msgid "Invalid repository name!"
-#~ msgstr "Ínvalid nómine de un repositoria!"

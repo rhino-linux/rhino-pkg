@@ -97,28 +97,3 @@ msgstr "Buscando snap…"
 #, python-brace-format
 msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""
-
-#~ msgid "No input given!"
-#~ msgstr "¡Ninguna entrada dada!"
-
-#~ msgid "No packages found matching '$*'!"
-#~ msgstr "¡Fueron encontrados paquetes que coinciden con '$*'!"
-
-#~ msgid "Found packages matching '${BPurple}$*${NC}':"
-#~ msgstr "Paquetes encontrados que coinciden con '${BPurple}$*${NC}':"
-
-#~ msgid "'$entered_input' is not a valid number"
-#~ msgstr "'$entered_input' no es un número válido"
-
-#~ msgid ""
-#~ "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-#~ msgstr ""
-#~ "Seleccionando '${BPurple}${pkgs[i]}${NC}' del gestor de paquetes "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-
-#~ msgid "Invalid repository name!"
-#~ msgstr "¡Nombre de repositorio inválido!"
-
-#~ msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-#~ msgstr "¿Estás seguro? (${BGreen}y${NC}/${BRed}N${NC}) "

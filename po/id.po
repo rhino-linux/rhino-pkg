@@ -94,25 +94,3 @@ msgstr "Mencari snap…"
 #, python-brace-format
 msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""
-
-#~ msgid "No input given!"
-#~ msgstr "Tidak ada masukan!"
-
-#~ msgid "No packages found matching '$*'!"
-#~ msgstr "Tidak menemukan paket yang cocok '$*'!"
-
-#~ msgid "Found packages matching '${BPurple}$*${NC}':"
-#~ msgstr "Menemukan paket yang sesuai '${BPurple}$*${NC}':"
-
-#~ msgid "'$entered_input' is not a valid number"
-#~ msgstr "'$entered_input' bukan angka yang sah"
-
-#~ msgid ""
-#~ "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-#~ msgstr ""
-#~ "Memilih'${BPurple}${pkgs[i]}${NC}' dari manajemen paket "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-
-#~ msgid "Invalid repository name!"
-#~ msgstr "Nama repositori yang tidak sah!"

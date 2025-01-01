@@ -97,25 +97,3 @@ msgstr "Recherche de snap…"
 #, python-brace-format
 msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""
-
-#~ msgid "No input given!"
-#~ msgstr "Aucune entrée n'a été donnée !"
-
-#~ msgid "No packages found matching '$*'!"
-#~ msgstr "Aucun paquet trouvé correspondant à '$*' !"
-
-#~ msgid "Found packages matching '${BPurple}$*${NC}':"
-#~ msgstr "Paquets trouvés correspondant à '${BPurple}$*${NC}':"
-
-#~ msgid "'$entered_input' is not a valid number"
-#~ msgstr "'$entered_input' n'est pas un nombre valide"
-
-#~ msgid ""
-#~ "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-#~ msgstr ""
-#~ "Sélection de '${BPurple}${pkgs[i]}${NC}' dans le gestionnaire de paquets "
-#~ "'${BPurple}${pkgrepo[i]}${NC}'"
-
-#~ msgid "Invalid repository name!"
-#~ msgstr "Nom de dépôt non valide !"
