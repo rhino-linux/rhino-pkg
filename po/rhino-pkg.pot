@@ -54,19 +54,19 @@ msgid "No valid inputs given"
 msgstr ""
 
 #: search.nu
-msgid "Searching pacstall..."
+msgid "Searching Pacstall…"
 msgstr ""
 
 #: search.nu
-msgid "Searching flatpak..."
+msgid "Searching flatpak…"
 msgstr ""
 
 #: search.nu
-msgid "Searching apt..."
+msgid "Searching apt…"
 msgstr ""
 
 #: search.nu
-msgid "Searching snap..."
+msgid "Searching snap…"
 msgstr ""
 
 #: search.nu
