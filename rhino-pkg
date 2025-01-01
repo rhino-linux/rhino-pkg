@@ -331,7 +331,7 @@ fi
 msg $"Found packages matching '${BPurple}$*${NC}':"
 echo
 
-count=0
+count=1
 pkgs=()
 pkgrepo=()
 
