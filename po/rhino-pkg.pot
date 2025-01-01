@@ -7,68 +7,84 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: rhino-pkg:83
+#, python-brace-format
 msgid ""
 "Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
 msgstr ""
 
 #: rhino-pkg:84
+#, python-brace-format
 msgid "No valid subcommand passed"
 msgstr ""
 
 #: rhino-pkg:84
+#, python-brace-format
 msgid "Failed here"
 msgstr ""
 
 #: rhino-pkg:105 rhino-pkg:128
+#, python-brace-format
 msgid "No packages found matching '{rest}'"
 msgstr ""
 
 #: rhino-pkg:108
+#, python-brace-format
 msgid "Select which package to install"
 msgstr ""
 
 #: rhino-pkg:109
+#, python-brace-format
 msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr ""
 
 #: rhino-pkg:115
+#, python-brace-format
 msgid "Failed to install '{pkg}'."
 msgstr ""
 
 #: rhino-pkg:131
+#, python-brace-format
 msgid "Select which package to remove"
 msgstr ""
 
 #: rhino-pkg:133
+#, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
 msgstr ""
 
 #: rhino-pkg:142
+#, python-brace-format
 msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
 
 #: cmd.nu:28
+#, python-brace-format
 msgid "No valid inputs given"
 msgstr ""
 
 #: search.nu:9 search.nu:33
+#, python-brace-format
 msgid "Searching Pacstall…"
 msgstr ""
 
 #: search.nu:12
+#, python-brace-format
 msgid "Searching flatpak…"
 msgstr ""
 
 #: search.nu:15 search.nu:39
+#, python-brace-format
 msgid "Searching apt…"
 msgstr ""
 
 #: search.nu:17 search.nu:41
+#, python-brace-format
 msgid "Searching snap…"
 msgstr ""
 
 #: search.nu:24
+#, python-brace-format
 msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""
