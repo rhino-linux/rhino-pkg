@@ -15,56 +15,112 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.0-dev\n"
 
-#: rhino-pkg:186
-msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "Обновить все пакеты? (${BGreen}y${NC} да/${BRed}N${NC} нет) "
+#: rhino-pkg:83
+#, python-brace-format
+msgid ""
+"Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
+msgstr ""
 
-#: rhino-pkg:218
-msgid "Searching Pacstall…"
-msgstr "Поиск в Pacstall…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "No valid subcommand passed"
+msgstr ""
 
-#: rhino-pkg:222
-msgid "Searching apt…"
-msgstr "Поиск в apt…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "Failed here"
+msgstr ""
 
-#: rhino-pkg:226
-msgid "Searching flatpak…"
-msgstr "Поиск во flatpak…"
+#: rhino-pkg:105 rhino-pkg:128
+#, python-brace-format
+msgid "No packages found matching '{rest}'"
+msgstr ""
 
-#: rhino-pkg:231
-msgid "Searching snap…"
-msgstr "Поиск в snap…"
-
-#: rhino-pkg:237
-msgid "No packages found matching '$*'!"
-msgstr "Не найдены пакеты по шаблону '$*'!"
-
-#: rhino-pkg:241
-msgid "Found packages matching '${BPurple}$*${NC}':"
-msgstr "Пакеты по шаблону '${BPurple}$*${NC}':"
-
-#: rhino-pkg:286
+#: rhino-pkg:108
+#, python-brace-format
 msgid "Select which package to install"
 msgstr "Выберите устанавливаемый пакет"
 
-#: rhino-pkg:292
+#: rhino-pkg:109
+#, python-brace-format
+msgid "Selecting '{pkg}' from package manager '{provider}'"
+msgstr ""
+
+#: rhino-pkg:115
+#, python-brace-format
+msgid "Failed to install '{pkg}'."
+msgstr ""
+
+#: rhino-pkg:131
+#, python-brace-format
 msgid "Select which package to remove"
 msgstr "Выберите удаляемый пакет"
 
-#: rhino-pkg:298
-msgid "'${entered_input[*]}' is not a valid number"
-msgstr "'${entered_input[*]}' не является числом"
-
-#: rhino-pkg:303
-msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+#: rhino-pkg:133
+#, python-brace-format
+msgid "Removing '{part}' from '{provider}'"
 msgstr ""
-"Выбран '${BPurple}${pkgs[i]}${NC}' из менеджера пакетов "
-"'${BPurple}${pkgrepo[i]}${NC}'"
 
-#: rhino-pkg:306
-msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "Вы уверены? (${BGreen}y${NC} да/${BRed}N${NC} нет) "
+#: rhino-pkg:142
+#, python-brace-format
+msgid ""
+"Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
+"{n}) "
+msgstr ""
 
-#: rhino-pkg:341
-msgid "Invalid repository name!"
-msgstr "Неверное имя репозитория!"
+#: cmd.nu:28
+#, python-brace-format
+msgid "No valid inputs given"
+msgstr ""
+
+#: search.nu:9 search.nu:33
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr "Поиск в Pacstall…"
+
+#: search.nu:12
+#, python-brace-format
+msgid "Searching flatpak…"
+msgstr "Поиск во flatpak…"
+
+#: search.nu:15 search.nu:39
+#, python-brace-format
+msgid "Searching apt…"
+msgstr "Поиск в apt…"
+
+#: search.nu:17 search.nu:41
+#, python-brace-format
+msgid "Searching snap…"
+msgstr "Поиск в snap…"
+
+#: search.nu:24
+#, python-brace-format
+msgid "[{idx}]: {pkg} ({provider})"
+msgstr ""
+
+#~ msgid ""
+#~ "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}"
+#~ "N${NC}) "
+#~ msgstr "Обновить все пакеты? (${BGreen}y${NC} да/${BRed}N${NC} нет) "
+
+#~ msgid "No packages found matching '$*'!"
+#~ msgstr "Не найдены пакеты по шаблону '$*'!"
+
+#~ msgid "Found packages matching '${BPurple}$*${NC}':"
+#~ msgstr "Пакеты по шаблону '${BPurple}$*${NC}':"
+
+#~ msgid "'${entered_input[*]}' is not a valid number"
+#~ msgstr "'${entered_input[*]}' не является числом"
+
+#~ msgid ""
+#~ "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
+#~ "'${BPurple}${pkgrepo[i]}${NC}'"
+#~ msgstr ""
+#~ "Выбран '${BPurple}${pkgs[i]}${NC}' из менеджера пакетов "
+#~ "'${BPurple}${pkgrepo[i]}${NC}'"
+
+#~ msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
+#~ msgstr "Вы уверены? (${BGreen}y${NC} да/${BRed}N${NC} нет) "
+
+#~ msgid "Invalid repository name!"
+#~ msgstr "Неверное имя репозитория!"

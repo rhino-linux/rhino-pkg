@@ -11,65 +11,118 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.18.1\n"
 
-#: rhino-pkg:186
+#: rhino-pkg:83
+#, python-brace-format
 msgid ""
-"Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N"
-"${NC}) "
+"Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
 msgstr ""
-"Ви впевнені, що хочете оновити всі пакунки? (${BGreen}y${NC}/${BRed}N${NC}) "
 
-#: rhino-pkg:218
-msgid "Searching Pacstall…"
-msgstr "Пошук Pacstall…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "No valid subcommand passed"
+msgstr ""
 
-#: rhino-pkg:222
-msgid "Searching apt…"
-msgstr "Пошук apt…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "Failed here"
+msgstr ""
 
-#: rhino-pkg:226
-msgid "Searching flatpak…"
-msgstr "Пошук flatpak…"
+#: rhino-pkg:105 rhino-pkg:128
+#, python-brace-format
+msgid "No packages found matching '{rest}'"
+msgstr ""
 
-#: rhino-pkg:231
-msgid "Searching snap…"
-msgstr "Пошук snap…"
-
-#: rhino-pkg:237
-msgid "No packages found matching '$*'!"
-msgstr "Не знайдено пакунків, що відповідають '$*'!"
-
-#: rhino-pkg:241
-msgid "Found packages matching '${BPurple}$*${NC}':"
-msgstr "Знайдено пакунки, які відповідають '${BPurple}$*${NC}':"
-
-#: rhino-pkg:286
+#: rhino-pkg:108
+#, python-brace-format
 msgid "Select which package to install"
 msgstr "Виберіть, який пакунок встановити"
 
-#: rhino-pkg:292
+#: rhino-pkg:109
+#, python-brace-format
+msgid "Selecting '{pkg}' from package manager '{provider}'"
+msgstr ""
+
+#: rhino-pkg:115
+#, python-brace-format
+msgid "Failed to install '{pkg}'."
+msgstr ""
+
+#: rhino-pkg:131
+#, python-brace-format
 msgid "Select which package to remove"
 msgstr "Виберіть, який пакунок видалити"
 
-#: rhino-pkg:298
-msgid "'${entered_input[*]}' is not a valid number"
-msgstr "'${entered_input[*]}' неприпустиме число"
-
-#: rhino-pkg:303
-msgid ""
-"Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
-"'${BPurple}${pkgrepo[i]}${NC}'"
+#: rhino-pkg:133
+#, python-brace-format
+msgid "Removing '{part}' from '{provider}'"
 msgstr ""
-"Вибір '${BPurple}${pkgs[i]}${NC}' з менеджера пакунків "
-"'${BPurple}${pkgrepo[i]}${NC}'"
 
-#: rhino-pkg:306
-msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "Ви впевнені? (${BGreen}y${NC}/${BRed}N${NC}) "
+#: rhino-pkg:142
+#, python-brace-format
+msgid ""
+"Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
+"{n}) "
+msgstr ""
 
-#: rhino-pkg:341
-msgid "Invalid repository name!"
-msgstr "Неправильна назва сховища!"
+#: cmd.nu:28
+#, python-brace-format
+msgid "No valid inputs given"
+msgstr ""
+
+#: search.nu:9 search.nu:33
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr "Пошук Pacstall…"
+
+#: search.nu:12
+#, python-brace-format
+msgid "Searching flatpak…"
+msgstr "Пошук flatpak…"
+
+#: search.nu:15 search.nu:39
+#, python-brace-format
+msgid "Searching apt…"
+msgstr "Пошук apt…"
+
+#: search.nu:17 search.nu:41
+#, python-brace-format
+msgid "Searching snap…"
+msgstr "Пошук snap…"
+
+#: search.nu:24
+#, python-brace-format
+msgid "[{idx}]: {pkg} ({provider})"
+msgstr ""
+
+#~ msgid ""
+#~ "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}"
+#~ "N${NC}) "
+#~ msgstr ""
+#~ "Ви впевнені, що хочете оновити всі пакунки? (${BGreen}y${NC}/${BRed}"
+#~ "N${NC}) "
+
+#~ msgid "No packages found matching '$*'!"
+#~ msgstr "Не знайдено пакунків, що відповідають '$*'!"
+
+#~ msgid "Found packages matching '${BPurple}$*${NC}':"
+#~ msgstr "Знайдено пакунки, які відповідають '${BPurple}$*${NC}':"
+
+#~ msgid "'${entered_input[*]}' is not a valid number"
+#~ msgstr "'${entered_input[*]}' неприпустиме число"
+
+#~ msgid ""
+#~ "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
+#~ "'${BPurple}${pkgrepo[i]}${NC}'"
+#~ msgstr ""
+#~ "Вибір '${BPurple}${pkgs[i]}${NC}' з менеджера пакунків "
+#~ "'${BPurple}${pkgrepo[i]}${NC}'"
+
+#~ msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
+#~ msgstr "Ви впевнені? (${BGreen}y${NC}/${BRed}N${NC}) "
+
+#~ msgid "Invalid repository name!"
+#~ msgstr "Неправильна назва сховища!"
