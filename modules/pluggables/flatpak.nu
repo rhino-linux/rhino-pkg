@@ -11,7 +11,7 @@ export def list-installed [search: string] {
     }
 }
 
-export def search [input: string, description: bool] -> table {
+export def search [input: string, description: bool] : nothing -> table {
     # Description here is a dummy flag, because flatpak searches by both name and description with no way
     # to change that afaik.
     if (exists "flatpak") {

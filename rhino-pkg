@@ -1,7 +1,12 @@
 #!/usr/bin/env nu
 
+plugin add "/usr/share/nutext/nu_plugin_nutext"
+plugin use nutext
+
 use "/usr/share/rhino-pkg/modules/lib/" [search]
 use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt, install-pkg, cleanup-pkg, remove-pkg]
+
+tregister /usr/share/locale/ rhino-pkg
 
 # USAGE: rpk [function] {flag} <input>
 # 
@@ -73,10 +78,10 @@ def main [
     --description (-d) # Increase range and display packages with <input> in their description
     --yes (-y) # Makes functions with confirmation prompts run promptless
     ...rest: string # 'install', 'remove', 'search', 'update', 'cleanup', etc
-] -> int {
+] : any -> int {
     if ($rest | is-empty) {
-        print -e "Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
-        error make -u { msg: "No valid subcommand passed", label: { text: "Failed here", span: (metadata $rest).span } }
+        tprint -e "Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
+        error make -u { msg: (_ "No valid subcommand passed"), label: { text: (_ "Failed here"), span: (metadata $rest).span } }
         exit 1
     }
 }
@@ -97,17 +102,17 @@ def "main install" [
     # Block output from `return` here.
     let dummy = (search search-pkgs $description $rest)
     if (($dummy | length) <= 0) {
-        print -e $"No packages found matching '($rest)'"
+        tprint -e "No packages found matching '{rest}'" { rest: $rest }
         return
     }
-    let which = (prompt "Select which package to install" $dummy)
-    $which | each {|part| print $"Selecting '(ansi purple_bold)($part.pkg)(ansi reset)' from package manager '(ansi purple_bold)($part.provider)(ansi reset)'" }
+    let which = (prompt (_ "Select which package to install") $dummy)
+    $which | each {|part| tprint "Selecting '{pkg}' from package manager '{provider}'" { pkg: $"(ansi purple_bold)($part.pkg)(ansi reset)", provider: $"(ansi purple_bold)($part.provider)(ansi reset)" } }
     for part in $which {
         try {
             install-pkg ($part | reject index) $yes
         } catch {
             |err|
-            print -e $"Failed to install '($part.pkg)'."
+            tprint -e "Failed to install '{pkg}'." { pkg: $part.pkg }
             exit $env.LAST_EXIT_CODE
         }
     }
@@ -120,12 +125,12 @@ def "main remove" [
     # Block output from `return` here.
     let dummy = (search search-local-pkgs $rest)
     if (($dummy | length) <= 0) {
-        print -e $"No packages found matching '($rest)'"
+        tprint -e "No packages found matching '{rest}'" { rest: $rest }
         return
     }
-    let which = (prompt "Select which package to remove" $dummy)
+    let which = (prompt (_ "Select which package to remove") $dummy)
     $which | each {|part|
-        print $"Removing '($part.pkg)' from '($part.provider)'"
+        tprint -e "Removing '{part}' from '{provider}'" { part: $part.pkg, provider: $part.provider }
         remove-pkg ($part | reject index) $yes
     }
 }
@@ -134,7 +139,7 @@ def "main cleanup" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
 ] {
     if not $yes {
-        if (input $"Attempting to repair dependencies and remove unused packages. Continue? \((ansi green_bold)y(ansi reset)/(ansi red_bold)N(ansi reset)\) "
+        if (input (_ "Attempting to repair dependencies and remove unused packages. Continue? ({y}/{n}) " { y: $"(ansi green_bold)y(ansi reset)", n: $"(ansi red_bold)N(ansi reset)" })
                 | str downcase
                 | str starts-with "n") {
             exit 1

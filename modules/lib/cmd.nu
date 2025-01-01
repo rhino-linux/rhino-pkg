@@ -1,4 +1,4 @@
-export def exists [cmd: string] -> bool {
+export def exists [cmd: string] : nothing -> bool {
     ((which $cmd | length) > 0)
 }
 
@@ -13,7 +13,7 @@ export def print-color [type: string] {
     }
 }
 
-export def prompt [ask: string, pkgs: list] -> table {
+export def prompt [ask: string, pkgs: list] : nothing -> table {
     let input = (input $"($ask) [0-(($pkgs | length) - 1)]: ")
     if ($input | is-empty) {
         [($pkgs | enumerate).0.item]
@@ -25,7 +25,7 @@ export def prompt [ask: string, pkgs: list] -> table {
             | filter {|key| $key in 0..<($pkgs | length)}
         )
         if ($parsed | is-empty) {
-            print -e "No valid inputs given"
+            tprint -e "No valid inputs given"
             exit 1
         }
         $pkgs

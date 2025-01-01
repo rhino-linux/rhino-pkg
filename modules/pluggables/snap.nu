@@ -12,7 +12,7 @@ export def list-installed [search: string] {
     }
 }
 
-export def search [input: string, description: bool] -> table {
+export def search [input: string, description: bool] : nothing -> table {
     if (exists "snap") {
         ^snap search $input
             | detect columns --guess

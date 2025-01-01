@@ -16,7 +16,7 @@ export def list-installed [search: string] {
     }
 }
 
-export def search [input: string, description: bool] -> table {
+export def search [input: string, description: bool] : nothing -> table {
     if (exists "pacstall") {
         if $description {
             # We are searching for something in description
