@@ -21,7 +21,7 @@ export def search-pkgs [
     mut idx = 0
     for bla in $total {
         let le_color = (print-color $bla.provider)
-        tprint "[{idx}]: {pkg} ({provider})" { idx: $"($le_color)($idx)(ansi reset)", pkg: $bla.pkg, provider: $"($le_color)($bla.provider)(ansi reset)" }
+        print $"[($le_color)($idx)(ansi reset)]: ($bla.pkg) \(($le_color)($bla.provider)(ansi reset)\)"
         $idx += 1
     }
     # Just because someone else might need the table.

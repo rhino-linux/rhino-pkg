@@ -89,8 +89,3 @@ msgstr "Mencari apt…"
 #, python-brace-format
 msgid "Searching snap…"
 msgstr "Mencari snap…"
-
-#: search.nu:24
-#, python-brace-format
-msgid "[{idx}]: {pkg} ({provider})"
-msgstr ""

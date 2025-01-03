@@ -1,4 +1,3 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "MIME-Version: 1.0\n"
@@ -82,9 +81,4 @@ msgstr ""
 #: search.nu:17 search.nu:41
 #, python-brace-format
 msgid "Searching snap…"
-msgstr ""
-
-#: search.nu:24
-#, python-brace-format
-msgid "[{idx}]: {pkg} ({provider})"
 msgstr ""

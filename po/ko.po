@@ -92,8 +92,3 @@ msgstr "APT 검색 중…"
 #, python-brace-format
 msgid "Searching snap…"
 msgstr "Snap 검색 중…"
-
-#: search.nu:24
-#, python-brace-format
-msgid "[{idx}]: {pkg} ({provider})"
-msgstr ""
