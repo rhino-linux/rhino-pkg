@@ -1,7 +1,4 @@
-#!/usr/bin/env nu
-
-plugin add "/usr/share/nutext/nu_plugin_nutext"
-plugin use nutext
+#!/usr/bin/env -S nu --plugins '[/usr/share/nutext/nu_plugin_nutext]'
 
 use "/usr/share/rhino-pkg/modules/lib/" [search]
 use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt, install-pkg, cleanup-pkg, remove-pkg]
