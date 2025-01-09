@@ -25,7 +25,8 @@ export def search [input: string, description: bool] : nothing -> table {
                 | insert provider 'apt'
         }
     } else {
-        []
+        error make -u { msg: (_ "`aptitude` not installed.") }
+        exit 1
     }
 }
 

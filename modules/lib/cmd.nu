@@ -110,7 +110,7 @@ export def cleanup-pkg [promptless: bool] {
     if $promptless {
         if (exists "apt") {
             ^sudo apt-get --fix-broken install
-            ^sudo apt-get apt-remove -y
+            ^sudo apt-get autoremove -y
         }
         if (exists "flatpak") {
             ^sudo flatpak repair
@@ -119,7 +119,7 @@ export def cleanup-pkg [promptless: bool] {
     } else {
         if (exists "apt") {
             ^sudo apt-get --fix-broken install
-            ^sudo apt-get apt-remove
+            ^sudo apt-get autoremove
         }
         if (exists "flatpak") {
             ^sudo flatpak repair
