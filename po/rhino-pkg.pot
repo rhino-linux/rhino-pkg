@@ -1,39 +1,89 @@
-#: rhino-pkg:186
-msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
+msgid ""
 msgstr ""
-#: rhino-pkg:218
-msgid "Searching Pacstall…"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: rhino-pkg:80
+#, python-brace-format
+msgid ""
+"Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
 msgstr ""
-#: rhino-pkg:222
-msgid "Searching apt…"
+
+#: rhino-pkg:81
+#, python-brace-format
+msgid "No valid subcommand passed"
 msgstr ""
-#: rhino-pkg:226
-msgid "Searching flatpak…"
+
+#: rhino-pkg:81
+#, python-brace-format
+msgid "Failed here"
 msgstr ""
-#: rhino-pkg:231
-msgid "Searching snap…"
+
+#: rhino-pkg:102 rhino-pkg:125
+#, python-brace-format
+msgid "No packages found matching '{rest}'"
 msgstr ""
-#: rhino-pkg:237
-msgid "No packages found matching '$*'!"
-msgstr ""
-#: rhino-pkg:241
-msgid "Found packages matching '${BPurple}$*${NC}':"
-msgstr ""
-#: rhino-pkg:286
+
+#: rhino-pkg:105
+#, python-brace-format
 msgid "Select which package to install"
 msgstr ""
-#: rhino-pkg:292
+
+#: rhino-pkg:106
+#, python-brace-format
+msgid "Selecting '{pkg}' from package manager '{provider}'"
+msgstr ""
+
+#: rhino-pkg:112
+#, python-brace-format
+msgid "Failed to install '{pkg}'."
+msgstr ""
+
+#: rhino-pkg:128
+#, python-brace-format
 msgid "Select which package to remove"
 msgstr ""
-#: rhino-pkg:298
-msgid "'${entered_input[*]}' is not a valid number"
+
+#: rhino-pkg:130
+#, python-brace-format
+msgid "Removing '{part}' from '{provider}'"
 msgstr ""
-#: rhino-pkg:303
-msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+
+#: rhino-pkg:139
+#, python-brace-format
+msgid ""
+"Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
+"{n}) "
 msgstr ""
-#: rhino-pkg:306
-msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
+
+#: cmd.nu:28
+#, python-brace-format
+msgid "No valid inputs given"
 msgstr ""
-#: rhino-pkg:341
-msgid "Invalid repository name!"
+
+#: search.nu:9 search.nu:33
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr ""
+
+#: search.nu:12
+#, python-brace-format
+msgid "Searching flatpak…"
+msgstr ""
+
+#: search.nu:15 search.nu:39
+#, python-brace-format
+msgid "Searching apt…"
+msgstr ""
+
+#: search.nu:17 search.nu:41
+#, python-brace-format
+msgid "Searching snap…"
+msgstr ""
+
+#: apt.nu:28
+#, python-brace-format
+msgid "`aptitude` not installed."
 msgstr ""
