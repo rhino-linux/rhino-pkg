@@ -9,35 +9,35 @@ A package manager wrapper for Pacstall, APT, Flatpak and snap.
 
 ### Usage
 ```
-USAGE: rhino-pkg [function] {flag} <input>                                                  
+USAGE: rhino-pkg [function] {flag} <input>
 
 functions:
-    install: Install package(s) - Prompts user to respond with 
+    install: Install package(s) - Prompts user to respond with
              the number(s) associated with the desired package(s).
-             
+
     remove:  Uninstall package(s) - Prompts user to respond with
              the number(s) associated with the desired package(s).
-             
+
     search:  Search for package(s) - Does not have a second prompt.
-    
+
     update:  Updates all packages accessible to the wrapper - does
-             not accept <input>, instead use install to update 
+             not accept <input>, instead use install to update
              individual packages. Has a confirmation prompt.
 
     cleanup: Attempts to repair broken dependencies and remove any
-             unused packages. Does not accept <input>, but has 
+             unused packages. Does not accept <input>, but has
              a confirmation prompt.
 
-flags: 
+flags:
     --help/-h: Display this page
-    
-    --description/-d: By default, rhino-pkg will only display packages 
-    that contain <input> within their name. Use this flag to increase 
+
+    --description/-d: By default, rhino-pkg will only display packages
+    that contain <input> within their name. Use this flag to increase
     range and display packages with <input> in their description.
 
     -y: Makes functions with confirmation prompts run promptless.
-    
-input: 
+
+input:
     Provide a package name or description.
 
 Example execution:
