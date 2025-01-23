@@ -1,3 +1,7 @@
+### Issues Tracker
+
+To report issues or propose new features for this repository, visit [our tracker](https://github.com/rhino-linux/tracker).
+
 # rhino-pkg
 <img width="400" alt="placeholder-rpk" src="https://github.com/rhino-linux/rhino-pkg/assets/104327997/f1089f8d-4caa-4b27-83b7-9cc0a12ab5dc">
 
