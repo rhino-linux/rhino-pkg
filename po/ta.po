@@ -1,0 +1,65 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-28 10:46+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 3.14.7\n"
+
+#: rhino-pkg:186
+msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
+msgstr ""
+
+#: rhino-pkg:218
+msgid "Searching Pacstall…"
+msgstr ""
+
+#: rhino-pkg:222
+msgid "Searching apt…"
+msgstr ""
+
+#: rhino-pkg:226
+msgid "Searching flatpak…"
+msgstr ""
+
+#: rhino-pkg:231
+msgid "Searching snap…"
+msgstr ""
+
+#: rhino-pkg:237
+msgid "No packages found matching '$*'!"
+msgstr ""
+
+#: rhino-pkg:241
+msgid "Found packages matching '${BPurple}$*${NC}':"
+msgstr ""
+
+#: rhino-pkg:286
+msgid "Select which package to install"
+msgstr ""
+
+#: rhino-pkg:292
+msgid "Select which package to remove"
+msgstr ""
+
+#: rhino-pkg:298
+msgid "'${entered_input[*]}' is not a valid number"
+msgstr ""
+
+#: rhino-pkg:303
+msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+msgstr ""
+
+#: rhino-pkg:306
+msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
+msgstr ""
+
+#: rhino-pkg:341
+msgid "Invalid repository name!"
+msgstr ""
