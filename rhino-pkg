@@ -96,6 +96,46 @@ function msg() {
     echo -e "$input"
 }
 
+function back_up() {
+    local back_up_path=$1
+    echo -e "${BGreen}Backup location: $back_up_path${NC}"
+    echo -e "${BGreen}Starting backup process...${NC}"
+    echo -e "${BGreen}Collecting installed package names...${NC}"
+    {
+        echo "[dpkg/apt]"
+        dpkg-query -f '${Package}\n' -W
+        echo "[Snap]"
+        snap list --all | awk 'NR>1 {print $1}'
+        echo "[Flatpak]"
+        flatpak list --app --columns=application
+        echo "[Pacstall]"
+        pacstall -L
+    } > "$back_up_path"
+    echo -e "${BGreen}Backup completed successfully!${NC}"
+    echo -e "${BGreen}Backup saved to: $back_up_path${NC}"
+}
+
+function back_up_file_check() {
+    local custom_file_path=$1
+    if [ -f "$custom_file_path" ]; then
+        if [[ "$custom_file_path" =~ \.txt$ ]]; then
+            if [ -w "$custom_file_path" ]; then
+                echo -e "${BGreen}Using the custom file path: $custom_file_path${NC}"
+            else
+                echo -e "${BRed}Error: '$custom_file_path' is not writable. Exiting.${NC}"
+                exit 1
+            fi
+        else
+            echo -e "${BRed}Error: '$custom_file_path' is not a .txt file. Exiting.${NC}"
+            exit 1
+        fi
+    else
+        echo -e "${BRed}Error: '$custom_file_path' is not a valid file. Exiting.${NC}"
+        exit 1
+    fi
+}
+
+
 function prompt() {
     local input="$1"
     local index="$2"
@@ -192,6 +232,34 @@ case "${1}" in
             PROMPTLESS=true
             shift
         fi
+        ;;
+    backup)
+        if [ "$EUID" -ne 0 ]; then
+            echo -e "${BRed}The root privileges are required to create the add and to give it the writing permission. Please run with sudo.${NC}"
+            echo -e "${BGreen}Restarting...$back_up_path${NC}"
+            exec sudo "$0" "$@"
+            exit
+        fi
+        back_up_path="/rhino-pkg_backup_$(date +%Y%m%d_%H%M%S).txt"
+        echo -n "The backup file's location: '$back_up_path'
+Continue (${BGreen}y${NC}), or choose your own .txt file (${BRed}S${NC})? (${BGreen}y${NC}/${BRed}S${NC}) "
+        read user_choice
+        if [[ "$user_choice" =~ ^[Yy]$ ]]; then
+            echo -e "${BGreen}Creating the file: $back_up_path${NC}"
+            touch "$back_up_path"
+            chmod +w "$back_up_path"
+            back_up_file_check "$back_up_path"
+        elif [[ "$user_choice" =~ ^[Ss]$ ]]; then
+            echo -n "Enter your desired file path: "
+            read custom_file_path
+            back_up_file_check "$custom_file_path"
+            back_up_path="$custom_file_path"
+        else
+            echo -e "${BRed}Invalid choice. Exiting.${NC}"
+            exit 1
+        fi
+        back_up "$back_up_path"
+        exit 0
         ;;
     -h | --help)
         echo "$help_flag"
