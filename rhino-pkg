@@ -120,7 +120,7 @@ function back_up_file_check() {
     if [ -f "$custom_file_path" ]; then
         if [[ "$custom_file_path" =~ \.txt$ ]]; then
             if [ -w "$custom_file_path" ]; then
-                echo -e "${BGreen}Using the custom file path: $custom_file_path${NC}"
+                echo -e "${BGreen}Using the file: $custom_file_path${NC}"
             else
                 echo -e "${BRed}Error: '$custom_file_path' is not writable. Exiting.${NC}"
                 exit 1
@@ -133,6 +133,80 @@ function back_up_file_check() {
         echo -e "${BRed}Error: '$custom_file_path' is not a valid file. Exiting.${NC}"
         exit 1
     fi
+}
+
+function recover_file_check() {
+    local custom_file_path=$1
+    if [ -f "$custom_file_path" ]; then
+        if [[ "$custom_file_path" =~ \.txt$ ]]; then
+            echo -e "${BGreen}Using the file: $custom_file_path${NC}"
+        else
+            echo -e "${BRed}Error: '$custom_file_path' is not a .txt file. Exiting.${NC}"
+            exit 1
+        fi
+    else
+        echo -e "${BRed}Error: '$custom_file_path' is not a valid file. Exiting.${NC}"
+        exit 1
+    fi
+}
+
+function recover() {
+    local local back_up_path=$1
+    recover_file_check "$back_up_path"
+
+    echo -n "Do you want to update first? (${BGreen}y${NC}/${BRed}N${NC}) "
+    read update_choice
+
+    if [[ "$update_choice" =~ ^[Yy]$ ]]; then
+        echo -e "${BGreen}Starting update...${NC}"
+        sudo rpk update -y
+        echo -e "${BGreen}Update completed.${NC}"
+    else
+        echo -e "${BRed}Skipping update.${NC}"
+    fi
+
+    mapfile -t lines < "$back_up_path"
+
+    for line in "${lines[@]}"; do
+        case "$line" in
+            "[dpkg/apt]")
+                echo -e "${BGreen}Recovering dpkg/apt packages...${NC}"
+                ;;
+            "[Snap]")
+                echo -e "${BGreen}Recovering Snap packages...${NC}"
+                ;;
+            "[Flatpak]")
+                echo -e "${BGreen}Recovering Flatpak packages...${NC}"
+                ;;
+            "[Pacstall]")
+                echo -e "${BGreen}Recovering Pacstall packages...${NC}"
+                ;;
+            *)
+                if [[ "$line" == *flatpak* ]]; then
+                    sudo flatpak install "$line" -y
+                elif [[ "$line" == *snap* ]]; then
+                    sudo snap install "$line"
+                elif [[ "$line" == *pacstall* ]]; then
+                    pacstall -I "$line"
+                else
+                    sudo apt install "$line" -y
+                fi
+                ;;
+        esac
+    done
+
+    echo -n "Do you want to cleanup? (${BGreen}y${NC}/${BRed}N${NC}) "
+    read cleanup_choice
+
+    if [[ "$cleanup_choice" =~ ^[Yy]$ ]]; then
+        echo -e "${BGreen}Starting cleanup...${NC}"
+        sudo rpk cleanup
+        echo -e "${BGreen}Cleanup completed.${NC}"
+    else
+        echo -e "${BRed}Skipping cleanup.${NC}"
+    fi
+
+    echo -e "${BGreen}Recovery completed successfully!${NC}"
 }
 
 
@@ -259,6 +333,11 @@ Continue (${BGreen}y${NC}), or choose your own .txt file (${BRed}S${NC})? (${BGr
             exit 1
         fi
         back_up "$back_up_path"
+        exit 0
+        ;;
+    recover)
+        shift
+        recover "$1"
         exit 0
         ;;
     -h | --help)
