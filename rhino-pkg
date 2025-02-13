@@ -174,7 +174,7 @@ function recover() {
     else
         echo -e "${BRed}The operation was cancelled.${NC}"
         exit 1
-fi
+    fi
 
     echo -n "Do you want to update first? (${BGreen}y${NC}/${BRed}N${NC}) "
     read update_choice
@@ -351,7 +351,8 @@ Continue (${BGreen}y${NC}), or choose your own .txt file (${BRed}S${NC})? (${BGr
             back_up_file_check "$custom_file_path"
             back_up_path="$custom_file_path"
         else
-            echo -e "${BRed}Invalid choice. Exiting.${NC}"
+            echo -e "${BRed}Invalid choice.${NC}"
+            echo "$help_flag"
             exit 1
         fi
         back_up "$back_up_path"
