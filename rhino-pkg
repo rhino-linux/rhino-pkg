@@ -67,7 +67,7 @@ tregister /usr/share/locale/ rhino-pkg
 #      .,,:dXMK
 #        :k
 # 
-# rpk 1.0.0
+# rpk 2.0.0
 # A package manager wrapper for Pacstall, APT, Flatpak and snap
 # Developed by Elsie19 <elsie19@pm.me> for
 # the Rhino Linux distribution.
@@ -77,8 +77,7 @@ def main [
     ...rest: string # 'install', 'remove', 'search', 'update', 'cleanup', etc
 ] : any -> int {
     if ($rest | is-empty) {
-        tprint -e "Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
-        error make -u { msg: (_ "No valid subcommand passed"), label: { text: (_ "Failed here"), span: (metadata $rest).span } }
+        run-external $env.CURRENT_FILE "--help"
         exit 1
     }
 }
