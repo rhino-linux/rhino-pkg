@@ -167,7 +167,7 @@ function recover() {
     local local back_up_path=$1
     recover_file_check "$back_up_path"
 
-    echo -n "Do you want to recover files by downloading packages again (${BRed}Internet bandwidth usage warning${NC})? (${BGreen}y${NC}/${BRed}N${NC}) "
+    echo -n "Do you want to recover files by downloading packages again (${BRed}WARNING: YOU CANNOT CANCEL THE OPERATION! Internet bandwidth usage warning!${NC})? (${BGreen}y${NC}/${BRed}N${NC}) "
     read recover_choice
 
     if [[ "$recover_choice" =~ ^[Yy]$ ]]; then
