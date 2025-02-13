@@ -51,6 +51,7 @@ functions:
     recover: Recovers packages from a backup file. Reads each line
              of the file and installs the packages listed. Accepts the
              backup file as <input>. Includes a confirmation prompt.
+             You can choose to run an update and a cleaup afterwards.
 
 
 flags: 
