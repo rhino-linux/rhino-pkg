@@ -217,11 +217,12 @@ function recover() {
         esac
     done
 
-    echo -n "Do you want to cleanup? (${BGreen}y${NC}/${BRed}N${NC}) "
+    echo -n "Do you want to update and cleanup? (${BGreen}y${NC}/${BRed}N${NC}) "
     read cleanup_choice
 
     if [[ "$cleanup_choice" =~ ^[Yy]$ ]]; then
         echo -e "${BGreen}Starting cleanup...${NC}"
+        sudo rpk update -y
         sudo rpk cleanup
         echo -e "${BGreen}Cleanup completed.${NC}"
     else
