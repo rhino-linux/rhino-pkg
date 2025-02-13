@@ -190,6 +190,11 @@ function recover() {
 
     mapfile -t lines < "$back_up_path"
 
+    failed_dpkg_apt=()
+    failed_snap=()
+    failed_flatpak=()
+    failed_pacstall=()
+
     for line in "${lines[@]}"; do
         case "$line" in
             "[dpkg/apt]")
@@ -206,21 +211,64 @@ function recover() {
                 ;;
             *)
                 if [[ "$line" == *flatpak* ]]; then
-                    sudo flatpak install "$line" -y
+                    if ! sudo flatpak install "$line" -y; then
+                        failed_flatpak+=("$line")
+                        echo -e "${BRed}Failed to install '$line'.${NC}"
+                    else
+                        echo -e "${BGreen}'$line' is installed successfully.${NC}"
+                    fi
                 elif [[ "$line" == *snap* ]]; then
-                    sudo snap install "$line"
+                    if ! sudo snap install "$line"; then
+                        echo -e "${BRed}Failed to install '$line'.${NC}"
+                        failed_snap+=("$line")
+                    else
+                        echo -e "${BGreen}'$line' is installed successfully.${NC}"
+                    fi
                 elif [[ "$line" == *pacstall* ]]; then
-                    pacstall -I "$line"
+                    if ! pacstall -I "$line"; then
+                        echo -e "${BRed}Failed to install '$line'.${NC}"
+                        failed_pacstall+=("$line")
+                    else
+                        echo -e "${BGreen}'$line' is installed successfully.${NC}"
+                    fi
                 else
-                    sudo apt install "$line" -y
+                    if ! sudo apt install "$line" -y; then
+                        echo -e "${BRed}Failed to install '$line'.${NC}"
+                        failed_dpkg_apt+=("$line")
+                    else
+                        echo -e "${BGreen}'$line' is installed successfully.${NC}"
+                    fi
                 fi
                 ;;
         esac
     done
 
+    if [ ${#failed_dpkg_apt[@]} -ne 0 ]; then
+        echo -e "${BRed}Failed to install the following dpkg/apt packages:${NC}"
+        for pkg in "${failed_dpkg_apt[@]}"; do
+            echo -e "${BRed}- $pkg${NC}"
+        done
+    fi
+    if [ ${#failed_snap[@]} -ne 0 ]; then
+        echo -e "${BRed}Failed to install the following Snap packages:${NC}"
+        for pkg in "${failed_snap[@]}"; do
+            echo -e "${BRed}- $pkg${NC}"
+        done
+    fi
+    if [ ${#failed_flatpak[@]} -ne 0 ]; then
+        echo -e "${BRed}Failed to install the following Flatpak packages:${NC}"
+        for pkg in "${failed_flatpak[@]}"; do
+            echo -e "${BRed}- $pkg${NC}"
+        done
+    fi
+    if [ ${#failed_pacstall[@]} -ne 0 ]; then
+        echo -e "${BRed}Failed to install the following Pacstall packages:${NC}"
+        for pkg in "${failed_pacstall[@]}"; do
+            echo -e "${BRed}- $pkg${NC}"
+        done
+    fi
     echo -n "Do you want to update and cleanup? (${BGreen}y${NC}/${BRed}N${NC}) "
     read cleanup_choice
-
     if [[ "$cleanup_choice" =~ ^[Yy]$ ]]; then
         echo -e "${BGreen}Starting cleanup...${NC}"
         sudo rpk update -y
