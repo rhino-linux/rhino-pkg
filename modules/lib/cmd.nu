@@ -41,35 +41,16 @@ export def install-pkg [
     ] {
     match $pkg.provider {
         "pacstall" => {
-            if $promptless {
-                ^pacstall -PI $"($pkg.pkg)@($pkg.repo)"
-            } else {
-                ^pacstall -I $"($pkg.pkg)@($pkg.repo)"
-            }
+            pacstall install $pkg $promptless
         }
         "apt" => {
-            if $promptless {
-                ^sudo apt-get install $pkg.pkg -y
-            } else {
-                ^sudo apt-get install $pkg.pkg
-            }
+            apt install $pkg.pkg $promptless
         }
         "flatpak" => {
-            if $promptless {
-                ^flatpak install $pkg.remote $pkg.pkg -y
-            } else {
-                ^flatpak install $pkg.remote $pkg.pkg
-            }
+            flatpak install $pkg $promptless
         }
-        # So snap is weird because some packages need classic installation
-        # ref: [https://github.com/rhino-linux/rhino-pkg/issues/46].
-        # But on the plus side it doesn't have the ability for -y.
         "snap" => {
-            if ($pkg.Notes == "classic") {
-                ^sudo snap install --classic $pkg.pkg
-            } else {
-                ^sudo snap install $pkg.pkg
-            }
+            snap install $pkg
         }
     }
 }

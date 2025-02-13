@@ -37,3 +37,13 @@ export def upgrade [promptless: bool] {
         }
     }
 }
+
+export def install [pkg: record, promptless: bool] {
+    if (exists "flatpak") {
+        if $promptless {
+            ^flatpak install $pkg.remote $pkg.pkg -y
+        } else {
+            ^flatpak install $pkg.remote $pkg.pkg
+        }
+    }
+}

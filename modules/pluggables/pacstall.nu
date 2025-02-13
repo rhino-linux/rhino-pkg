@@ -48,3 +48,13 @@ export def upgrade [promptless: bool] {
         }
     }
 }
+
+export def install [pkg: record, promptless: bool] {
+    if (exists "pacstall") {
+        if $promptless {
+            ^pacstall -PI $"($pkg.pkg)@($pkg.repo)"
+        } else {
+            ^pacstall -I $"($pkg.pkg)@($pkg.repo)"
+        }
+    }
+}

@@ -30,3 +30,16 @@ export def upgrade [promptless: bool] {
         ^sudo snap refresh
     }
 }
+
+# So snap is weird because some packages need classic installation
+# ref: [https://github.com/rhino-linux/rhino-pkg/issues/46].
+# But on the plus side it doesn't have the ability for -y.
+export def install [pkg: record] {
+    if (exists "snap") {
+        if ($pkg.Notes == "classic") {
+            ^sudo snap install --classic $pkg.pkg
+        } else {
+            ^sudo snap install $pkg.pkg
+        }
+    }
+}
