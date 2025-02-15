@@ -226,7 +226,7 @@ function recover() {
                         echo -e "${BGreen}'$line' is installed successfully.${NC}"
                     fi
                 elif [[ "$line" == *pacstall* ]]; then
-                    if ! pacstall -I "$line"; then
+                    if ! pacstall -PI "$line"; then
                         echo -e "${BRed}Failed to install '$line'.${NC}"
                         failed_pacstall+=("$line")
                     else
