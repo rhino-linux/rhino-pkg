@@ -30,7 +30,7 @@ export def prompt [ask: string, pkgs: list] : nothing -> table {
         }
         $pkgs
             | enumerate
-            | where $parsed has index
+            | where index in $parsed
             | flatten
     }
 }
