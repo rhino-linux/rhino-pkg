@@ -61,7 +61,7 @@ input:
 
 Example execution:
     $ rpk install foobar
-    Found packages matching: '(ansi magenta_bold)foobar(ansi reset)':
+    Found packages matching '(ansi magenta_bold)foobar(ansi reset)':
 
     [(ansi green_bold)0(ansi reset)]: pyfoobar \((ansi green_bold)apt(ansi reset)\)
     [(ansi green_bold)1(ansi reset)]: foobarshell \((ansi green_bold)apt(ansi reset)\)
@@ -72,8 +72,8 @@ Example execution:
 
     Select which package to install [0-5]: 3 4 5
     Selecting '(ansi magenta_bold)foobar-web(ansi reset)' from package manager '(ansi magenta_bold)snap(ansi reset)'
-    Selecting '(ansi magenta_bold)foobar-bin(ansi reset)' from package manager '(ansi magenta_bold)snap(ansi reset)'
-    Selecting '(ansi magenta_bold)foobar-theme(ansi reset)' from package manager '(ansi magenta_bold)snap(ansi reset)'
+    Selecting '(ansi magenta_bold)foobar-bin(ansi reset)' from package manager '(ansi magenta_bold)pacstall(ansi reset)'
+    Selecting '(ansi magenta_bold)foobar-theme(ansi reset)' from package manager '(ansi magenta_bold)pacstall(ansi reset)'
     Are you sure? \((ansi green_bold)y(ansi reset)/(ansi red_bold)N(ansi reset)\)
     [...]
 
