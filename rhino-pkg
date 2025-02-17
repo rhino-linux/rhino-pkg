@@ -147,7 +147,7 @@ def "main remove" [
     # Block output from `return` here.
     let dummy = (search search-local-pkgs $rest)
     if (($dummy | length) <= 0) {
-        tprint -e "No packages found matching '{rest}'" { rest: $rest }
+        tprint -e "No packages found matching '{rest}'!" { rest: $rest }
         return
     }
     let which = (prompt (_ "Select which package to remove") $dummy)

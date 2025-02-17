@@ -5,53 +5,37 @@ msgstr ""
 "Content-Transfer-Encoding: ENCODING\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: rhino-pkg:80
+#: rhino-pkg:110 rhino-pkg:150
 #, python-brace-format
-msgid ""
-"Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
+msgid "No packages found matching '{rest}'!"
 msgstr ""
 
-#: rhino-pkg:81
-#, python-brace-format
-msgid "No valid subcommand passed"
-msgstr ""
-
-#: rhino-pkg:81
-#, python-brace-format
-msgid "Failed here"
-msgstr ""
-
-#: rhino-pkg:102 rhino-pkg:125
-#, python-brace-format
-msgid "No packages found matching '{rest}'"
-msgstr ""
-
-#: rhino-pkg:105
+#: rhino-pkg:113
 #, python-brace-format
 msgid "Select which package to install"
 msgstr ""
 
-#: rhino-pkg:106
+#: rhino-pkg:115
 #, python-brace-format
 msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr ""
 
-#: rhino-pkg:112
+#: rhino-pkg:137
 #, python-brace-format
 msgid "Failed to install '{pkg}'."
 msgstr ""
 
-#: rhino-pkg:128
+#: rhino-pkg:153
 #, python-brace-format
 msgid "Select which package to remove"
 msgstr ""
 
-#: rhino-pkg:130
+#: rhino-pkg:155
 #, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
 msgstr ""
 
-#: rhino-pkg:139
+#: rhino-pkg:167
 #, python-brace-format
 msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
