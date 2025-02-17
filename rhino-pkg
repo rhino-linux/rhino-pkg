@@ -1,7 +1,8 @@
 #!/usr/bin/env -S nu --plugins '[/usr/share/nutext/nu_plugin_nutext]'
 
 use "/usr/share/rhino-pkg/modules/lib/" [search]
-use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt, install-pkg, cleanup-pkg, remove-pkg]
+use "/usr/share/rhino-pkg/modules/pluggables/" [apt  flatpak  pacstall  snap]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt  install-pkg  cleanup-pkg  remove-pkg]
 
 tregister /usr/share/locale/ rhino-pkg
 
@@ -11,21 +12,15 @@ def main [
     --yes (-y) # Makes functions with confirmation prompts run promptless
     ...rest: string # 'install', 'remove', 'search', 'update', 'cleanup', etc
 ] : any -> int {
+    run-external $env.CURRENT_FILE help
     if ($rest | is-empty) {
-        run-external $env.CURRENT_FILE help
         exit 1
-    } else if ($help) {
-        run-external $env.CURRENT_FILE help
     }
 }
 
-def "main --help" [] {
-    main help
-}
+def "main --help" [] { main help }
 
-def "main -h" [] {
-    main help
-}
+def "main -h" [] { main help }
 
 def "main help" [] {
     print $"USAGE: rpk [function] {flag} <input>
@@ -112,8 +107,8 @@ def "main install" [
     # Block output from `return` here.
     let dummy = (search search-pkgs $description $rest)
     if (($dummy | length) <= 0) {
-        tprint -e "No packages found matching '{rest}'" { rest: $rest }
-        return
+        tprint -e "No packages found matching '{rest}'!" { rest: $rest }
+        exit 1
     }
     let which = (prompt (_ "Select which package to install") $dummy)
     $which | each {|part|
@@ -124,7 +119,20 @@ def "main install" [
     }
     for part in $which {
         try {
-            install-pkg ($part | reject index) $yes
+            match $part.provider {
+                "pacstall" => {
+                    pacstall install $part $yes
+                }
+                "apt" => {
+                    apt install $part.pkg $yes
+                }
+                "flatpak" => {
+                    flatpak install $part $yes
+                }
+                "snap" => {
+                    snap install $part
+                }
+            }
         } catch {
             tprint -e "Failed to install '{pkg}'." { pkg: $part.pkg }
             exit $env.LAST_EXIT_CODE
@@ -144,7 +152,10 @@ def "main remove" [
     }
     let which = (prompt (_ "Select which package to remove") $dummy)
     $which | each {|part|
-        tprint -e "Removing '{part}' from '{provider}'" { part: $part.pkg, provider: $part.provider }
+        tprint -e "Removing '{part}' from '{provider}'" {
+            part: $part.pkg,
+            provider: $part.provider
+        }
         remove-pkg ($part | reject index) $yes
     }
 }
@@ -153,7 +164,11 @@ def "main cleanup" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
 ] {
     if not $yes {
-        if (input (_ "Attempting to repair dependencies and remove unused packages. Continue? ({y}/{n}) " { y: $"(ansi green_bold)y(ansi reset)", n: $"(ansi red_bold)N(ansi reset)" })
+        if (input (_ "Attempting to repair dependencies and remove unused packages. Continue? ({y}/{n}) " {
+                    y: $"(ansi green_bold)y(ansi reset)",
+                    n: $"(ansi red_bold)N(ansi reset)"
+                }
+            )
                 | str downcase
                 | str starts-with "n") {
             exit 1
@@ -165,7 +180,6 @@ def "main cleanup" [
 def "main update" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
 ] {
-    use "/usr/share/rhino-pkg/modules/pluggables/" [apt, flatpak, pacstall, snap]
     apt upgrade $yes
     flatpak upgrade $yes
     pacstall upgrade $yes

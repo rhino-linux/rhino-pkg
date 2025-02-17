@@ -35,26 +35,6 @@ export def prompt [ask: string, pkgs: list] : nothing -> table {
     }
 }
 
-export def install-pkg [
-        pkg: record,
-        promptless: bool
-    ] {
-    match $pkg.provider {
-        "pacstall" => {
-            pacstall install $pkg $promptless
-        }
-        "apt" => {
-            apt install $pkg.pkg $promptless
-        }
-        "flatpak" => {
-            flatpak install $pkg $promptless
-        }
-        "snap" => {
-            snap install $pkg
-        }
-    }
-}
-
 export def remove-pkg [
         pkg: record,
         promptless: bool
