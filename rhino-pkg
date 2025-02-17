@@ -5,81 +5,95 @@ use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt, install-pkg, cleanup-pkg,
 
 tregister /usr/share/locale/ rhino-pkg
 
-# USAGE: rpk [function] {flag} <input>
-# 
-# functions:
-#     install: Install package(s) - Prompts user to respond with
-#              the number(s) associated with the desired package(s).
-#
-#     remove:  Uninstall package(s) - Prompts user to respond with
-#              the number(s) associated with the desired package(s).
-# 
-#     search:  Search for package(s) - Does not have a second prompt.
-# 
-#     update:  Updates all packages accessible to the wrapper - does
-#              not accept <input>, instead use install to update
-#              individual packages. Has a confirmation prompt.
-# 
-#     cleanup: Attempts to repair broken dependencies and remove any
-#              unused packages. Does not accept <input>, but has
-#              a confirmation prompt.
-# 
-# flags:
-#     --help/-h: Display this page
-#     
-#     --description/-d: By default, rpk will only display packages
-#     that contain <input> within their name. Use this flag to increase
-#     range and display packages with <input> in their description.
-# 
-#     -y: Makes functions with confirmation prompts run promptless.
-# 
-# input:
-#     Provide a package name or description.
-# 
-# Example execution:
-#     $ rpk install foobar
-#     Found packages matching: 'foobar':
-# 
-#     [0]: pyfoobar (apt)
-#     [1]: foobarshell (apt)
-#     [2]: foobar (flatpak)
-#     [3]: foobar-web (snap)
-#     [4]: foobar-bin (pacstall)
-#     [5]: foobar-theme (pacstall)
-# 
-#     Select which package to install [0-5]: 3 4 5
-#     Selecting 'foobar-web' from package manager 'snap'
-#     Selecting 'foobar-bin' from package manager 'pacstall'
-#     Selecting 'foobar-theme' from package manager 'pacstall'
-#     Are you sure? (y/N)
-#     [...]
-# 
-#        .;:;,.  .:
-#     'coooooooo:oo.';.
-#   ,oooooooooooooooo    ;
-#  clllcccllloooooooo;c:'o
-# .;';:::::::::cclooooooo'
-# ''',::::::::::::::ccclc.
-# .''';::::::::::l:::::::
-#  '''',:::::::::kd.
-#  .''''',;::ck:oW;
-#    ''''''''kXOM.
-#      .,,:dXMK
-#        :k
-# 
-# rpk 2.0.0
-# A package manager wrapper for Pacstall, APT, Flatpak and snap
-# Developed by Elsie19 <elsie19@pm.me> for
-# the Rhino Linux distribution.
 def main [
     --description (-d) # Increase range and display packages with <input> in their description
+    --help (-h) # Display help page
     --yes (-y) # Makes functions with confirmation prompts run promptless
     ...rest: string # 'install', 'remove', 'search', 'update', 'cleanup', etc
 ] : any -> int {
     if ($rest | is-empty) {
-        run-external $env.CURRENT_FILE "--help"
+        run-external $env.CURRENT_FILE --help
         exit 1
+    } else if ($help) {
+        run-external $env.CURRENT_FILE --help
     }
+}
+
+def "main --help" [] {
+    main help
+}
+
+def "main -h" [] {
+    main help
+}
+
+def "main help" [] {
+    print $"USAGE: rpk [function] {flag} <input>
+
+functions:
+    install: Install package\(s\) - Prompts user to respond with
+             the number\(s\) associated with the desired package\(s\).
+
+    remove:  Uninstall package\(s\) - Prompts user to respond with
+             the number\(s\) associated with the desired package\(s\).
+
+    search:  Search for package\(s\) - Does not have a second prompt.
+
+    update:  Updates all packages accessible to the wrapper - does
+             not accept <input>, instead use install to update
+             individual packages. Has a confirmation prompt.
+
+    cleanup: Attempts to repair broken dependencies and remove any
+             unused packages. Does not accept <input>, but has
+             a confirmation prompt.
+
+flags:
+    --help/-h: Display this page
+
+    --description/-d: By default, rpk will only display packages
+    that contain <input> within their name. Use this flag to increase
+    range and display packages with <input> in their description.
+
+    -y: Makes functions with confirmation prompts run promptless.
+
+input:
+    Provide a package name or description.
+
+Example execution:
+    $ rpk install foobar
+    Found packages matching: '(ansi magenta_bold)foobar(ansi reset)':
+
+    [(ansi green_bold)0(ansi reset)]: pyfoobar \((ansi green_bold)apt(ansi reset)\)
+    [(ansi green_bold)1(ansi reset)]: foobarshell \((ansi green_bold)apt(ansi reset)\)
+    [(ansi cyan_bold)2(ansi reset)]: foobar \((ansi cyan_bold)flatpak(ansi reset)\)
+    [(ansi red_bold)3(ansi reset)]: foobar-web \((ansi red_bold)snap(ansi reset)\)
+    [(ansi yellow_bold)4(ansi reset)]: foobar-bin \((ansi yellow_bold)pacstall(ansi reset)\)
+    [(ansi yellow_bold)5(ansi reset)]: foobar-theme \((ansi yellow_bold)pacstall(ansi reset)\)
+
+    Select which package to install [0-5]: 3 4 5
+    Selecting '(ansi magenta_bold)foobar-web(ansi reset)' from package manager '(ansi magenta_bold)snap(ansi reset)'
+    Selecting '(ansi magenta_bold)foobar-bin(ansi reset)' from package manager '(ansi magenta_bold)snap(ansi reset)'
+    Selecting '(ansi magenta_bold)foobar-theme(ansi reset)' from package manager '(ansi magenta_bold)snap(ansi reset)'
+    Are you sure? \((ansi green_bold)y(ansi reset)/(ansi red_bold)N(ansi reset)\)
+    [...]
+
+(ansi --escape '38;5;104m')       .;:;,.  .:
+    'coooooooo:oo.';.
+  ,oooooooooooooooo    ;
+ clllcccllloooooooo;c:'o(ansi reset)
+(ansi --escape '38;5;104m').(ansi reset)(ansi --escape '38;5;55m');(ansi --escape '38;5;98m')';:::::::::(ansi --escape '38;5;104m')cclooooooo'
+(ansi --escape '38;5;55m')''',(ansi --escape '38;5;98m')::::::::::::::ccclc.
+(ansi --escape '38;5;55m').'''(ansi --escape '38;5;98m');::::::::::(ansi reset)l(ansi --escape '38;5;98m'):::::::
+ (ansi --escape '38;5;55m')''''(ansi --escape '38;5;98m'),:::::::::(ansi reset)kd(ansi --escape '38;5;98m').
+ (ansi --escape '38;5;55m').'''''(ansi --escape '38;5;98m'),;::(ansi reset)ck:oW(ansi --escape '38;5;98m');
+   (ansi --escape '38;5;55m')''''''''(ansi reset)kXOM.
+     (ansi --escape '38;5;55m').,,:(ansi reset)dXMK
+       :k
+
+rpk 2.0.0
+A package manager wrapper for Pacstall, APT, Flatpak and snap
+Developed by Elsie19 <elsie19@pm.me> for
+the Rhino Linux distribution."
 }
 
 def "main search" [
