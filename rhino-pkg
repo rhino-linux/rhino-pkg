@@ -116,12 +116,16 @@ def "main install" [
         return
     }
     let which = (prompt (_ "Select which package to install") $dummy)
-    $which | each {|part| tprint "Selecting '{pkg}' from package manager '{provider}'" { pkg: $"(ansi purple_bold)($part.pkg)(ansi reset)", provider: $"(ansi purple_bold)($part.provider)(ansi reset)" } }
+    $which | each {|part|
+        tprint "Selecting '{pkg}' from package manager '{provider}'" {
+            pkg: $"(ansi purple_bold)($part.pkg)(ansi reset)",
+            provider: $"(ansi purple_bold)($part.provider)(ansi reset)"
+        }
+    }
     for part in $which {
         try {
             install-pkg ($part | reject index) $yes
         } catch {
-            |err|
             tprint -e "Failed to install '{pkg}'." { pkg: $part.pkg }
             exit $env.LAST_EXIT_CODE
         }
