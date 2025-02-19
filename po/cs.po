@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-13 14:51+0200\n"
-"PO-Revision-Date: 2025-02-19 11:28+0000\n"
+"PO-Revision-Date: 2025-02-20 14:20+0000\n"
 "Last-Translator: zenobit <zenobit@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/cs/>\n"
@@ -64,8 +64,8 @@ msgstr ""
 
 #: rhino-pkg:306
 msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr ""
+msgstr "Jste si jisti? (${BGreen}y${NC}/${BRed}N${NC}) "
 
 #: rhino-pkg:341
 msgid "Invalid repository name!"
-msgstr ""
+msgstr "Neplatný název repozitáře!"
