@@ -1,8 +1,8 @@
 #!/usr/bin/env -S nu --plugins '[/usr/share/nutext/nu_plugin_nutext]'
 
 use "/usr/share/rhino-pkg/modules/lib/" [search]
-use "/usr/share/rhino-pkg/modules/pluggables/" [apt  flatpak  pacstall  snap]
-use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt  install-pkg  cleanup-pkg  remove-pkg]
+use "/usr/share/rhino-pkg/modules/pluggables/" [apt flatpak pacstall snap]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt cleanup-pkg remove-pkg]
 
 tregister /usr/share/locale/ rhino-pkg
 
