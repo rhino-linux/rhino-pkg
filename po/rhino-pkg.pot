@@ -5,7 +5,7 @@ msgstr ""
 "Content-Transfer-Encoding: ENCODING\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: rhino-pkg:110 rhino-pkg:150
+#: rhino-pkg:110 rhino-pkg:161
 #, python-brace-format
 msgid "No packages found matching '{rest}'!"
 msgstr ""
@@ -20,26 +20,36 @@ msgstr ""
 msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr ""
 
-#: rhino-pkg:137
+#: rhino-pkg:121
+#, python-brace-format
+msgid "Are you sure? ({y}/{n})"
+msgstr ""
+
+#: rhino-pkg:148
 #, python-brace-format
 msgid "Failed to install '{pkg}'."
 msgstr ""
 
-#: rhino-pkg:153
+#: rhino-pkg:164
 #, python-brace-format
 msgid "Select which package to remove"
 msgstr ""
 
-#: rhino-pkg:155
+#: rhino-pkg:166
 #, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
 msgstr ""
 
-#: rhino-pkg:167
+#: rhino-pkg:178
 #, python-brace-format
 msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
+msgstr ""
+
+#: rhino-pkg:195
+#, python-brace-format
+msgid "Are you sure you want to update all packages? ({y}/{n})"
 msgstr ""
 
 #: cmd.nu:28
