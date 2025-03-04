@@ -12,7 +12,7 @@ msgstr ""
 
 #: rhino-pkg:113
 #, python-brace-format
-msgid "Select which package to install"
+msgid "Select which packages to install"
 msgstr ""
 
 #: rhino-pkg:115

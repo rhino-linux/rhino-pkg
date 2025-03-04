@@ -110,7 +110,7 @@ def "main install" [
         tprint -e "No packages found matching '{rest}'!" { rest: $rest }
         exit 1
     }
-    let which = (prompt (_ "Select which package to install") $dummy)
+    let which = (prompt (_ "Select which packages to install") $dummy)
     $which | each {|part|
         tprint "Selecting '{pkg}' from package manager '{provider}'" {
             pkg: $"(ansi purple_bold)($part.pkg)(ansi reset)",
