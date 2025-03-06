@@ -164,8 +164,8 @@ def "main remove" [
     let which = (prompt (_ "Select which package to remove") $dummy)
     $which | each {|part|
         tprint -e "Removing '{part}' from '{provider}'" {
-            part: $part.pkg,
-            provider: $part.provider
+            part: $"(ansi purple_bold)($part.pkg)(ansi reset)",
+            provider: $"(ansi purple_bold)($part.provider)(ansi reset)"
         }
         remove-pkg ($part | reject index) $yes
     }
