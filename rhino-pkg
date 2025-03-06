@@ -118,13 +118,12 @@ def "main install" [
         }
     }
     if not $yes {
-        if (input (_ "Are you sure? ({y}/{n}) " {
+        let response = (input (_ "Are you sure? ({y}/{n}) " {
                     y: $"(ansi green_bold)y(ansi reset)",
-                    n: $"(ansi red_bold)N(ansi reset)"
-                }
+                    n: $"(ansi red_bold)N(ansi reset)" }
             )
-                | str downcase
-                | str starts-with "n") {
+        )
+        if ($response | is-empty) or ($response | str downcase | str starts-with "n") {
             exit 1
         }
     }
@@ -192,13 +191,12 @@ def "main update" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
 ] {
     if (not $yes) {
-        if (input (_ "Are you sure you want to update all packages? ({y}/{n}) " {
+        let response = (input (_ "Are you sure you want to update all packages? ({y}/{n}) " {
                     y: $"(ansi green_bold)y(ansi reset)",
                     n: $"(ansi red_bold)N(ansi reset)"
                 }
-            )
-                | str downcase
-                | str starts-with "n") {
+            ))
+        if ($response | is-empty) or ($response | str downcase | str starts-with "n") {
             exit 1
         }
     }
