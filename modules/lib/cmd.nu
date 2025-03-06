@@ -16,7 +16,7 @@ export def print-color [type: string] {
 export def prompt [ask: string, pkgs: list] : nothing -> table {
     let input = (input $"($ask) [0-(($pkgs | length) - 1)]: ")
     if ($input | is-empty) {
-        $pkgs | get 0
+        $pkgs | select 0
     } else {
         let parsed = ($input
             | split row ' '
