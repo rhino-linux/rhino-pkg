@@ -22,7 +22,7 @@ msgstr ""
 
 #: rhino-pkg:121
 #, python-brace-format
-msgid "Are you sure? ({y}/{n})"
+msgid "Are you sure? ({y}/{n}) "
 msgstr ""
 
 #: rhino-pkg:148
@@ -49,7 +49,7 @@ msgstr ""
 
 #: rhino-pkg:195
 #, python-brace-format
-msgid "Are you sure you want to update all packages? ({y}/{n})"
+msgid "Are you sure you want to update all packages? ({y}/{n}) "
 msgstr ""
 
 #: cmd.nu:28
