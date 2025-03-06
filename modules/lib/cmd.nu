@@ -48,10 +48,20 @@ export def remove-pkg [
             }
         }
         "apt" => {
-            if $promptless {
-                ^sudo apt-get remove $pkg.pkg -y
-            } else {
-                ^sudo apt-get remove $pkg.pkg
+            if (exists "nala") {
+                if $promptless {
+                    ^sudo nala remove $pkg.pkg -y
+                } else {
+                    ^sudo nala remove $pkg.pkg
+                }
+            } else if (exists "apt") {
+                if $promptless {
+                    ^sudo apt-get remove $pkg.pkg -y
+                    ^sudo apt-get remove $pkg.pkg -y
+                } else {
+                    ^sudo apt-get remove $pkg.pkg
+                    ^sudo apt-get remove $pkg.pkg
+                }
             }
         }
         "flatpak" => {
@@ -69,7 +79,10 @@ export def remove-pkg [
 
 export def cleanup-pkg [promptless: bool] {
     if $promptless {
-        if (exists "apt") {
+        if (exists "nala") {
+            ^sudo nala install --fix-broken
+            ^sudo nala autoremove -y
+        } else if (exists "apt") {
             ^sudo apt-get --fix-broken install
             ^sudo apt-get autoremove -y
         }
@@ -78,7 +91,10 @@ export def cleanup-pkg [promptless: bool] {
             ^sudo flatpak uninstall --unused -y
         }
     } else {
-        if (exists "apt") {
+        if (exists "nala") {
+            ^sudo nala install --fix-broken
+            ^sudo nala autoremove
+        } else if (exists "apt") {
             ^sudo apt-get --fix-broken install
             ^sudo apt-get autoremove
         }
