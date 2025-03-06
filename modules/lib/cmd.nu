@@ -104,9 +104,10 @@ export def cleanup-pkg [promptless: bool] {
         }
     }
     if (exists "snap") {
-        ^snap list --all
+        for $pkg in (^snap list --all
             | detect columns
-            | where Notes =~ "disabled"
-            | each {|pkg| ^sudo snap remove $pkg.Name --revision=($pkg.Version)}
+            | where Notes =~ "disabled") {
+                ^sudo snap remove $pkg.Name --revision=($pkg.Version)
+        }
     }
 }
