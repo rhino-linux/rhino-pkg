@@ -123,7 +123,7 @@ def "main install" [
                     n: $"(ansi red_bold)N(ansi reset)" }
             )
         )
-        if ($response | is-empty) or ($response | str downcase | str starts-with "n") {
+        if not ($response | str downcase | str starts-with "y") {
             exit 1
         }
     }
