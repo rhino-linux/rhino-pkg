@@ -174,13 +174,13 @@ def "main cleanup" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
 ] {
     if not $yes {
-        if (input (_ "Attempting to repair dependencies and remove unused packages. Continue? ({y}/{n}) " {
+        if not (input (_ "Attempting to repair dependencies and remove unused packages. Continue? ({y}/{n}) " {
                     y: $"(ansi green_bold)y(ansi reset)",
                     n: $"(ansi red_bold)N(ansi reset)"
                 }
             )
                 | str downcase
-                | str starts-with "n") {
+                | str starts-with "y") {
             exit 1
         }
     }
