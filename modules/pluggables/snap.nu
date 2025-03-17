@@ -2,13 +2,13 @@ use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 
 export def list-installed [search: string] {
     if (exists "snap") {
-        ^snap list
+        try { ^snap list
             | detect columns
             | reject Rev Tracking Publisher Notes
             | rename --column { Name: pkg }
             | rename --column { Version: version }
             | where pkg =~ $search
-            | insert provider "snap"
+            | insert provider "snap" } catch { [] }
     }
 }
 

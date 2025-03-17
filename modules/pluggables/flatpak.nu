@@ -2,12 +2,12 @@ use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 
 export def list-installed [search: string] {
     if (exists "flatpak") {
-        ^flatpak list --columns=application:f,version:f --app
+        try { ^flatpak list --columns=application:f,version:f --app
             | lines
             | uniq
             | parse "{pkg}\t{version}"
             | where pkg =~ $search
-            | insert provider "flatpak"
+            | insert provider "flatpak" } catch { [] }
     }
 }
 

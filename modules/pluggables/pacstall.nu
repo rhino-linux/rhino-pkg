@@ -3,7 +3,7 @@ use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 export def list-installed [search: string] {
     # I'm using par-each because it's wayyy quicker and I can just sort the stuff afterwards
     if (exists "pacstall") {
-        ^pacstall -L
+        try { ^pacstall -L
             | lines
             | par-each {
                 |pkg| {
@@ -12,7 +12,7 @@ export def list-installed [search: string] {
                 }
             } | sort-by pkg
             | where pkg =~ $search
-            | insert provider "pacstall"
+            | insert provider "pacstall" } catch { [] }
     }
 }
 

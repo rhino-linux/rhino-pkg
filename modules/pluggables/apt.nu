@@ -6,6 +6,7 @@ export def list-installed [search: string] {
             | lines
             | parse "{pkg}|{version}"
             | insert provider "apt"
+            # Reject packages that exist in pacstall (hence should be handled by pacstall).
             | filter {|pkg| $pkg.pkg not-in (get-pacstall-debs) }
     }
 }
@@ -21,6 +22,7 @@ def get-pacstall-debs [] : nothing -> list<string> {
                 | find '_gives'
                 # We assume that every single -deb package has logged gives.
                 | get 0
+                # This is somewhat volatile, as it depends on how `declare -p _gives` is formatted.
                 | parse '_gives="{apt_name}"'
         } | flatten
           | values
