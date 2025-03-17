@@ -8,7 +8,7 @@ export def list-installed [search: string] {
             | par-each {
                 |pkg| {
                     "pkg": $pkg,
-                    "version": (^pacstall -Ci $pkg version)
+                    "version": (^pacstall -Ci $pkg pacversion)
                 }
             } | sort-by pkg
             | where pkg =~ $search
