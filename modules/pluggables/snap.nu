@@ -14,12 +14,17 @@ export def list-installed [search: string] {
 
 export def search [input: string, description: bool] : nothing -> table {
     if (exists "snap") {
-        ^snap search $input
-            | detect columns --guess
-            | reject Publisher Version
-            | rename --column { Name: pkg }
-            | rename --column { Summary: desc }
-            | insert provider 'snap'
+        let raw = (^snap search $input)
+        if ($raw | is-empty) {
+            []
+        } else {
+            $raw
+                | detect columns --guess
+                | reject Publisher Version
+                | rename --column { Name: pkg }
+                | rename --column { Summary: desc }
+                | insert provider 'snap'
+        }
     } else {
         []
     }
