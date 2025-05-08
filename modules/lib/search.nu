@@ -14,6 +14,7 @@ export def search-pkgs [
     clearscr
     tprint "Searching apt…"
     let apt_results = (apt search $rest $description)
+    clearscr
     tprint "Searching snap…"
     let snap_results = (snap search $rest $description)
     clearscr
