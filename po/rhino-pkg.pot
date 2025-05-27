@@ -57,27 +57,27 @@ msgstr ""
 msgid "No valid inputs given"
 msgstr ""
 
-#: search.nu:9 search.nu:33
+#: search.nu:9 search.nu:34
 #, python-brace-format
 msgid "Searching Pacstall…"
 msgstr ""
 
-#: search.nu:12
-#, python-brace-format
-msgid "Searching flatpak…"
-msgstr ""
-
-#: search.nu:15 search.nu:39
+#: search.nu:12 search.nu:40
 #, python-brace-format
 msgid "Searching apt…"
 msgstr ""
 
-#: search.nu:17 search.nu:41
+#: search.nu:15 search.nu:37
+#, python-brace-format
+msgid "Searching flatpak…"
+msgstr ""
+
+#: search.nu:18 search.nu:43
 #, python-brace-format
 msgid "Searching snap…"
 msgstr ""
 
-#: apt.nu:28
+#: apt.nu:51
 #, python-brace-format
 msgid "`aptitude` not installed."
 msgstr ""

@@ -9,16 +9,16 @@ export def search-pkgs [
     tprint "Searching Pacstall…"
     let pac_results = (pacstall search $rest $description)
     clearscr
-    tprint "Searching flatpak…"
-    let flatpak_results = (flatpak search $rest $description)
-    clearscr
     tprint "Searching apt…"
     let apt_results = (apt search $rest $description)
+    clearscr
+    tprint "Searching flatpak…"
+    let flatpak_results = (flatpak search $rest $description)
     clearscr
     tprint "Searching snap…"
     let snap_results = (snap search $rest $description)
     clearscr
-    let total = $snap_results | append $flatpak_results | append $apt_results | append $pac_results
+    let total = $flatpak_results | append $apt_results | append $pac_results | append $snap_results
     mut idx = 0
     for bla in $total {
         let le_color = (print-color $bla.provider)
@@ -34,15 +34,16 @@ export def search-local-pkgs [search: string] : nothing -> table {
     tprint "Searching Pacstall…"
     let pac_results = (pacstall list-installed $search)
     clearscr
-    print "Searching flatpak…"
+    tprint "Searching flatpak…"
     let flatpak_results = (flatpak list-installed $search)
     clearscr
     tprint "Searching apt…"
     let apt_results = (apt list-installed $search)
+    clearscr
     tprint "Searching snap…"
     let snap_results = (snap list-installed $search)
     clearscr
-    let total = $snap_results | append $flatpak_results | append $apt_results | append $pac_results
+    let total = $flatpak_results | append $apt_results | append $pac_results | append $snap_results
     mut idx = 0
     for bla in $total {
         let le_color = (print-color $bla.provider)
