@@ -5,12 +5,12 @@ export def search-pkgs [
     description: bool
     rest: string
 ] : nothing -> table {
-    use "/usr/share/rhino-pkg/modules/pluggables/" [pacstall flatpak apt snap]
-    tprint "Searching Pacstall…"
-    let pac_results = (pacstall search $rest $description)
-    clearscr
+    use "/usr/share/rhino-pkg/modules/pluggables/" [apt pacstall flatpak snap]
     tprint "Searching apt…"
     let apt_results = (apt search $rest $description)
+    clearscr
+    tprint "Searching Pacstall…"
+    let pac_results = (pacstall search $rest $description)
     clearscr
     tprint "Searching flatpak…"
     let flatpak_results = (flatpak search $rest $description)
@@ -18,7 +18,7 @@ export def search-pkgs [
     tprint "Searching snap…"
     let snap_results = (snap search $rest $description)
     clearscr
-    let total = $flatpak_results | append $apt_results | append $pac_results | append $snap_results
+    let total = $apt_results | append $pac_results | append $flatpak_results | append $snap_results
     mut idx = 0
     for bla in $total {
         let le_color = (print-color $bla.provider)
@@ -30,20 +30,20 @@ export def search-pkgs [
 }
 
 export def search-local-pkgs [search: string] : nothing -> table {
-    use "/usr/share/rhino-pkg/modules/pluggables/" [pacstall flatpak apt snap]
+    use "/usr/share/rhino-pkg/modules/pluggables/" [apt pacstall flatpak snap]
+    tprint "Searching apt…"
+    let apt_results = (apt list-installed $search)
+    clearscr
     tprint "Searching Pacstall…"
     let pac_results = (pacstall list-installed $search)
     clearscr
     tprint "Searching flatpak…"
     let flatpak_results = (flatpak list-installed $search)
     clearscr
-    tprint "Searching apt…"
-    let apt_results = (apt list-installed $search)
-    clearscr
     tprint "Searching snap…"
     let snap_results = (snap list-installed $search)
     clearscr
-    let total = $flatpak_results | append $apt_results | append $pac_results | append $snap_results
+    let total = $apt_results | append $pac_results | append $flatpak_results | append $snap_results
     mut idx = 0
     for bla in $total {
         let le_color = (print-color $bla.provider)

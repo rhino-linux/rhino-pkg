@@ -130,11 +130,11 @@ def "main install" [
     for part in $which {
         try {
             match $part.provider {
-                "pacstall" => {
-                    pacstall install $part $yes
-                }
                 "apt" => {
                     apt install $part.pkg $yes
+                }
+                "pacstall" => {
+                    pacstall install $part $yes
                 }
                 "flatpak" => {
                     flatpak install $part $yes
@@ -211,7 +211,7 @@ def "main update" [
         }
     }
     apt upgrade $yes
-    flatpak upgrade $yes
     pacstall upgrade $yes
+    flatpak upgrade $yes
     snap upgrade $yes
 }

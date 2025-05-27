@@ -5,8 +5,8 @@ export def exists [cmd: string] : nothing -> bool {
 # Return color based off of package manager
 export def print-color [type: string] {
     match $type {
-        "pacstall" => (ansi yellow_bold)
         "apt" => (ansi green_bold)
+        "pacstall" => (ansi yellow_bold)
         "flatpak" => (ansi cyan_bold)
         "snap" => (ansi red_bold)
         _ => (ansi grey_bold)
@@ -40,13 +40,6 @@ export def remove-pkg [
         promptless: bool
     ] {
     match $pkg.provider {
-        "pacstall" => {
-            if $promptless {
-                ^pacstall -PR $pkg.pkg
-            } else {
-                ^pacstall -R $pkg.pkg
-            }
-        }
         "apt" => {
             if (exists "nala") {
                 if $promptless {
@@ -57,11 +50,16 @@ export def remove-pkg [
             } else if (exists "apt") {
                 if $promptless {
                     ^sudo apt-get remove $pkg.pkg -y
-                    ^sudo apt-get remove $pkg.pkg -y
                 } else {
                     ^sudo apt-get remove $pkg.pkg
-                    ^sudo apt-get remove $pkg.pkg
                 }
+            }
+        }
+        "pacstall" => {
+            if $promptless {
+                ^pacstall -PR $pkg.pkg
+            } else {
+                ^pacstall -R $pkg.pkg
             }
         }
         "flatpak" => {
