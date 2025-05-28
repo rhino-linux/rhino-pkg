@@ -18,12 +18,22 @@ export def search [input: string, description: bool] : nothing -> table {
         if ($raw | is-empty) {
             []
         } else {
-            $raw
-                | detect columns --guess
-                | reject Publisher Version
-                | rename --column { Name: pkg }
-                | rename --column { Summary: desc }
-                | insert provider 'snap'
+            if $description {
+                $raw
+                    | detect columns --guess
+                    | reject Publisher Version
+                    | rename --column { Name: pkg }
+                    | rename --column { Summary: desc }
+                    | insert provider 'snap'
+            } else {
+                $raw
+                    | detect columns --guess
+                    | reject Publisher Version
+                    | rename --column { Name: pkg }
+                    | rename --column { Summary: desc }
+                    | where pkg =~ $input
+                    | insert provider 'snap'
+            }
         }
     } else {
         []

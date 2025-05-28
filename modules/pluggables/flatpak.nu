@@ -12,17 +12,21 @@ export def list-installed [search: string] {
 }
 
 export def search [input: string, description: bool] : nothing -> table {
-    # Description here is a dummy flag, because flatpak searches by both name and description with no way
-    # to change that afaik.
     if (exists "flatpak") {
-        ^flatpak search $input --columns=application:f,remotes:f
-            | lines
-            | parse -r '^([\w.-]+)\s+(\w+)$'
-            | rename pkg remote
-            | insert provider 'flatpak'
-            | merge (^flatpak search $input --columns=description:f
+        if $description {
+            ^flatpak search $input --columns=application:f,remotes:f
                 | lines
-                | wrap 'desc')
+                | parse -r '^([\w.-]+)\s+(\w+)$'
+                | rename pkg remote
+                | insert provider 'flatpak'
+        } else {
+            ^flatpak search $input --columns=application:f,remotes:f
+                | lines
+                | parse -r '^([\w.-]+)\s+(\w+)$'
+                | rename pkg remote
+                | where pkg =~ $input
+                | insert provider 'flatpak'
+        }
     } else {
         []
     }
