@@ -186,6 +186,11 @@ def "main remove" [
     if (($dummy | length) <= 0) {
         tprint -e "No packages found matching '{rest}'!" { rest: $rest }
         return
+    } else {
+        print (
+            $dummy
+            | select index pkg version provider
+        )
     }
     let which = (prompt (_ "Select which package to remove") $dummy)
     $which | each { |part|
