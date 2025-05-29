@@ -80,15 +80,15 @@ msgstr "Pacstall 검색 중…"
 
 #: search.nu:12
 #, python-brace-format
-msgid "Searching flatpak…"
+msgid "Searching Flatpak…"
 msgstr "Flatpak 검색 중…"
 
 #: search.nu:15 search.nu:39
 #, python-brace-format
-msgid "Searching apt…"
+msgid "Searching APT…"
 msgstr "APT 검색 중…"
 
 #: search.nu:17 search.nu:41
 #, python-brace-format
-msgid "Searching snap…"
+msgid "Searching Snap…"
 msgstr "Snap 검색 중…"

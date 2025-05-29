@@ -79,15 +79,15 @@ msgstr "Pacstall میں تلاش کر رہا ہے…"
 
 #: search.nu:12
 #, python-brace-format
-msgid "Searching flatpak…"
-msgstr "flatpak میں تلاش کر رہا ہے…"
+msgid "Searching Flatpak…"
+msgstr "Flatpak میں تلاش کر رہا ہے…"
 
 #: search.nu:15 search.nu:39
 #, python-brace-format
-msgid "Searching apt…"
-msgstr "apt میں تلاش کر رہا ہے…"
+msgid "Searching APT…"
+msgstr "APT میں تلاش کر رہا ہے…"
 
 #: search.nu:17 search.nu:41
 #, python-brace-format
-msgid "Searching snap…"
-msgstr "snap میں تلاش کر رہا ہے…"
+msgid "Searching Snap…"
+msgstr "Snap میں تلاش کر رہا ہے…"

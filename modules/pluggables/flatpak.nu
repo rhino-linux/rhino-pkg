@@ -14,14 +14,16 @@ export def list-installed [search: string] {
 export def search [input: string, description: bool] : nothing -> table {
     if (exists "flatpak") {
         if $description {
-            ^flatpak search $input --columns=application:f,remotes:f
+            ^flatpak search $input --columns=application:f,remotes:f,description:f
                 | lines
-                | parse -r '^([\w.-]+)\s+(\w+)$'
-                | rename pkg remote
+                | where $it != "No matches found"
+                | parse -r '^([\w.-]+)\s+(\w+)\s+(.*)$'
+                | rename pkg remote desc
                 | insert provider 'flatpak'
         } else {
             ^flatpak search $input --columns=application:f,remotes:f
                 | lines
+                | where $it != "No matches found"
                 | parse -r '^([\w.-]+)\s+(\w+)$'
                 | rename pkg remote
                 | where pkg =~ $input

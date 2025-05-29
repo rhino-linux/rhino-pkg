@@ -6,16 +6,16 @@ export def search-pkgs [
     rest: string
 ] : nothing -> table {
     use "/usr/share/rhino-pkg/modules/pluggables/" [apt pacstall flatpak snap]
-    tprint "Searching apt…"
+    tprint "Searching APT…"
     let apt_results = (apt search $rest $description)
     clearscr
     tprint "Searching Pacstall…"
     let pac_results = (pacstall search $rest $description)
     clearscr
-    tprint "Searching flatpak…"
+    tprint "Searching Flatpak…"
     let flatpak_results = (flatpak search $rest $description)
     clearscr
-    tprint "Searching snap…"
+    tprint "Searching Snap…"
     let snap_results = (snap search $rest $description)
     clearscr
     let total = $apt_results | append $pac_results | append $flatpak_results | append $snap_results
@@ -31,16 +31,16 @@ export def search-pkgs [
 
 export def search-local-pkgs [search: string] : nothing -> table {
     use "/usr/share/rhino-pkg/modules/pluggables/" [apt pacstall flatpak snap]
-    tprint "Searching apt…"
+    tprint "Searching APT…"
     let apt_results = (apt list-installed $search)
     clearscr
     tprint "Searching Pacstall…"
     let pac_results = (pacstall list-installed $search)
     clearscr
-    tprint "Searching flatpak…"
+    tprint "Searching Flatpak…"
     let flatpak_results = (flatpak list-installed $search)
     clearscr
-    tprint "Searching snap…"
+    tprint "Searching Snap…"
     let snap_results = (snap list-installed $search)
     clearscr
     let total = $apt_results | append $pac_results | append $flatpak_results | append $snap_results

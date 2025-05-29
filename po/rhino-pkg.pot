@@ -64,17 +64,17 @@ msgstr ""
 
 #: search.nu:12 search.nu:40
 #, python-brace-format
-msgid "Searching apt…"
+msgid "Searching APT…"
 msgstr ""
 
 #: search.nu:15 search.nu:37
 #, python-brace-format
-msgid "Searching flatpak…"
+msgid "Searching Flatpak…"
 msgstr ""
 
 #: search.nu:18 search.nu:43
 #, python-brace-format
-msgid "Searching snap…"
+msgid "Searching Snap…"
 msgstr ""
 
 #: apt.nu:51

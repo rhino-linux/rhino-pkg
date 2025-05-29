@@ -34,7 +34,7 @@ export def search [input: string, description: bool] : nothing -> table {
     if (exists "aptitude") {
         if $description {
             # We are searching for something in description
-            ^aptitude search --quiet --disable-columns $"?name\(($input)\) | ?description\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p|%d"
+            ^aptitude search --quiet --disable-columns $"?name\(($input)\) ?architecture\(native\) !?section\(Pacstall\) | ?description\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p|%d"
                 | lines
                 | parse "{pkg}|{desc}"
                 | insert provider 'apt'

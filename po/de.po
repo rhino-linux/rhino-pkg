@@ -80,15 +80,15 @@ msgstr "Suche in Pacstall…"
 
 #: search.nu:12
 #, python-brace-format
-msgid "Searching flatpak…"
+msgid "Searching Flatpak…"
 msgstr "Suche in Flatpak…"
 
 #: search.nu:15 search.nu:39
 #, python-brace-format
-msgid "Searching apt…"
+msgid "Searching APT…"
 msgstr "Suche in APT…"
 
 #: search.nu:17 search.nu:41
 #, python-brace-format
-msgid "Searching snap…"
+msgid "Searching Snap…"
 msgstr "Suche in Snap…"

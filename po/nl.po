@@ -79,15 +79,15 @@ msgstr "Bezig met doorzoeken van Pacstall…"
 
 #: search.nu:12
 #, python-brace-format
-msgid "Searching flatpak…"
+msgid "Searching Flatpak…"
 msgstr "Bezig met doorzoeken van Flatpak…"
 
 #: search.nu:15 search.nu:39
 #, python-brace-format
-msgid "Searching apt…"
-msgstr "Bezig met doorzoeken van apt…"
+msgid "Searching APT…"
+msgstr "Bezig met doorzoeken van APT…"
 
 #: search.nu:17 search.nu:41
 #, python-brace-format
-msgid "Searching snap…"
+msgid "Searching Snap…"
 msgstr "Bezig met doorzoeken van Snap…"
