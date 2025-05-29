@@ -97,6 +97,21 @@ def "main search" [
 ] {
     # Block output from `return` here.
     let dummy = (search search-pkgs $description $rest)
+    if ($dummy | is-empty) {
+        return []
+    } else {
+        if $description {
+            return (
+                $dummy
+                | select index pkg provider desc
+            )
+        } else {
+            return (
+                $dummy
+                | select index pkg provider
+            )
+        }
+    }
 }
 
 def "main install" [
@@ -109,12 +124,24 @@ def "main install" [
     if (($dummy | length) <= 0) {
         tprint -e "No packages found matching '{rest}'!" { rest: $rest }
         exit 1
+    } else {
+        if $description {
+            print (
+                $dummy
+                | select index pkg provider desc
+            )
+        } else {
+            print (
+                $dummy
+                | select index pkg provider
+            )
+        }
     }
     let which = (prompt (_ "Select which packages to install") $dummy)
     $which | each {|part|
         tprint "Selecting '{pkg}' from package manager '{provider}'" {
-            pkg: $"(ansi purple_bold)($part.pkg)(ansi reset)",
-            provider: $"(ansi purple_bold)($part.provider)(ansi reset)"
+            pkg: $"(ansi purple_bold)($part.pkg | ansi strip)(ansi reset)",
+            provider: $"(ansi purple_bold)($part.provider | ansi strip)(ansi reset)"
         }
     }
     if not $yes {
@@ -129,22 +156,22 @@ def "main install" [
     }
     for part in $which {
         try {
-            match $part.provider {
+            match ($part.provider | ansi strip) {
                 "apt" => {
-                    apt install $part.pkg $yes
+                    apt install ($part.pkg | ansi strip) $yes
                 }
                 "pacstall" => {
-                    pacstall install $part $yes
+                    pacstall install ($part.pkg | ansi strip) $part.repo $yes
                 }
                 "flatpak" => {
-                    flatpak install $part $yes
+                    flatpak install ($part.pkg | ansi strip) $part.remote $yes
                 }
                 "snap" => {
-                    snap install $part
+                    snap install ($part.pkg | ansi strip) $part.notes
                 }
             }
         } catch {
-            tprint -e "Failed to install '{pkg}'." { pkg: $part.pkg }
+            tprint -e "Failed to install '{pkg}'." { pkg: $"(ansi red)($part.pkg | ansi strip)(ansi reset)" }
             exit $env.LAST_EXIT_CODE
         }
     }
