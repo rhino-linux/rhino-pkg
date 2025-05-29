@@ -5,7 +5,7 @@ export def exists [cmd: string] : nothing -> bool {
 # Return color based off of package manager
 export def print-color [type: string] {
     match $type {
-        "apt" => (ansi green_bold)
+        "apt" => (ansi blue_bold)
         "pacstall" => (ansi yellow_bold)
         "flatpak" => (ansi cyan_bold)
         "snap" => (ansi red_bold)
@@ -36,41 +36,42 @@ export def prompt [ask: string, pkgs: list] : nothing -> table {
 }
 
 export def remove-pkg [
-        pkg: record,
+        pkg: string,
+        provider: string,
         promptless: bool
     ] {
-    match $pkg.provider {
+    match $provider {
         "apt" => {
             if (exists "nala") {
                 if $promptless {
-                    ^sudo nala remove $pkg.pkg -y
+                    ^sudo nala remove $pkg -y
                 } else {
-                    ^sudo nala remove $pkg.pkg
+                    ^sudo nala remove $pkg
                 }
             } else if (exists "apt") {
                 if $promptless {
-                    ^sudo apt-get remove $pkg.pkg -y
+                    ^sudo apt-get remove $pkg -y
                 } else {
-                    ^sudo apt-get remove $pkg.pkg
+                    ^sudo apt-get remove $pkg
                 }
             }
         }
         "pacstall" => {
             if $promptless {
-                ^pacstall -PR $pkg.pkg
+                ^pacstall -PR $pkg
             } else {
-                ^pacstall -R $pkg.pkg
+                ^pacstall -R $pkg
             }
         }
         "flatpak" => {
             if $promptless {
-                ^flatpak remove $pkg.pkg -y
+                ^flatpak remove $pkg -y
             } else {
-                ^flatpak remove $pkg.pkg
+                ^flatpak remove $pkg
             }
         }
         "snap" => {
-            ^sudo snap remove $pkg.pkg --purge
+            ^sudo snap remove $pkg --purge
         }
     }
 }

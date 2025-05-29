@@ -53,13 +53,24 @@ export def search-local-pkgs [search: string] : nothing -> table {
     tprint "Searching Snap…"
     let snap_results = (snap list-installed $search)
     clearscr
-    let total = $apt_results | append $pac_results | append $flatpak_results | append $snap_results
-    mut idx = 0
-    for bla in $total {
-        let le_color = (print-color $bla.provider)
-        print $"[($le_color)($idx)(ansi reset)]: ($bla.pkg) ~ (ansi defb)($bla.version)(ansi reset) \(($le_color)($bla.provider)(ansi reset)\)"
-        $idx += 1
-    }
-    # Just because someone else might need the table.
+    let total = $apt_results
+        | append $pac_results
+        | append $flatpak_results
+        | append $snap_results
+        | sort-by pkg
+        | enumerate
+        | each { |row|
+            let le_color = (print-color $row.item.provider)
+            {
+                index: $"($le_color)($row.index)(ansi reset)",
+                pkg: $"(ansi attr_normal)($row.item.pkg)(ansi reset)",
+                provider: $"($le_color)($row.item.provider)(ansi reset)",
+                version: $"(ansi white_bold)($row.item.version)(ansi reset)",
+                remote: ($row.item | get -i remote | default ""),
+                repo: ($row.item | get -i repo | default ""),
+                desc: ($row.item | get -i desc | default ""),
+                notes: ($row.item | get -i Notes | default "")
+            }
+        }
     return $total
 }

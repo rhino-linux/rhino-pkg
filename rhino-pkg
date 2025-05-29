@@ -190,8 +190,8 @@ def "main remove" [
     let which = (prompt (_ "Select which package to remove") $dummy)
     $which | each { |part|
         tprint -e "Removing '{part}' from '{provider}'" {
-            part: $"(ansi purple_bold)($part.pkg)(ansi reset)",
-            provider: $"(ansi purple_bold)($part.provider)(ansi reset)"
+            part: $"(ansi purple_bold)($part.pkg | ansi strip)(ansi reset)",
+            provider: $"(ansi purple_bold)($part.provider | ansi strip)(ansi reset)"
         }
     }
     let response = (input (_ "Are you sure? ({y}/{n}) " {
@@ -203,7 +203,7 @@ def "main remove" [
         exit 1
     }
     for $part in $which {
-        remove-pkg ($part | reject index) $yes
+        remove-pkg ($part.pkg | ansi strip) ($part.provider | ansi strip) $yes
     }
 }
 
