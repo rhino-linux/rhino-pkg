@@ -11,7 +11,7 @@ export def list-installed [search: string] {
                     "version": (^pacstall -Ci $pkg pacversion)
                 }
             } | sort-by pkg
-            | where pkg =~ $search
+            | where ($it.pkg | str downcase) =~ ($search | str downcase)
             | insert provider "pacstall" } catch { [] }
     }
 }
@@ -49,12 +49,12 @@ export def upgrade [promptless: bool] {
     }
 }
 
-export def install [pkg: record, promptless: bool] {
+export def install [pkg: string, repo: string, promptless: bool] {
     if (exists "pacstall") {
         if $promptless {
-            ^pacstall -PI $"($pkg.pkg)@($pkg.repo)"
+            ^pacstall -PI $"($pkg)@($repo)"
         } else {
-            ^pacstall -I $"($pkg.pkg)@($pkg.repo)"
+            ^pacstall -I $"($pkg)@($repo)"
         }
     }
 }

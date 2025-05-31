@@ -6,7 +6,7 @@ export def list-installed [search: string] {
             | lines
             | uniq
             | parse "{pkg}\t{version}"
-            | where pkg =~ $search
+            | where ($it.pkg | str downcase) =~ ($search | str downcase)
             | insert provider "flatpak" } catch { [] }
     }
 }
@@ -26,7 +26,7 @@ export def search [input: string, description: bool] : nothing -> table {
                 | where $it != "No matches found"
                 | parse -r '^([\w.-]+)\s+(\w+)$'
                 | rename pkg remote
-                | where pkg =~ $input
+                | where ($it.pkg | str downcase) =~ ($input | str downcase)
                 | insert provider 'flatpak'
         }
     } else {
@@ -44,12 +44,12 @@ export def upgrade [promptless: bool] {
     }
 }
 
-export def install [pkg: record, promptless: bool] {
+export def install [pkg: string, remote: string, promptless: bool] {
     if (exists "flatpak") {
         if $promptless {
-            ^flatpak install $pkg.remote $pkg.pkg -y
+            ^flatpak install $remote $pkg -y
         } else {
-            ^flatpak install $pkg.remote $pkg.pkg
+            ^flatpak install $remote $pkg
         }
     }
 }

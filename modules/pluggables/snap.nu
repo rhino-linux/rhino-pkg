@@ -7,7 +7,7 @@ export def list-installed [search: string] {
             | reject Rev Tracking Publisher Notes
             | rename --column { Name: pkg }
             | rename --column { Version: version }
-            | where pkg =~ $search
+            | where ($it.pkg | str downcase) =~ ($search | str downcase)
             | insert provider "snap" } catch { [] }
     }
 }
@@ -31,7 +31,7 @@ export def search [input: string, description: bool] : nothing -> table {
                     | reject Publisher Version
                     | rename --column { Name: pkg }
                     | rename --column { Summary: desc }
-                    | where pkg =~ $input
+                    | where ($it.pkg | str downcase) =~ ($input | str downcase)
                     | insert provider 'snap'
             }
         }
@@ -49,12 +49,12 @@ export def upgrade [promptless: bool] {
 # So snap is weird because some packages need classic installation
 # ref: [https://github.com/rhino-linux/rhino-pkg/issues/46].
 # But on the plus side it doesn't have the ability for -y.
-export def install [pkg: record] {
+export def install [pkg: string, notes: string] {
     if (exists "snap") {
-        if ($pkg.Notes == "classic") {
-            ^sudo snap install --classic $pkg.pkg
+        if ($notes == "classic") {
+            ^sudo snap install --classic $pkg
         } else {
-            ^sudo snap install $pkg.pkg
+            ^sudo snap install $pkg
         }
     }
 }

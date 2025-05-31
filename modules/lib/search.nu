@@ -7,49 +7,70 @@ export def search-pkgs [
 ] : nothing -> table {
     use "/usr/share/rhino-pkg/modules/pluggables/" [apt pacstall flatpak snap]
     tprint "Searching APT…"
-    let apt_results = (apt search $rest $description)
+    let apt_results = (apt search $rest $description err> /dev/null)
     clearscr
     tprint "Searching Pacstall…"
-    let pac_results = (pacstall search $rest $description)
+    let pac_results = (pacstall search $rest $description err> /dev/null)
     clearscr
     tprint "Searching Flatpak…"
-    let flatpak_results = (flatpak search $rest $description)
+    let flatpak_results = (flatpak search $rest $description err> /dev/null)
     clearscr
     tprint "Searching Snap…"
-    let snap_results = (snap search $rest $description)
+    let snap_results = (snap search $rest $description err> /dev/null)
     clearscr
-    let total = $apt_results | append $pac_results | append $flatpak_results | append $snap_results
-    mut idx = 0
-    for bla in $total {
-        let le_color = (print-color $bla.provider)
-        print $"[($le_color)($idx)(ansi reset)]: ($bla.pkg) \(($le_color)($bla.provider)(ansi reset)\)"
-        $idx += 1
-    }
-    # Just because someone else might need the table.
+    let total = $apt_results
+        | append $pac_results
+        | append $flatpak_results
+        | append $snap_results
+        | sort-by pkg
+        | enumerate
+        | each { |row|
+            let le_color = (print-color $row.item.provider)
+            {
+                index: $"($le_color)($row.index)(ansi reset)",
+                pkg: $"(ansi attr_normal)($row.item.pkg)(ansi reset)",
+                provider: $"($le_color)($row.item.provider)(ansi reset)",
+                remote: ($row.item | get -i remote | default ""),
+                repo: ($row.item | get -i repo | default ""),
+                desc: ($row.item | get -i desc | default ""),
+                notes: ($row.item | get -i Notes | default "")
+            }
+        }
     return $total
 }
 
 export def search-local-pkgs [search: string] : nothing -> table {
     use "/usr/share/rhino-pkg/modules/pluggables/" [apt pacstall flatpak snap]
     tprint "Searching APT…"
-    let apt_results = (apt list-installed $search)
+    let apt_results = (apt list-installed $search err> /dev/null)
     clearscr
     tprint "Searching Pacstall…"
-    let pac_results = (pacstall list-installed $search)
+    let pac_results = (pacstall list-installed $search err> /dev/null)
     clearscr
     tprint "Searching Flatpak…"
-    let flatpak_results = (flatpak list-installed $search)
+    let flatpak_results = (flatpak list-installed $search err> /dev/null)
     clearscr
     tprint "Searching Snap…"
-    let snap_results = (snap list-installed $search)
+    let snap_results = (snap list-installed $search err> /dev/null)
     clearscr
-    let total = $apt_results | append $pac_results | append $flatpak_results | append $snap_results
-    mut idx = 0
-    for bla in $total {
-        let le_color = (print-color $bla.provider)
-        print $"[($le_color)($idx)(ansi reset)]: ($bla.pkg) ~ (ansi defb)($bla.version)(ansi reset) \(($le_color)($bla.provider)(ansi reset)\)"
-        $idx += 1
-    }
-    # Just because someone else might need the table.
+    let total = $apt_results
+        | append $pac_results
+        | append $flatpak_results
+        | append $snap_results
+        | sort-by pkg
+        | enumerate
+        | each { |row|
+            let le_color = (print-color $row.item.provider)
+            {
+                index: $"($le_color)($row.index)(ansi reset)",
+                pkg: $"(ansi attr_normal)($row.item.pkg)(ansi reset)",
+                provider: $"($le_color)($row.item.provider)(ansi reset)",
+                version: $"(ansi white_bold)($row.item.version)(ansi reset)",
+                remote: ($row.item | get -i remote | default ""),
+                repo: ($row.item | get -i repo | default ""),
+                desc: ($row.item | get -i desc | default ""),
+                notes: ($row.item | get -i Notes | default "")
+            }
+        }
     return $total
 }
