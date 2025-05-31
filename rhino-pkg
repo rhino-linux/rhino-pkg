@@ -104,11 +104,13 @@ def "main search" [
             return (
                 $dummy
                 | select index pkg provider desc
+                | rename index Package Provider Description
             )
         } else {
             return (
                 $dummy
                 | select index pkg provider
+                | rename index Package Provider
             )
         }
     }
@@ -129,11 +131,13 @@ def "main install" [
             print (
                 $dummy
                 | select index pkg provider desc
+                | rename index Package Provider Description
             )
         } else {
             print (
                 $dummy
                 | select index pkg provider
+                | rename index Package Provider
             )
         }
     }
