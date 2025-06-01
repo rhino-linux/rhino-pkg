@@ -73,6 +73,21 @@ Developed by Elsie19 <elsie19@pm.me> for
 the Rhino Linux distribution."
 }
 
+def "main s" [
+    --description (-d)
+    rest: string
+] {
+    if $description {
+        main search $rest --description
+    } else {
+        main search $rest
+    }
+}
+
+def "main sd" [
+    rest: string
+] { main search $rest --description }
+
 def "main search" [
     --description (-d) # Increase range and display packages with <input> in their description
     rest: string # Search query
@@ -95,6 +110,26 @@ def "main search" [
                 | select index pkg provider
                 | rename index Package Provider
             )
+        }
+    }
+}
+
+def "main i" [
+    --description (-d)
+    --yes (-y)
+    rest: string
+] {
+    if $description {
+        if $yes {
+            main install $rest --description --yes
+        } else {
+            main install $rest --description
+        }
+    } else {
+        if $yes {
+            main install $rest --yes
+        } else {
+            main install $rest
         }
     }
 }
@@ -164,6 +199,28 @@ def "main install" [
     }
 }
 
+def "main r" [
+    --yes (-y)
+    rest: string
+] {
+    if $yes {
+        main remove $rest --yes
+    } else {
+        main remove $rest
+    }
+}
+
+def "main rm" [
+    --yes (-y)
+    rest: string
+] {
+    if $yes {
+        main remove $rest --yes
+    } else {
+        main remove $rest
+    }
+}
+
 def "main remove" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
     rest: string # Search query
@@ -199,6 +256,16 @@ def "main remove" [
     }
 }
 
+def "main c" [
+    --yes (-y)
+] {
+    if $yes {
+        main cleanup --yes
+    } else {
+        main cleanup
+    }
+}
+
 def "main cleanup" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
 ] {
@@ -214,6 +281,36 @@ def "main cleanup" [
         }
     }
     cleanup-pkg $yes
+}
+
+def "main u" [
+    --yes (-y)
+] {
+    if $yes {
+        main update --yes
+    } else {
+        main update
+    }
+}
+
+def "main up" [
+    --yes (-y)
+] {
+    if $yes {
+        main update --yes
+    } else {
+        main update
+    }
+}
+
+def "main upgrade" [
+    --yes (-y)
+] {
+    if $yes {
+        main update --yes
+    } else {
+        main update
+    }
 }
 
 def "main update" [
