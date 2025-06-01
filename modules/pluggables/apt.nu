@@ -56,16 +56,16 @@ export def search [input: string, description: bool] : nothing -> table {
 export def upgrade [promptless: bool] {
     if (exists "nala") {
         if $promptless {
-            ^sudo nala upgrade -y
+            ^sudo nala upgrade -y --full --no-autoremove -o Acquire::AllowReleaseInfoChange="true"
         } else {
-            ^sudo nala upgrade
+            ^sudo nala upgrade --full --no-autoremove -o Acquire::AllowReleaseInfoChange="true"
         }
     } else if (exists "apt") {
         if $promptless {
-            ^sudo apt update -y
+            ^sudo apt update --allow-releaseinfo-change -y
             ^sudo apt upgrade -y
         } else {
-            ^sudo apt update
+            ^sudo apt update --allow-releaseinfo-change
             ^sudo apt upgrade
         }
     }
