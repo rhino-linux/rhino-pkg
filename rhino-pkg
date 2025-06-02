@@ -2,7 +2,7 @@
 
 use "/usr/share/rhino-pkg/modules/lib/" [search]
 use "/usr/share/rhino-pkg/modules/pluggables/" [apt flatpak pacstall snap]
-use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt cleanup-pkg remove-pkg]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt cleanup-pkg remove-pkg repo-sync]
 
 tregister /usr/share/locale/ rhino-pkg
 
@@ -131,6 +131,17 @@ def "main i" [
         } else {
             main install $rest
         }
+    }
+}
+
+def "main id" [
+    --yes (-y)
+    rest: string
+] {
+    if $yes {
+        main install $rest --description --yes
+    } else {
+        main install $rest --description
     }
 }
 
@@ -330,4 +341,12 @@ def "main update" [
     pacstall upgrade $yes
     flatpak upgrade $yes
     snap upgrade $yes
+}
+
+def "main sy" [] {
+    repo-sync
+}
+
+def "main sync" [] {
+    repo-sync
 }
