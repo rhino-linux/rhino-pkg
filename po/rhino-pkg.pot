@@ -5,74 +5,74 @@ msgstr ""
 "Content-Transfer-Encoding: ENCODING\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: rhino-pkg:110 rhino-pkg:160
+#: rhino-pkg:98 rhino-pkg:156 rhino-pkg:242
 #, python-brace-format
 msgid "No packages found matching '{rest}'!"
 msgstr ""
 
-#: rhino-pkg:113
+#: rhino-pkg:173
 #, python-brace-format
 msgid "Select which packages to install"
 msgstr ""
 
-#: rhino-pkg:115
+#: rhino-pkg:175
 #, python-brace-format
 msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr ""
 
-#: rhino-pkg:121 rhino-pkg:170
+#: rhino-pkg:181 rhino-pkg:257
 #, python-brace-format
 msgid "Are you sure? ({y}/{n}) "
 msgstr ""
 
-#: rhino-pkg:147
+#: rhino-pkg:207
 #, python-brace-format
 msgid "Failed to install '{pkg}'."
 msgstr ""
 
-#: rhino-pkg:163
+#: rhino-pkg:250
 #, python-brace-format
 msgid "Select which package to remove"
 msgstr ""
 
-#: rhino-pkg:165
+#: rhino-pkg:252
 #, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
 msgstr ""
 
-#: rhino-pkg:187
+#: rhino-pkg:284
 #, python-brace-format
 msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
 
-#: rhino-pkg:204
+#: rhino-pkg:331
 #, python-brace-format
 msgid "Are you sure you want to update all packages? ({y}/{n}) "
 msgstr ""
 
-#: cmd.nu:28
+#: cmd.nu:37
 #, python-brace-format
-msgid "No valid inputs given"
+msgid "No valid inputs given!"
 msgstr ""
 
-#: search.nu:9 search.nu:34
-#, python-brace-format
-msgid "Searching Pacstall…"
-msgstr ""
-
-#: search.nu:12 search.nu:40
+#: search.nu:12 search.nu:50
 #, python-brace-format
 msgid "Searching APT…"
 msgstr ""
 
-#: search.nu:15 search.nu:37
+#: search.nu:15 search.nu:53
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr ""
+
+#: search.nu:18 search.nu:56
 #, python-brace-format
 msgid "Searching Flatpak…"
 msgstr ""
 
-#: search.nu:18 search.nu:43
+#: search.nu:21 search.nu:59
 #, python-brace-format
 msgid "Searching Snap…"
 msgstr ""
