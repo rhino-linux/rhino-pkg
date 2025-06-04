@@ -90,7 +90,7 @@ def "main help" [] {
         }
     ]
 
-    print $"USAGE:\n  rpk [function] {flags} <input>\n
+    print $"USAGE:\n  rpk [function] {flag} <input>\n
 ($help_flags | table -i false -t none)
 ($help_cmds | select Command Description | table -i false -t none)
 ($help_cmds | select Usage Flags Variants | table -i false -t none)
