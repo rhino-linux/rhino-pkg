@@ -95,8 +95,7 @@ def "main help" [] {
 ($help_cmds | select Command Description | table -i false -t none)
 ($help_cmds | select Usage Flags Variants | table -i false -t none)
 rpk 2.0.0\nA package manager wrapper for Pacstall, APT, Flatpak and Snap\n
-Created by Elsie19 <elsie19@pm.me>
-Developed for the Rhino Linux distribution."
+Created by Elsie19 <elsie19@pm.me>\nDeveloped for the Rhino Linux distribution."
 }
 
 def "main s" [
