@@ -2,6 +2,15 @@ export def exists [cmd: string] : nothing -> bool {
     ((which $cmd | length) > 0)
 }
 
+export def exists-apt [pkg: string] : nothing -> bool {
+    (
+        (^dpkg-query -s $pkg err> /dev/null
+            | complete
+            | get exit_code
+        ) == 0
+    )
+}
+
 # Return color based off of package manager
 export def print-color [type: string] {
     match $type {
@@ -14,7 +23,7 @@ export def print-color [type: string] {
 }
 
 export def prompt [ask: string, pkgs: list] : nothing -> table {
-    let input = (input $"($ask) [0-(($pkgs | length) - 1)]: ")
+    let input = (input $"($ask) (ansi wb)[(ansi reset)(ansi p) 0(ansi reset) … (ansi p)(($pkgs | length) - 1)(ansi reset) or (ansi r)N(ansi wb) ](ansi reset): ")
     if ($input | is-empty) {
         $pkgs | select 0 | insert index 0
     } else {
@@ -25,7 +34,7 @@ export def prompt [ask: string, pkgs: list] : nothing -> table {
             | filter {|key| $key in 0..<($pkgs | length)}
         )
         if ($parsed | is-empty) {
-            tprint -e "No valid inputs given"
+            tprint -e "No valid inputs given!"
             exit 1
         }
         $pkgs
@@ -65,9 +74,9 @@ export def remove-pkg [
         }
         "flatpak" => {
             if $promptless {
-                ^flatpak remove $pkg -y
+                ^sudo flatpak remove $pkg -y
             } else {
-                ^flatpak remove $pkg
+                ^sudo flatpak remove $pkg
             }
         }
         "snap" => {
@@ -109,4 +118,24 @@ export def cleanup-pkg [promptless: bool] {
                 ^sudo snap remove $pkg.Name --revision=($pkg.Version)
         }
     }
+}
+
+export def repo-sync [] {
+    if (exists "nala") {
+        try {
+            ^sudo nala update -o Acquire::AllowReleaseInfoChange="true"
+        }
+    } else if (exists "apt") {
+        ^sudo apt update --allow-releaseinfo-change
+    }
+    if (exists "pacstall") {
+        if not (exists-apt "pacstall") {
+            ^pacstall -U
+        }
+        # repo sync to be added in radiance
+    }
+    if (exists "flatpak") {
+        ^sudo flatpak update --appstream
+    }
+    # snap is evil and just syncs in the background
 }

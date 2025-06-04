@@ -1,11 +1,14 @@
 use "/usr/share/rhino-pkg/modules/lib/screen.nu" [clearscr]
-use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [print-color]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists print-color]
 
 export def search-pkgs [
     description: bool
     rest: string
 ] : nothing -> table {
     use "/usr/share/rhino-pkg/modules/pluggables/" [apt pacstall flatpak snap]
+    if (exists "flatpak") {
+        ^sudo -v
+    }
     tprint "Searching APT…"
     let apt_results = (apt search $rest $description err> /dev/null)
     clearscr

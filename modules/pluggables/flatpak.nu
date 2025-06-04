@@ -14,14 +14,14 @@ export def list-installed [search: string] {
 export def search [input: string, description: bool] : nothing -> table {
     if (exists "flatpak") {
         if $description {
-            ^flatpak search $input --columns=application:f,remotes:f,description:f
+            ^sudo flatpak search $input --columns=application:f,remotes:f,description:f
                 | lines
                 | where $it != "No matches found"
                 | parse -r '^([\w.-]+)\s+(\w+)\s+(.*)$'
                 | rename pkg remote desc
                 | insert provider 'flatpak'
         } else {
-            ^flatpak search $input --columns=application:f,remotes:f
+            ^sudo flatpak search $input --columns=application:f,remotes:f
                 | lines
                 | where $it != "No matches found"
                 | parse -r '^([\w.-]+)\s+(\w+)$'
@@ -37,9 +37,9 @@ export def search [input: string, description: bool] : nothing -> table {
 export def upgrade [promptless: bool] {
     if (exists "flatpak") {
         if $promptless {
-            ^flatpak update -y
+            ^sudo flatpak update -y
         } else {
-            ^flatpak update
+            ^sudo flatpak update
         }
     }
 }
@@ -47,9 +47,9 @@ export def upgrade [promptless: bool] {
 export def install [pkg: string, remote: string, promptless: bool] {
     if (exists "flatpak") {
         if $promptless {
-            ^flatpak install $remote $pkg -y
+            ^sudo flatpak install $remote $pkg -y
         } else {
-            ^flatpak install $remote $pkg
+            ^sudo flatpak install $remote $pkg
         }
     }
 }

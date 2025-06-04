@@ -2,7 +2,7 @@
 
 use "/usr/share/rhino-pkg/modules/lib/" [search]
 use "/usr/share/rhino-pkg/modules/pluggables/" [apt flatpak pacstall snap]
-use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt cleanup-pkg remove-pkg]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt cleanup-pkg remove-pkg repo-sync]
 
 tregister /usr/share/locale/ rhino-pkg
 
@@ -23,54 +23,80 @@ def "main --help" [] { main help }
 def "main -h" [] { main help }
 
 def "main help" [] {
-    print $"USAGE: rpk [function] {flag} <input>
+    let help_cmds = [
+        {
+            Command: "search",
+            Description: "Search for packages from all available managers",
+            Usage: "search <input>",
+            Flags: "--description",
+            Variants: "s (-d), sd"
+        },
+        {
+            Command: "install",
+            Description: "Install packages; prompts from selection with repository search",
+            Usage: "install <input>",
+            Flags: "--description, --yes",
+            Variants: "i (-d -y), id (-y)"
+        },
+        {
+            Command: "remove",
+            Description: "Uninstall packages; prompts for selection with local search",
+            Usage: "remove <input>",
+            Flags: "--yes",
+            Variants: "{r|rm} (-y)"
+        },
+        {
+            Command: "cleanup",
+            Description: "Repair broken packages and remove unused dependencies",
+            Usage: "cleanup",
+            Flags: "--yes",
+            Variants: "c (-y)"
+        },
+        {
+            Command: "sync",
+            Description: "Refresh repository data for all available managers",
+            Usage: "sync",
+            Flags: "",
+            Variants: "sy"
+        },
+        {
+            Command: "update",
+            Description: "Refresh repository data and update all packages",
+            Usage: "update",
+            Flags: "--yes",
+            Variants: "{u|up|upgrade} (-y)"
+        },
+        {
+            Command: "help",
+            Description: "Show this help message",
+            Usage: "help",
+            Flags: "",
+            Variants: "-h, --help"
+        }
+    ]
 
-functions:
-    install: Install package\(s\) - Prompts user to respond with
-             the number\(s\) associated with the desired package\(s\).
+    let help_flags = [
+        {
+            Flag: "-h, --help",
+            Description: "Show this help message"
+        },
+        {
+            Flag: "-d, --description",
+            Description: "Search in and show package descriptions"
+        },
+        {
+            Flag: "-y, --yes",
+            Description: "Skip confirmation prompts"
+        }
+    ]
 
-    remove:  Uninstall package\(s\) - Prompts user to respond with
-             the number\(s\) associated with the desired package\(s\).
-
-    search:  Search for package\(s\) - Does not have a second prompt.
-
-    update:  Updates all packages accessible to the wrapper - does
-             not accept <input>, instead use install to update
-             individual packages. Has a confirmation prompt.
-
-    cleanup: Attempts to repair broken dependencies and remove any
-             unused packages. Does not accept <input>, but has
-             a confirmation prompt.
-
-flags:
-    --help/-h: Display this page
-
-    --description/-d: By default, rpk will only display packages
-    that contain <input> within their name. Use this flag to increase
-    range and display packages with <input> in their description.
-
-    -y: Makes functions with confirmation prompts run promptless.
-
-input:
-    Provide a package name or description.
-
-(ansi --escape '38;5;104m')       .;:;,.  .:
-    'coooooooo:oo.';.
-  ,oooooooooooooooo    ;
- clllcccllloooooooo;c:'o(ansi reset)
-(ansi --escape '38;5;104m').(ansi reset)(ansi --escape '38;5;55m');(ansi --escape '38;5;98m')';:::::::::(ansi --escape '38;5;104m')cclooooooo'
-(ansi --escape '38;5;55m')''',(ansi --escape '38;5;98m')::::::::::::::ccclc.
-(ansi --escape '38;5;55m').'''(ansi --escape '38;5;98m');::::::::::(ansi reset)l(ansi --escape '38;5;98m'):::::::
- (ansi --escape '38;5;55m')''''(ansi --escape '38;5;98m'),:::::::::(ansi reset)kd(ansi --escape '38;5;98m').
- (ansi --escape '38;5;55m').'''''(ansi --escape '38;5;98m'),;::(ansi reset)ck:oW(ansi --escape '38;5;98m');
-   (ansi --escape '38;5;55m')''''''''(ansi reset)kXOM.
-     (ansi --escape '38;5;55m').,,:(ansi reset)dXMK
-       :k
-
-rpk 2.0.0
-A package manager wrapper for Pacstall, APT, Flatpak and snap
-Developed by Elsie19 <elsie19@pm.me> for
-the Rhino Linux distribution."
+    print $"USAGE:\n rpk [function] {flag} <input>\n
+($help_flags | table -i false -t none)
+($help_cmds | select Command Description | table -i false -t none)
+($help_cmds | select Usage Flags Variants | table -i false -t none)
+rpk 2.0.0\nA package manager wrapper for Pacstall, APT, Flatpak and Snap\n
+Created by Elsie19 <elsie19@pm.me>
+Developed for the Rhino Linux distribution."
 }
 
 def "main s" [
@@ -103,6 +129,7 @@ def "main search" [
                 $dummy
                 | select index pkg provider desc
                 | rename index Package Provider Description
+                | table -t thin
             )
         } else {
             return (
@@ -134,6 +161,17 @@ def "main i" [
     }
 }
 
+def "main id" [
+    --yes (-y)
+    rest: string
+] {
+    if $yes {
+        main install $rest --description --yes
+    } else {
+        main install $rest --description
+    }
+}
+
 def "main install" [
     --description (-d) # Increase range and display packages with <input> in their description
     --yes (-y) # Makes functions with confirmation prompts run promptless
@@ -150,6 +188,7 @@ def "main install" [
                 $dummy
                 | select index pkg provider desc
                 | rename index Package Provider Description
+                | table -t thin
             )
         } else {
             print (
@@ -330,4 +369,12 @@ def "main update" [
     pacstall upgrade $yes
     flatpak upgrade $yes
     snap upgrade $yes
+}
+
+def "main sy" [] {
+    repo-sync
+}
+
+def "main sync" [] {
+    repo-sync
 }

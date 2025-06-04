@@ -1,4 +1,4 @@
-use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists exists-apt]
 
 export def list-installed [search: string] {
     # I'm using par-each because it's wayyy quicker and I can just sort the stuff afterwards
@@ -42,8 +42,14 @@ export def search [input: string, description: bool] : nothing -> table {
 export def upgrade [promptless: bool] {
     if (exists "pacstall") {
         if $promptless {
+            if not (exists-apt "pacstall") {
+               ^pacstall -U 
+            }
             ^pacstall -PUp
         } else {
+            if not (exists-apt "pacstall") {
+               ^pacstall -U 
+            }
             ^pacstall -Up
         }
     }
