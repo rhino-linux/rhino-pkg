@@ -91,11 +91,12 @@ def "main help" [] {
     ]
 
     print $"USAGE:\n  rpk [function] {flags} <input>\n
-FLAGS:\n($help_flags | table -i false)
-COMMANDS:\n($help_cmds | select Command Description | table -i false)
-OPTIONS:\n($help_cmds | select Usage Flags Variants | table -i false)
+($help_flags | table -i false -t none)
+($help_cmds | select Command Description | table -i false -t none)
+($help_cmds | select Usage Flags Variants | table -i false -t none)
 rpk 2.0.0\nA package manager wrapper for Pacstall, APT, Flatpak and Snap\n
-Created by Elsie19 <elsie19@pm.me> for Rhino Linux."
+Created by Elsie19 <elsie19@pm.me>\n
+Developed for the Rhino Linux distribution."
 }
 
 def "main s" [
