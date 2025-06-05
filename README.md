@@ -31,7 +31,7 @@ USAGE:
  install <input>   --description, --yes   i (-d -y), id (-y)  
  remove <input>    --yes                  {r|rm} (-y)         
  cleanup           --yes                  c (-y)              
- sync                                     sy                  
+ sync                                     S, Ss (-d), Ssd, Si (-d -y), Sid (-y)
  update            --yes                  {u|up|upgrade} (-y) 
  help                                     -h, --help          
 ```
