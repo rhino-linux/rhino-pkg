@@ -57,7 +57,7 @@ def "main help" [] {
             Description: "Refresh repository data for all available managers",
             Usage: "sync",
             Flags: "",
-            Variants: "sy"
+            Variants: "S, Ss (-d), Ssd, Si (-d -y), Sid (-y)"
         },
         {
             Command: "update",
@@ -109,9 +109,30 @@ def "main s" [
     }
 }
 
+def "main Ss" [
+    --description (-d)
+    rest: string
+] {
+    repo-sync
+    if $description {
+        main search $rest --description
+    } else {
+        main search $rest
+    }
+}
+
 def "main sd" [
     rest: string
-] { main search $rest --description }
+] { 
+    main search $rest --description
+}
+
+def "main Ssd" [
+    rest: string
+] { 
+    repo-sync
+    main search $rest --description
+}
 
 def "main search" [
     --description (-d) # Increase range and display packages with <input> in their description
@@ -160,10 +181,43 @@ def "main i" [
     }
 }
 
+def "main Si" [
+    --description (-d)
+    --yes (-y)
+    rest: string
+] {
+    repo-sync
+    if $description {
+        if $yes {
+            main install $rest --description --yes
+        } else {
+            main install $rest --description
+        }
+    } else {
+        if $yes {
+            main install $rest --yes
+        } else {
+            main install $rest
+        }
+    }
+}
+
 def "main id" [
     --yes (-y)
     rest: string
 ] {
+    if $yes {
+        main install $rest --description --yes
+    } else {
+        main install $rest --description
+    }
+}
+
+def "main Sid" [
+    --yes (-y)
+    rest: string
+] {
+    repo-sync
     if $yes {
         main install $rest --description --yes
     } else {
@@ -370,7 +424,7 @@ def "main update" [
     snap upgrade $yes
 }
 
-def "main sy" [] {
+def "main S" [] {
     repo-sync
 }
 
