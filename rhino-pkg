@@ -259,12 +259,18 @@ def "main install" [
         }
     }
     if not $yes {
-        let response = (input (_ "Are you sure? ({y}/{n}) " {
+        let response = (
+            try {
+                input (_ "Are you sure? ({y}/{n}) " {
                     y: $"(ansi green_bold)y(ansi reset)",
                     n: $"(ansi red_bold)N(ansi reset)" }
-            )
+                )
+                | str downcase
+                | str starts-with "y"
+            }
         )
-        if not ($response | str downcase | str starts-with "y") {
+        if ($response | is-empty) or (not $response) {
+            tprint -e "No valid inputs given!"
             exit 1
         }
     }
@@ -335,12 +341,18 @@ def "main remove" [
             provider: $"(ansi purple_bold)($part.provider | ansi strip)(ansi reset)"
         }
     }
-    let response = (input (_ "Are you sure? ({y}/{n}) " {
+    let response = (
+        try {
+            input (_ "Are you sure? ({y}/{n}) " {
                 y: $"(ansi green_bold)y(ansi reset)",
                 n: $"(ansi red_bold)N(ansi reset)" }
-        )
+            )
+            | str downcase
+            | str starts-with "y"
+        }
     )
-    if not ($response | str downcase | str starts-with "y") {
+    if ($response | is-empty) or (not $response) {
+        tprint -e "No valid inputs given!"
         exit 1
     }
     for $part in $which {
@@ -361,14 +373,19 @@ def "main c" [
 def "main cleanup" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
 ] {
-    if not $yes {
-        if not (input (_ "Attempting to repair dependencies and remove unused packages. Continue? ({y}/{n}) " {
+    if (not $yes) {
+        let response = (
+            try {
+                input (_ "Attempting to repair dependencies and remove unused packages. Continue? ({y}/{n}) " {
                     y: $"(ansi green_bold)y(ansi reset)",
-                    n: $"(ansi red_bold)N(ansi reset)"
-                }
-            )
+                    n: $"(ansi red_bold)N(ansi reset)" }
+                )
                 | str downcase
-                | str starts-with "y") {
+                | str starts-with "y"
+            }
+        )
+        if ($response | is-empty) or (not $response) {
+            tprint -e "No valid inputs given!"
             exit 1
         }
     }
@@ -409,12 +426,18 @@ def "main update" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
 ] {
     if (not $yes) {
-        let response = (input (_ "Are you sure you want to update all packages? ({y}/{n}) " {
+        let response = (
+            try {
+                input (_ "Are you sure you want to update all packages? ({y}/{n}) " {
                     y: $"(ansi green_bold)y(ansi reset)",
-                    n: $"(ansi red_bold)N(ansi reset)"
-                }
-            ))
-        if not ($response | str downcase | str starts-with "y") {
+                    n: $"(ansi red_bold)N(ansi reset)" }
+                )
+                | str downcase
+                | str starts-with "y"
+            }
+        )
+        if ($response | is-empty) or (not $response) {
+            tprint -e "No valid inputs given!"
             exit 1
         }
     }
