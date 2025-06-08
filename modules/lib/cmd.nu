@@ -23,10 +23,21 @@ export def print-color [type: string] {
 }
 
 export def prompt [ask: string, pkgs: list] : nothing -> table {
-    let input = (input $"($ask) (ansi wb)[(ansi reset)(ansi p) 0(ansi reset) … (ansi p)(($pkgs | length) - 1)(ansi reset) or (ansi r)N(ansi wb) ](ansi reset): ")
-    if ($input | is-empty) {
-        $pkgs | select 0 | insert index 0
+    if (($pkgs | length) == 1) {
+        $pkgs
+            | enumerate
+            | where index == 0
+            | flatten
     } else {
+        let input = (
+            try {
+                input $"($ask) (ansi wb)[(ansi reset)(ansi p) 0(ansi reset) … (ansi p)(($pkgs | length) - 1)(ansi reset) or (ansi r)N(ansi wb) ](ansi reset): "
+            }
+        )
+        if ($input | is-empty) {
+            tprint -e "No valid inputs given!"
+            exit 1
+        }
         let parsed = ($input
             | split row ' '
             | find --regex "[0-9]+" --regex "^[0-9]+"
