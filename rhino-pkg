@@ -270,7 +270,6 @@ def "main install" [
             }
         )
         if ($response | is-empty) or (not $response) {
-            tprint -e "No valid inputs given!"
             exit 1
         }
     }
@@ -352,7 +351,6 @@ def "main remove" [
         }
     )
     if ($response | is-empty) or (not $response) {
-        tprint -e "No valid inputs given!"
         exit 1
     }
     for $part in $which {
@@ -385,7 +383,6 @@ def "main cleanup" [
             }
         )
         if ($response | is-empty) or (not $response) {
-            tprint -e "No valid inputs given!"
             exit 1
         }
     }
@@ -437,7 +434,6 @@ def "main update" [
             }
         )
         if ($response | is-empty) or (not $response) {
-            tprint -e "No valid inputs given!"
             exit 1
         }
     }
