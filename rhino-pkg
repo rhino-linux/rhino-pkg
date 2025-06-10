@@ -258,7 +258,7 @@ def "main install" [
             provider: $"(ansi purple_bold)($part.provider | ansi strip)(ansi reset)"
         }
     }
-    if not $yes {
+    if (not $yes) {
         let response = (
             try {
                 input (_ "Are you sure? ({y}/{n}) " {
@@ -340,18 +340,20 @@ def "main remove" [
             provider: $"(ansi purple_bold)($part.provider | ansi strip)(ansi reset)"
         }
     }
-    let response = (
-        try {
-            input (_ "Are you sure? ({y}/{n}) " {
-                y: $"(ansi green_bold)y(ansi reset)",
-                n: $"(ansi red_bold)N(ansi reset)" }
-            )
-            | str downcase
-            | str starts-with "y"
+    if (not $yes) {
+        let response = (
+            try {
+                input (_ "Are you sure? ({y}/{n}) " {
+                    y: $"(ansi green_bold)y(ansi reset)",
+                    n: $"(ansi red_bold)N(ansi reset)" }
+                )
+                | str downcase
+                | str starts-with "y"
+            }
+        )
+        if ($response | is-empty) or (not $response) {
+            exit 1
         }
-    )
-    if ($response | is-empty) or (not $response) {
-        exit 1
     }
     for $part in $which {
         remove-pkg ($part.pkg | ansi strip) ($part.provider | ansi strip) $yes
