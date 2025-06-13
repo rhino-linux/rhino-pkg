@@ -5,8 +5,8 @@ msgstr ""
 "POT-Creation-Date: 2025-02-13 14:51+0200\n"
 "PO-Revision-Date: 2025-02-20 14:20+0000\n"
 "Last-Translator: zenobit <zenobit@users.noreply.hosted.weblate.org>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/rhino-linux/"
-"rhino-pkg/cs/>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/rhino-linux/rhino-"
+"pkg/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,58 +14,104 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 5.10.1-dev\n"
 
-#: rhino-pkg:186
-msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr ""
-"Přejete si skutečně aktualizovat všechny balíčky? "
-"(${BGreen}y${NC}/${BRed}N${NC}) "
-
-#: rhino-pkg:218
-msgid "Searching Pacstall…"
-msgstr "Hledám Pacstall…"
-
-#: rhino-pkg:222
-msgid "Searching apt…"
-msgstr "Hledám apt…"
-
-#: rhino-pkg:226
-msgid "Searching flatpak…"
-msgstr "Hledám flatpak…"
-
-#: rhino-pkg:231
-msgid "Searching snap…"
-msgstr "Hledám snap…"
-
-#: rhino-pkg:237
-msgid "No packages found matching '$*'!"
+#: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
+#, fuzzy, python-brace-format
+#| msgid "No packages found matching '$*'!"
+msgid "No packages found matching '{rest}'!"
 msgstr "Nenalezen balícek odpovídající '$*'!"
 
-#: rhino-pkg:241
-msgid "Found packages matching '${BPurple}$*${NC}':"
-msgstr "Nalezeny balíčky odpovídající '${BPurple}$*${NC}':"
-
-#: rhino-pkg:286
-msgid "Select which package to install"
+#: rhino-pkg:254
+#, fuzzy, python-brace-format
+#| msgid "Select which package to install"
+msgid "Select which packages to install"
 msgstr "Vyberte který balíček instalovat"
 
-#: rhino-pkg:292
+#: rhino-pkg:256
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
+#| "'${BPurple}${pkgrepo[i]}${NC}'"
+msgid "Selecting '{pkg}' from package manager '{provider}'"
+msgstr ""
+"Výběr '${BPurple}${pkgs[i]}${NC}' od správce balíčku "
+"'${BPurple}${pkgrepo[i]}${NC}'"
+
+#: rhino-pkg:264 rhino-pkg:345
+#, fuzzy, python-brace-format
+#| msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
+msgid "Are you sure? ({y}/{n}) "
+msgstr "Jste si jisti? (${BGreen}y${NC}/${BRed}N${NC}) "
+
+#: rhino-pkg:293
+#, python-brace-format
+msgid "Failed to install '{pkg}'."
+msgstr ""
+
+#: rhino-pkg:336
+#, python-brace-format
 msgid "Select which package to remove"
 msgstr "Vyberte který balíček odstranit"
 
-#: rhino-pkg:298
-msgid "'${entered_input[*]}' is not a valid number"
-msgstr "'${entered_input[*]}' není platné číslo"
-
-#: rhino-pkg:303
-msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+#: rhino-pkg:338
+#, python-brace-format
+msgid "Removing '{part}' from '{provider}'"
 msgstr ""
-"Výběr '${BPurple}${pkgs[i]}${NC}' od správce balíčku '${BPurple}${pkgrepo[i]"
-"}${NC}'"
 
-#: rhino-pkg:306
-msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "Jste si jisti? (${BGreen}y${NC}/${BRed}N${NC}) "
+#: rhino-pkg:377
+#, python-brace-format
+msgid ""
+"Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
+"{n}) "
+msgstr ""
 
-#: rhino-pkg:341
-msgid "Invalid repository name!"
-msgstr "Neplatný název repozitáře!"
+#: rhino-pkg:428
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}"
+#| "N${NC}) "
+msgid "Are you sure you want to update all packages? ({y}/{n}) "
+msgstr ""
+"Přejete si skutečně aktualizovat všechny balíčky? (${BGreen}y${NC}/${BRed}"
+"N${NC}) "
+
+#: cmd.nu:38 cmd.nu:48
+#, python-brace-format
+msgid "No valid inputs given!"
+msgstr ""
+
+#: search.nu:12 search.nu:47
+#, fuzzy, python-brace-format
+#| msgid "Searching apt…"
+msgid "Searching APT…"
+msgstr "Hledám apt…"
+
+#: search.nu:15 search.nu:50
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr "Hledám Pacstall…"
+
+#: search.nu:18 search.nu:53
+#, fuzzy, python-brace-format
+#| msgid "Searching flatpak…"
+msgid "Searching Flatpak…"
+msgstr "Hledám flatpak…"
+
+#: search.nu:21 search.nu:56
+#, fuzzy, python-brace-format
+#| msgid "Searching snap…"
+msgid "Searching Snap…"
+msgstr "Hledám snap…"
+
+#: apt.nu:51
+#, python-brace-format
+msgid "`aptitude` not installed."
+msgstr ""
+
+#~ msgid "Found packages matching '${BPurple}$*${NC}':"
+#~ msgstr "Nalezeny balíčky odpovídající '${BPurple}$*${NC}':"
+
+#~ msgid "'${entered_input[*]}' is not a valid number"
+#~ msgstr "'${entered_input[*]}' není platné číslo"
+
+#~ msgid "Invalid repository name!"
+#~ msgstr "Neplatný název repozitáře!"
