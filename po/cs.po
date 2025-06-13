@@ -3,44 +3,36 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-13 14:51+0200\n"
-"PO-Revision-Date: 2025-02-20 14:20+0000\n"
-"Last-Translator: zenobit <zenobit@users.noreply.hosted.weblate.org>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/rhino-linux/rhino-"
-"pkg/cs/>\n"
+"PO-Revision-Date: 2025-06-13 18:08+0000\n"
+"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-pkg/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
-#, fuzzy, python-brace-format
-#| msgid "No packages found matching '$*'!"
+#, python-brace-format
 msgid "No packages found matching '{rest}'!"
-msgstr "Nenalezen balícek odpovídající '$*'!"
+msgstr "Nenalezen balícek odpovídající '{rest}'!"
 
 #: rhino-pkg:254
-#, fuzzy, python-brace-format
-#| msgid "Select which package to install"
+#, python-brace-format
 msgid "Select which packages to install"
 msgstr "Vyberte který balíček instalovat"
 
 #: rhino-pkg:256
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
-#| "'${BPurple}${pkgrepo[i]}${NC}'"
+#, python-brace-format
 msgid "Selecting '{pkg}' from package manager '{provider}'"
-msgstr ""
-"Výběr '${BPurple}${pkgs[i]}${NC}' od správce balíčku "
-"'${BPurple}${pkgrepo[i]}${NC}'"
+msgstr "Výběr '{pkg}' od správce balíčku '{provider}'"
 
 #: rhino-pkg:264 rhino-pkg:345
-#, fuzzy, python-brace-format
-#| msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
+#, python-brace-format
 msgid "Are you sure? ({y}/{n}) "
-msgstr "Jste si jisti? (${BGreen}y${NC}/${BRed}N${NC}) "
+msgstr "Jste si jisti? ({y}/{n}) "
 
 #: rhino-pkg:293
 #, python-brace-format
@@ -65,14 +57,9 @@ msgid ""
 msgstr ""
 
 #: rhino-pkg:428
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}"
-#| "N${NC}) "
+#, python-brace-format
 msgid "Are you sure you want to update all packages? ({y}/{n}) "
-msgstr ""
-"Přejete si skutečně aktualizovat všechny balíčky? (${BGreen}y${NC}/${BRed}"
-"N${NC}) "
+msgstr "Přejete si skutečně aktualizovat všechny balíčky? ({y}/{n}) "
 
 #: cmd.nu:38 cmd.nu:48
 #, python-brace-format
