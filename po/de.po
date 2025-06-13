@@ -6,8 +6,8 @@ msgstr ""
 "POT-Creation-Date: 2024-01-09 14:06+0200\n"
 "PO-Revision-Date: 2024-01-09 13:06+0000\n"
 "Last-Translator: Oliver Schantz <frequency403@gmail.com>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/rhino-linux/"
-"rhino-pkg/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/rhino-linux/rhino-"
+"pkg/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,54 +15,80 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.4-dev\n"
 
-#: rhino-pkg:186
-msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "Sind Sie sicher, dass sie alle Pakete aktualisieren möchten? (${BGreen}y${NC}/${BRed}N${NC}) "
+#: rhino-pkg:83
+#, python-brace-format
+msgid ""
+"Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
+msgstr ""
 
-#: rhino-pkg:218
-msgid "Searching Pacstall…"
-msgstr "Suche in Pacstall…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "No valid subcommand passed"
+msgstr ""
 
-#: rhino-pkg:222
-msgid "Searching apt…"
-msgstr "Suche in APT…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "Failed here"
+msgstr ""
 
-#: rhino-pkg:226
-msgid "Searching flatpak…"
-msgstr "Suche in Flatpak…"
+#: rhino-pkg:105 rhino-pkg:128
+#, python-brace-format
+msgid "No packages found matching '{rest}'"
+msgstr ""
 
-#: rhino-pkg:231
-msgid "Searching snap…"
-msgstr "Suche in Snap…"
-
-#: rhino-pkg:237
-msgid "No packages found matching '$*'!"
-msgstr "Keine passenden Pakete zu '$*' gefunden!"
-
-#: rhino-pkg:241
-msgid "Found packages matching '${BPurple}$*${NC}':"
-msgstr "Pakete passend zu '${BPurple}$*${NC}' gefunden:"
-
-#: rhino-pkg:286
+#: rhino-pkg:108
+#, python-brace-format
 msgid "Select which package to install"
 msgstr "Wählen Sie Pakete aus, welche Installiert werden sollen"
 
-#: rhino-pkg:292
+#: rhino-pkg:109
+#, python-brace-format
+msgid "Selecting '{pkg}' from package manager '{provider}'"
+msgstr ""
+
+#: rhino-pkg:115
+#, python-brace-format
+msgid "Failed to install '{pkg}'."
+msgstr ""
+
+#: rhino-pkg:131
+#, python-brace-format
 msgid "Select which package to remove"
 msgstr "Wählen Sie die Pakete aus, welche Sie löschen möchten."
 
-#: rhino-pkg:298
-msgid "'${entered_input[*]}' is not a valid number"
-msgstr "'${entered_input[*]}' ist keine gültige Zahl"
+#: rhino-pkg:133
+#, python-brace-format
+msgid "Removing '{part}' from '{provider}'"
+msgstr ""
 
-#: rhino-pkg:303
-msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
-msgstr "'${BPurple}${pkgs[i]}${NC}' von Paketmanager '${BPurple}${pkgrepo[i]}${NC}' wird gewählt"
+#: rhino-pkg:142
+#, python-brace-format
+msgid ""
+"Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
+"{n}) "
+msgstr ""
 
-#: rhino-pkg:306
-msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "Sind Sie sich sicher? (${BGreen}y${NC}/${BRed}N${NC}) "
+#: cmd.nu:28
+#, python-brace-format
+msgid "No valid inputs given"
+msgstr ""
 
-#: rhino-pkg:341
-msgid "Invalid repository name!"
-msgstr "Ungültiger Repository Name!"
+#: search.nu:9 search.nu:33
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr "Suche in Pacstall…"
+
+#: search.nu:12
+#, python-brace-format
+msgid "Searching Flatpak…"
+msgstr "Suche in Flatpak…"
+
+#: search.nu:15 search.nu:39
+#, python-brace-format
+msgid "Searching APT…"
+msgstr "Suche in APT…"
+
+#: search.nu:17 search.nu:41
+#, python-brace-format
+msgid "Searching Snap…"
+msgstr "Suche in Snap…"

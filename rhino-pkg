@@ -1,439 +1,454 @@
-#!/bin/bash
+#!/usr/bin/env -S nu --plugins '[/usr/share/nutext/nu_plugin_nutext]'
 
-tabs -4
+use "/usr/share/rhino-pkg/modules/lib/" [search]
+use "/usr/share/rhino-pkg/modules/pluggables/" [apt flatpak pacstall snap]
+use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [prompt cleanup-pkg remove-pkg repo-sync]
 
-export TEXTDOMAIN=rhino-pkg
-if [[ -n $RHINOPKG_DEBUG ]]; then
-    export TEXTDOMAINDIR="${PWD}/locale"
-else
-    export TEXTDOMAINDIR=/usr/share/locale
-fi
+tregister /usr/share/locale/ rhino-pkg
 
-# Colors
-if [[ -z $NO_COLOR ]]; then
-    export NC=$'\033[0m'
-    export BGreen=$'\033[1;32m'
-    export BCyan=$'\033[1;36m'
-    export BYellow=$'\033[1;33m'
-    export BPurple=$'\033[1;35m'
-    export BRed=$'\033[1;31m'
-    export BWhite=$'\033[1;37m'
-    export c1=$'\u001b[38;5;104m' # light purple
-    export c2=$'\u001b[0m'        # white/reset
-    export c3=$'\u001b[38;5;55m'  # dark purple
-    export c4=$'\u001b[38;5;98m'  # medium purple
-fi
-
-help_flag="USAGE: $(basename $0) [function] {flag} <input>
-
-functions:
-    install: Install package(s) - Prompts user to respond with 
-             the number(s) associated with the desired package(s).
-             
-    remove:  Uninstall package(s) - Prompts user to respond with
-             the number(s) associated with the desired package(s).
-             
-    search:  Search for package(s) - Does not have a second prompt.
-    
-    update:  Updates all packages accessible to the wrapper - does
-             not accept <input>, instead use install to update 
-             individual packages. Has a confirmation prompt.
-
-    cleanup: Attempts to repair broken dependencies and remove any
-             unused packages. Does not accept <input>, but has 
-             a confirmation prompt.
-
-flags: 
-    --help/-h: Display this page
-    
-    --description/-d: By default, $(basename $0) will only display packages 
-    that contain <input> within their name. Use this flag to increase 
-    range and display packages with <input> in their description.
-
-    -y: Makes functions with confirmation prompts run promptless.
-    
-input: 
-    Provide a package name or description.
-
-Example execution:
-    \$ $(basename $0) install foobar
-    Found packages matching '${BPurple}foobar${NC}':
-
-    [${BGreen}0${NC}]: pyfoobar (${BGreen}apt${NC})
-    [${BGreen}1${NC}]: foobarshell (${BGreen}apt${NC})
-    [${BCyan}2${NC}]: foobar (${BCyan}flatpak${NC})
-    [${BRed}3${NC}]: foobar-web (${BRed}snap${NC})
-    [${BYellow}4${NC}]: foobar-bin (${BYellow}pacstall${NC})
-    [${BYellow}5${NC}]: foobar-theme (${BYellow}pacstall${NC})
-
-    Select which package to install [0-5]: 3 4 5
-    Selecting '${BPurple}foobar-web${NC}' from package manager '${BPurple}snap${NC}'
-    Selecting '${BPurple}foobar-bin${NC}' from package manager '${BPurple}pacstall${NC}'
-    Selecting '${BPurple}foobar-theme${NC}' from package manager '${BPurple}pacstall${NC}'
-    Are you sure? (${BGreen}y${NC}/${BRed}N${NC})
-    [...]
-      
-${c1}       .;:;,.  .:       
-${c1}    'coooooooo:oo.';.   
-${c1}  ,oooooooooooooooo    ;
-${c1} clllcccllloooooooo;c:'o
-${c1}.${c3};${c4}';:::::::::${c1}cclooooooo'
-${c3}''',${c4}::::::::::::::${c1}ccclc.
-${c3}.'''${c4};::::::::::${c2}l${c4}::::::: 
-${c3} ''''${c4},:::::::::${c2}kd${c4}.      
-${c3} .'''''${c4},;::${c2}ck:${c2}oW${c4};       
-${c3}   ''''''''${c2}kXOM.        
-${c3}     .,,:${c2}dXMK           
-${c3}       ${c2}:k
-
-$(basename "$0") 0.1.2
-A package manager wrapper for Pacstall, APT, Flatpak and snap
-Developed by Elsie19 <elsie19@pm.me> for
-the Rhino Linux distribution."
-
-function msg() {
-    local input="$*"
-    echo -e "$input"
-}
-
-function prompt() {
-    local input="$1"
-    local index="$2"
-    echo -ne "$input [0-$index]: ${BWhite}"
-}
-
-function clearscr() {
-    tput cuu 1 && tput el
-}
-
-function search_pacstall() {
-    if [[ -z $DESCRIPTION ]]; then
-        if ! pacstall -S "$*" > /dev/null 2>&1; then
-            return 1
-        else
-            # remove color codes
-            local contents=("$(pacstall -S "$*" | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g' | awk '{print $1}')")
-        fi
-    else
-        if ! pacstall -Sd "$*" > /dev/null 2>&1; then
-            return 1
-        else
-            # remove color codes
-            local contents=("$(pacstall -Sd "$*" | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g' | awk '{print $1}')")
-        fi
-    fi
-    echo "${contents[@]}"
-}
-
-function search_apt() {
-    if [[ -z $DESCRIPTION ]]; then
-        local contents=("$(apt-cache search --names-only "$*" | awk '{print $1}')")
-    else
-        local contents=("$(apt-cache search "$*" | awk '{print $1}')")
-    fi
-    if [[ -n $contents ]]; then
-        echo "${contents[@]}"
-    else
-        return 1
-    fi
-}
-
-function search_flatpak() {
-    if [[ -z $DESCRIPTION ]]; then
-        local contents=("$(LC_ALL=C sudo flatpak search --columns="application" "$*" | grep -i --color=never "$*")")
-    else
-        local contents=("$(LC_ALL=C sudo flatpak search --columns="application" "$*")")
-    fi
-    if [[ ${contents[*]} == "No matches found" ]]; then
-        return 1
-    else
-        echo "${contents[@]}"
-    fi
-}
-
-function search_snap() {
-    if [[ -z $DESCRIPTION ]]; then
-        local contents=("$(snap find "$*" | awk '{ print $1 }' | tail -n +2 | grep -i --color=never "$*")")
-    else
-        local contents=("$(snap find "$*" | awk '{ print $1 }' | tail -n +2)")
-    fi
-    if [[ ${contents[*]} == "No matching snaps for"* ]]; then
-        return 1
-    else
-        echo "${contents[@]}"
-    fi
-}
-
-case "${1}" in
-    search)
-        SEARCH=true
-        shift
-        ;;
-    install)
-        INSTALL=true
-        shift
-        ;;
-    remove)
-        REMOVE=true
-        shift
-        ;;
-    cleanup)
-        CLEANUP=true
-        shift
-        if [[ $1 == "-y" ]]; then
-            PROMPTLESS=true
-            shift
-        fi
-        ;;
-    update)
-        UPDATE=true
-        shift
-        if [[ $1 == "-y" ]]; then
-            PROMPTLESS=true
-            shift
-        fi
-        ;;
-    -h | --help)
-        echo "$help_flag"
-        exit 0
-        ;;
-    *)
-        echo "$help_flag"
+def main [
+    --description (-d) # Increase range and display packages with <input> in their description
+    --help (-h) # Display help page
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+    ...rest: string # 'install', 'remove', 'search', 'update', 'cleanup', etc
+] : any -> int {
+    run-external $env.CURRENT_FILE help
+    if ($rest | is-empty) {
         exit 1
-        ;;
-esac
+    }
+}
 
-if [[ $1 == "-d" || $1 == "--description" ]]; then
-    DESCRIPTION=true
-    shift
-fi
+def "main --help" [] { main help }
 
-if [[ -n $UPDATE ]]; then
-    if [[ -n $* ]]; then
+def "main -h" [] { main help }
+
+def "main help" [] {
+    let help_cmds = [
+        {
+            Command: "search",
+            Description: "Search for packages from all available managers",
+            Usage: "search <input>",
+            Flags: "--description",
+            Variants: "s (-d), sd"
+        },
+        {
+            Command: "install",
+            Description: "Install packages; prompts from selection with repository search",
+            Usage: "install <input>",
+            Flags: "--description, --yes",
+            Variants: "i (-d -y), id (-y)"
+        },
+        {
+            Command: "remove",
+            Description: "Uninstall packages; prompts for selection with local search",
+            Usage: "remove <input>",
+            Flags: "--yes",
+            Variants: "{r|rm} (-y)"
+        },
+        {
+            Command: "cleanup",
+            Description: "Repair broken packages and remove unused dependencies",
+            Usage: "cleanup",
+            Flags: "--yes",
+            Variants: "c (-y)"
+        },
+        {
+            Command: "sync",
+            Description: "Refresh repository data for all available managers",
+            Usage: "sync",
+            Flags: "",
+            Variants: "S, Ss (-d), Ssd, Si (-d -y), Sid (-y)"
+        },
+        {
+            Command: "update",
+            Description: "Refresh repository data and update all packages",
+            Usage: "update",
+            Flags: "--yes",
+            Variants: "{u|up|upgrade} (-y)"
+        },
+        {
+            Command: "help",
+            Description: "Show this help message",
+            Usage: "help",
+            Flags: "",
+            Variants: "-h, --help"
+        }
+    ]
+
+    let help_flags = [
+        {
+            Flag: "-h, --help",
+            Description: "Show this help message"
+        },
+        {
+            Flag: "-d, --description",
+            Description: "Search in and show package descriptions"
+        },
+        {
+            Flag: "-y, --yes",
+            Description: "Skip confirmation prompts"
+        }
+    ]
+
+    print $"USAGE:\n rpk [function] {flag} <input>\n
+($help_flags | table -i false -t none)
+($help_cmds | select Command Description | table -i false -t none)
+($help_cmds | select Usage Flags Variants | table -i false -t none)
+rpk 2.0.0\nA package manager wrapper for Pacstall, APT, Flatpak and Snap\n
+Created by Elsie19 <elsie19@pm.me>\nDeveloped for the Rhino Linux distribution."
+}
+
+def "main s" [
+    --description (-d)
+    rest: string
+] {
+    if $description {
+        main search $rest --description
+    } else {
+        main search $rest
+    }
+}
+
+def "main Ss" [
+    --description (-d)
+    rest: string
+] {
+    repo-sync
+    if $description {
+        main search $rest --description
+    } else {
+        main search $rest
+    }
+}
+
+def "main sd" [
+    rest: string
+] { 
+    main search $rest --description
+}
+
+def "main Ssd" [
+    rest: string
+] { 
+    repo-sync
+    main search $rest --description
+}
+
+def "main search" [
+    --description (-d) # Increase range and display packages with <input> in their description
+    rest: string # Search query
+] {
+    # Block output from `return` here.
+    let dummy = (search search-pkgs $description $rest)
+    if ($dummy | is-empty) {
+        tprint -e "No packages found matching '{rest}'!" { rest: $rest }
         exit 1
-    fi
-    if [[ -z $PROMPTLESS ]]; then
-        echo -n $"Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
-        read -ra read_update
-        echo -ne "${NC}"
-    else
-        read_update=("Y")
-    fi
-    case "${read_update[0]}" in
-        Y* | y*) ;;
-        *) exit 1 ;;
-    esac
-    if command -v nala &> /dev/null; then
-        if [[ -n $PROMPTLESS ]]; then
-            sudo nala upgrade -y --full --no-autoremove -o Acquire::AllowReleaseInfoChange="true"
-        else
-            sudo nala upgrade --full --no-autoremove -o Acquire::AllowReleaseInfoChange="true"
-        fi
-    else
-        if [[ -n $PROMPTLESS ]]; then
-            sudo apt update --allow-releaseinfo-change && sudo apt upgrade -y
-        else
-            sudo apt update --allow-releaseinfo-change && sudo apt upgrade
-        fi
-    fi
-    if command -v pacstall &> /dev/null; then
-        if [[ -n $PROMPTLESS ]]; then
-            pacstall -U
-            pacstall -PUp
-        else
-            pacstall -U
-            pacstall -Up
-        fi
-    fi
-    if command -v flatpak &> /dev/null; then
-        if [[ -n $PROMPTLESS ]]; then
-            sudo flatpak update -y
-        else
-            sudo flatpak update
-        fi
-    fi
-    if command -v snap &> /dev/null; then
-        sudo snap refresh
-    fi
-    exit 0
-fi
+    } else {
+        if $description {
+            return (
+                $dummy
+                | select index pkg provider desc
+                | rename index Package Provider Description
+                | table -t thin
+            )
+        } else {
+            return (
+                $dummy
+                | select index pkg provider
+                | rename index Package Provider
+            )
+        }
+    }
+}
 
-if [[ -n $CLEANUP ]]; then
-    if [[ -n $* ]]; then
+def "main i" [
+    --description (-d)
+    --yes (-y)
+    rest: string
+] {
+    if $description {
+        if $yes {
+            main install $rest --description --yes
+        } else {
+            main install $rest --description
+        }
+    } else {
+        if $yes {
+            main install $rest --yes
+        } else {
+            main install $rest
+        }
+    }
+}
+
+def "main Si" [
+    --description (-d)
+    --yes (-y)
+    rest: string
+] {
+    repo-sync
+    if $description {
+        if $yes {
+            main install $rest --description --yes
+        } else {
+            main install $rest --description
+        }
+    } else {
+        if $yes {
+            main install $rest --yes
+        } else {
+            main install $rest
+        }
+    }
+}
+
+def "main id" [
+    --yes (-y)
+    rest: string
+] {
+    if $yes {
+        main install $rest --description --yes
+    } else {
+        main install $rest --description
+    }
+}
+
+def "main Sid" [
+    --yes (-y)
+    rest: string
+] {
+    repo-sync
+    if $yes {
+        main install $rest --description --yes
+    } else {
+        main install $rest --description
+    }
+}
+
+def "main install" [
+    --description (-d) # Increase range and display packages with <input> in their description
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+    rest: string # Search query
+] {
+    # Block output from `return` here.
+    let dummy = (search search-pkgs $description $rest)
+    if ($dummy | is-empty) {
+        tprint -e "No packages found matching '{rest}'!" { rest: $rest }
         exit 1
-    fi
-    if [[ -z $PROMPTLESS ]]; then
-        echo -n $"Attempting to repair dependencies and remove unused packages. Continue? (${BGreen}y${NC}/${BRed}N${NC}) "
-        read -ra read_update
-        echo -ne "${NC}"
-    else
-        read_update=("Y")
-    fi
-    case "${read_update[0]}" in
-        Y* | y*) ;;
-        *) exit 1 ;;
-    esac
-    if command -v nala &> /dev/null; then
-        if [[ -n $PROMPTLESS ]]; then
-            sudo nala install --fix-broken && sudo nala autoremove -y
-        else
-            sudo nala install --fix-broken && sudo nala autoremove
-        fi
-    else
-        if [[ -n $PROMPTLESS ]]; then
-            sudo apt --fix-broken install && sudo apt auto-remove -y
-        else
-            sudo apt --fix-broken install && sudo apt auto-remove
-        fi
-    fi
-    if command -v flatpak &> /dev/null; then
-        if [[ -n $PROMPTLESS ]]; then
-            sudo flatpak repair && sudo flatpak uninstall --unused -y
-        else
-            sudo flatpak repair && sudo flatpak uninstall --unused
-        fi
-    fi
-    if command -v snap &> /dev/null; then
-        if [[ -z "$(LANG=C snap list --all | while read snapname ver rev trk pub notes; do if [[ "$notes" == *disabled* ]]; then sudo snap remove "$snapname" --revision="$rev"; fi; done)" ]]; then
-            echo "Nothing for snap to clean."
-        fi
-    fi
-    exit 0
-fi
-
-# Lowercase the rest of input
-set -- "${*,,}"
-
-if command -v pacstall &> /dev/null; then
-    msg $"Searching Pacstall…"
-    pacstall_search_list=($(search_pacstall $*))
-    clearscr
-fi
-msg $"Searching apt…"
-apt_search_list=($(search_apt $*))
-clearscr
-if command -v flatpak &> /dev/null; then
-    msg $"Searching flatpak…"
-    flatpak_search_list=($(search_flatpak $*))
-    clearscr
-fi
-if command -v snap &> /dev/null; then
-    msg $"Searching snap…"
-    snap_search_list=($(search_snap $*))
-    clearscr
-fi
-
-if [[ ${#pacstall_search_list} -eq 0 && ${#apt_search_list} -eq 0 && ${#flatpak_search_list} -eq 0 && ${#snap_search_list} -eq 0 ]]; then
-    msg $"No packages found matching '$*'!"
-    exit 1
-fi
-
-msg $"Found packages matching '${BPurple}$*${NC}':"
-echo
-
-count=0
-pkgs=()
-pkgrepo=()
-
-for i in "${flatpak_search_list[@]}"; do
-    echo -e "[${BCyan}$count${NC}]: $i (${BCyan}flatpak${NC})"
-    pkgs+=("$i")
-    pkgrepo+=("flatpak")
-    ((count++))
-done
-for i in "${apt_search_list[@]}"; do
-    echo -e "[${BGreen}$count${NC}]: $i (${BGreen}apt${NC})"
-    pkgs+=("$i")
-    pkgrepo+=("apt")
-    ((count++))
-done
-for i in "${pacstall_search_list[@]}"; do
-    echo -e "[${BYellow}$count${NC}]: $i (${BYellow}pacstall${NC})"
-    pkgs+=("$i")
-    pkgrepo+=("pacstall")
-    ((count++))
-done
-for i in "${snap_search_list[@]}"; do
-    echo -e "[${BRed}$count${NC}]: $i (${BRed}snap${NC})"
-    pkgs+=("$i")
-    pkgrepo+=("snap")
-    ((count++))
-done
-
-((count--))
-
-if [[ -n $SEARCH ]]; then
-    exit 0
-fi
-
-echo
-
-if [[ -n $INSTALL ]]; then
-    flatpak_cmd="install"
-    snap_cmd="install"
-    apt_cmd="install"
-    pacstall_cmd="-I"
-    prompt $"Select which package to install" "$count"
-elif [[ -n $REMOVE ]]; then
-    flatpak_cmd="remove"
-    snap_cmd="remove"
-    apt_cmd="remove"
-    pacstall_cmd="-R"
-    prompt $"Select which package to remove" "$count"
-fi
-
-read -ra entered_input
-echo -ne "${NC}"
-if ((count == 0)) && [[ -z ${entered_input[*]} ]]; then
-    entered_input="0"
-elif [[ ! ${entered_input[*]} =~ ^(([0-9])\s?)+ ]]; then
-    msg $"'${entered_input[*]}' is not a valid number"
-    exit 1
-fi
-
-for i in "${entered_input[@]}"; do
-    msg $"Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
-done
-
-echo -n $"Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-read -r sure
-case "${sure}" in
-    Y* | y*)
-        true
-        ;;
-    *)
-        exit 1
-        ;;
-esac
-
-for i in "${entered_input[@]}"; do
-    case "${pkgrepo[i]}" in
-        flatpak)
-            sudo flatpak "${flatpak_cmd}" "${pkgs[i]}" -y
-            ret=$?
-            ;;
-        apt)
-            if command -v nala &> /dev/null; then
-                sudo nala "${apt_cmd}" "${pkgs[i]}" -y
-                ret=$?
-            else
-                sudo apt "${apt_cmd}" "${pkgs[i]}" -y
-                ret=$?
-            fi
-            ;;
-        pacstall)
-            pacstall "${pacstall_cmd}" "${pkgs[i]}"
-            ret=$?
-            ;;
-        snap)
-            sudo snap "${snap_cmd}" "${pkgs[i]}"
-            ret=$?
-            ;;
-        *)
-            msg $"Invalid repository name!"
+    } else {
+        if $description {
+            print (
+                $dummy
+                | select index pkg provider desc
+                | rename index Package Provider Description
+                | table -t thin
+            )
+        } else {
+            print (
+                $dummy
+                | select index pkg provider
+                | rename index Package Provider
+            )
+        }
+    }
+    let which = (prompt (_ "Select which packages to install") $dummy)
+    $which | each {|part|
+        tprint "Selecting '{pkg}' from package manager '{provider}'" {
+            pkg: $"(ansi purple_bold)($part.pkg | ansi strip)(ansi reset)",
+            provider: $"(ansi purple_bold)($part.provider | ansi strip)(ansi reset)"
+        }
+    }
+    if (not $yes) {
+        let response = (
+            try {
+                input (_ "Are you sure? ({y}/{n}) " {
+                    y: $"(ansi green_bold)y(ansi reset)",
+                    n: $"(ansi red_bold)N(ansi reset)" }
+                )
+                | str downcase
+                | str starts-with "y"
+            }
+        )
+        if ($response | is-empty) or (not $response) {
             exit 1
-            ;;
-    esac
-done
+        }
+    }
+    for part in $which {
+        try {
+            match ($part.provider | ansi strip) {
+                "apt" => {
+                    apt install ($part.pkg | ansi strip) $yes
+                }
+                "pacstall" => {
+                    pacstall install ($part.pkg | ansi strip) $part.repo $yes
+                }
+                "flatpak" => {
+                    flatpak install ($part.pkg | ansi strip) $part.remote $yes
+                }
+                "snap" => {
+                    snap install ($part.pkg | ansi strip) $part.notes
+                }
+            }
+        } catch {
+            tprint -e "Failed to install '{pkg}'." { pkg: $"(ansi red)($part.pkg | ansi strip)(ansi reset)" }
+            exit $env.LAST_EXIT_CODE
+        }
+    }
+}
 
-exit "$ret"
+def "main r" [
+    --yes (-y)
+    rest: string
+] {
+    if $yes {
+        main remove $rest --yes
+    } else {
+        main remove $rest
+    }
+}
+
+def "main rm" [
+    --yes (-y)
+    rest: string
+] {
+    if $yes {
+        main remove $rest --yes
+    } else {
+        main remove $rest
+    }
+}
+
+def "main remove" [
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+    rest: string # Search query
+] {
+    # Block output from `return` here.
+    let dummy = (search search-local-pkgs $rest)
+    if (($dummy | length) <= 0) {
+        tprint -e "No packages found matching '{rest}'!" { rest: $rest }
+        return
+    } else {
+        print (
+            $dummy
+            | select index pkg version provider
+        )
+    }
+    let which = (prompt (_ "Select which package to remove") $dummy)
+    $which | each { |part|
+        tprint -e "Removing '{part}' from '{provider}'" {
+            part: $"(ansi purple_bold)($part.pkg | ansi strip)(ansi reset)",
+            provider: $"(ansi purple_bold)($part.provider | ansi strip)(ansi reset)"
+        }
+    }
+    if (not $yes) {
+        let response = (
+            try {
+                input (_ "Are you sure? ({y}/{n}) " {
+                    y: $"(ansi green_bold)y(ansi reset)",
+                    n: $"(ansi red_bold)N(ansi reset)" }
+                )
+                | str downcase
+                | str starts-with "y"
+            }
+        )
+        if ($response | is-empty) or (not $response) {
+            exit 1
+        }
+    }
+    for $part in $which {
+        remove-pkg ($part.pkg | ansi strip) ($part.provider | ansi strip) $yes
+    }
+}
+
+def "main c" [
+    --yes (-y)
+] {
+    if $yes {
+        main cleanup --yes
+    } else {
+        main cleanup
+    }
+}
+
+def "main cleanup" [
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+] {
+    if (not $yes) {
+        let response = (
+            try {
+                input (_ "Attempting to repair dependencies and remove unused packages. Continue? ({y}/{n}) " {
+                    y: $"(ansi green_bold)y(ansi reset)",
+                    n: $"(ansi red_bold)N(ansi reset)" }
+                )
+                | str downcase
+                | str starts-with "y"
+            }
+        )
+        if ($response | is-empty) or (not $response) {
+            exit 1
+        }
+    }
+    cleanup-pkg $yes
+}
+
+def "main u" [
+    --yes (-y)
+] {
+    if $yes {
+        main update --yes
+    } else {
+        main update
+    }
+}
+
+def "main up" [
+    --yes (-y)
+] {
+    if $yes {
+        main update --yes
+    } else {
+        main update
+    }
+}
+
+def "main upgrade" [
+    --yes (-y)
+] {
+    if $yes {
+        main update --yes
+    } else {
+        main update
+    }
+}
+
+def "main update" [
+    --yes (-y) # Makes functions with confirmation prompts run promptless
+] {
+    if (not $yes) {
+        let response = (
+            try {
+                input (_ "Are you sure you want to update all packages? ({y}/{n}) " {
+                    y: $"(ansi green_bold)y(ansi reset)",
+                    n: $"(ansi red_bold)N(ansi reset)" }
+                )
+                | str downcase
+                | str starts-with "y"
+            }
+        )
+        if ($response | is-empty) or (not $response) {
+            exit 1
+        }
+    }
+    apt upgrade $yes
+    pacstall upgrade $yes
+    flatpak upgrade $yes
+    snap upgrade $yes
+}
+
+def "main S" [] {
+    repo-sync
+}
+
+def "main sync" [] {
+    repo-sync
+}

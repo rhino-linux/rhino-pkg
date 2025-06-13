@@ -14,48 +14,80 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.15.2\n"
 
-#: rhino-pkg:73
-msgid "No input given!"
-msgstr "কোনো ইনপুট দেওয়া হয়নি!"
+#: rhino-pkg:83
+#, python-brace-format
+msgid ""
+"Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
+msgstr ""
 
-#: rhino-pkg:77
-msgid "Searching Pacstall…"
-msgstr "Pacstall-এ খোঁজ করা হচ্ছে…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "No valid subcommand passed"
+msgstr ""
 
-#: rhino-pkg:81
-msgid "Searching apt…"
-msgstr "apt-এ খোঁজ করা হচ্ছে…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "Failed here"
+msgstr ""
 
-#: rhino-pkg:85
-msgid "Searching flatpak…"
-msgstr "flatpak-এ খোঁজ করা হচ্ছে…"
+#: rhino-pkg:105 rhino-pkg:128
+#, python-brace-format
+msgid "No packages found matching '{rest}'"
+msgstr ""
 
-#: rhino-pkg:90
-msgid "Searching snap…"
-msgstr "snap-এ খোঁজ করা হচ্ছে…"
-
-#: rhino-pkg:96
-msgid "No packages found matching '$*'!"
-msgstr "'$*' এর সাথে মিলিত কোনো প্যাকেজ পাওয়া যায়নি!"
-
-#: rhino-pkg:99
-msgid "Found packages matching '${BPurple}$*${NC}':"
-msgstr "'${BPurple}$*${NC}' এর সাথে মিলিত প্যাকেজগুলি পাওয়া গেছে:"
-
-#: rhino-pkg:135
+#: rhino-pkg:108
+#, python-brace-format
 msgid "Select which package to install"
 msgstr "কোন প্যাকেজ ইনস্টল করতে হবে তা নির্বাচন করুন"
 
-#: rhino-pkg:139
-msgid "'$entered_input' is not a valid number"
-msgstr "'$entered_input' একটি বৈধ সংখ্যা নয়"
-
-#: rhino-pkg:143
-msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+#: rhino-pkg:109
+#, python-brace-format
+msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr ""
-"প্যাকেজ ম্যানেজার '${BPurple}${pkgs[i]}${NC}' থেকে "
-"'${BPurple}${pkgrepo[i]}${NC}' নির্বাচন করা হচ্ছে"
 
-#: rhino-pkg:168
-msgid "Invalid repository name!"
-msgstr "অবৈধ সংগ্রহস্থলের নাম!"
+#: rhino-pkg:115
+#, python-brace-format
+msgid "Failed to install '{pkg}'."
+msgstr ""
+
+#: rhino-pkg:131
+#, python-brace-format
+msgid "Select which package to remove"
+msgstr ""
+
+#: rhino-pkg:133
+#, python-brace-format
+msgid "Removing '{part}' from '{provider}'"
+msgstr ""
+
+#: rhino-pkg:142
+#, python-brace-format
+msgid ""
+"Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
+"{n}) "
+msgstr ""
+
+#: cmd.nu:28
+#, python-brace-format
+msgid "No valid inputs given"
+msgstr ""
+
+#: search.nu:9 search.nu:33
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr "Pacstall-এ খোঁজ করা হচ্ছে…"
+
+#: search.nu:12
+#, python-brace-format
+msgid "Searching Flatpak…"
+msgstr "Flatpak-এ খোঁজ করা হচ্ছে…"
+
+#: search.nu:15 search.nu:39
+#, python-brace-format
+msgid "Searching APT…"
+msgstr "APT-এ খোঁজ করা হচ্ছে…"
+
+#: search.nu:17 search.nu:41
+#, python-brace-format
+msgid "Searching Snap…"
+msgstr "Snap-এ খোঁজ করা হচ্ছে…"

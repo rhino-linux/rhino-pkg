@@ -14,61 +14,80 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.4-dev\n"
 
-#: rhino-pkg:186
+#: rhino-pkg:83
+#, python-brace-format
 msgid ""
-"Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}"
-"N${NC}) "
+"Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
 msgstr ""
-"მართლა გნებავთ ყველა პაკეტის განახლება? (${BGreen}y${NC}/${BRed}N${NC}) "
 
-#: rhino-pkg:218
-msgid "Searching Pacstall…"
-msgstr "ძებნა Pacstall-ში…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "No valid subcommand passed"
+msgstr ""
 
-#: rhino-pkg:222
-msgid "Searching apt…"
-msgstr "ძებნა apt-ში…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "Failed here"
+msgstr ""
 
-#: rhino-pkg:226
-msgid "Searching flatpak…"
-msgstr "ძებნა flatpak-ში…"
+#: rhino-pkg:105 rhino-pkg:128
+#, python-brace-format
+msgid "No packages found matching '{rest}'"
+msgstr ""
 
-#: rhino-pkg:231
-msgid "Searching snap…"
-msgstr "ძებნა snap-ში…"
-
-#: rhino-pkg:237
-msgid "No packages found matching '$*'!"
-msgstr "ვერ ვიპოვე პაკეტი, რომელიც ემთხვევა სტრიქონს '$*'!"
-
-#: rhino-pkg:241
-msgid "Found packages matching '${BPurple}$*${NC}':"
-msgstr "ნაპოვნი პაკეტები, რომლებიც ემთხვევა სტრიქონს '${BPurple}$*${NC}':"
-
-#: rhino-pkg:286
+#: rhino-pkg:108
+#, python-brace-format
 msgid "Select which package to install"
 msgstr "აირჩიეთ, რომელი პაკეტი დავაყენო"
 
-#: rhino-pkg:292
+#: rhino-pkg:109
+#, python-brace-format
+msgid "Selecting '{pkg}' from package manager '{provider}'"
+msgstr ""
+
+#: rhino-pkg:115
+#, python-brace-format
+msgid "Failed to install '{pkg}'."
+msgstr ""
+
+#: rhino-pkg:131
+#, python-brace-format
 msgid "Select which package to remove"
 msgstr "აირჩიეთ, რომელი პაკეტი წავშალო"
 
-#: rhino-pkg:298
-msgid "'${entered_input[*]}' is not a valid number"
-msgstr "'${entered_input[*]}' სწორი რიცხვი არაა"
-
-#: rhino-pkg:303
-msgid ""
-"Selecting '${BPurple}${pkgs[i]}${NC}' from package manager "
-"'${BPurple}${pkgrepo[i]}${NC}'"
+#: rhino-pkg:133
+#, python-brace-format
+msgid "Removing '{part}' from '{provider}'"
 msgstr ""
-"ავირჩიე '${BPurple}${pkgs[i]}${NC}' პაკეტების მმართველიდან "
-"'${BPurple}${pkgrepo[i]}${NC}'"
 
-#: rhino-pkg:306
-msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "დარწმუნებულ ბრძანდებით? (${BGreen}y${NC}/${BRed}N${NC}) "
+#: rhino-pkg:142
+#, python-brace-format
+msgid ""
+"Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
+"{n}) "
+msgstr ""
 
-#: rhino-pkg:341
-msgid "Invalid repository name!"
-msgstr "არასწორი რეპოზიტორიის სახელი!"
+#: cmd.nu:28
+#, python-brace-format
+msgid "No valid inputs given"
+msgstr ""
+
+#: search.nu:9 search.nu:33
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr "ძებნა Pacstall-ში…"
+
+#: search.nu:12
+#, python-brace-format
+msgid "Searching Flatpak…"
+msgstr "ძებნა Flatpak-ში…"
+
+#: search.nu:15 search.nu:39
+#, python-brace-format
+msgid "Searching APT…"
+msgstr "ძებნა APT-ში…"
+
+#: search.nu:17 search.nu:41
+#, python-brace-format
+msgid "Searching Snap…"
+msgstr "ძებნა Snap-ში…"

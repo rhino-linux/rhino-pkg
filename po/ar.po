@@ -5,8 +5,8 @@ msgstr ""
 "POT-Creation-Date: 2024-01-25 23:52+0200\n"
 "PO-Revision-Date: 2024-02-08 13:02+0000\n"
 "Last-Translator: 7A9Oo <med.ahk.2018@gmail.com>\n"
-"Language-Team: Arabic <https://hosted.weblate.org/projects/rhino-linux/"
-"rhino-pkg/ar/>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/rhino-linux/rhino-"
+"pkg/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,56 +15,80 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 5.4-dev\n"
 
-#: rhino-pkg:186
-msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "هل أنت متأكد من تحديث كل الحزم؟ (${BGreen}y${NC}/${BRed}N${NC}). "
+#: rhino-pkg:83
+#, python-brace-format
+msgid ""
+"Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
+msgstr ""
 
-#: rhino-pkg:218
-msgid "Searching Pacstall…"
-msgstr "جار البحث عن Pacstall…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "No valid subcommand passed"
+msgstr ""
 
-#: rhino-pkg:222
-msgid "Searching apt…"
-msgstr "جار البحث عن apt…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "Failed here"
+msgstr ""
 
-#: rhino-pkg:226
-msgid "Searching flatpak…"
-msgstr "جار البحث عن flatpak…"
+#: rhino-pkg:105 rhino-pkg:128
+#, python-brace-format
+msgid "No packages found matching '{rest}'"
+msgstr ""
 
-#: rhino-pkg:231
-msgid "Searching snap…"
-msgstr "جار البحث عن snap…"
-
-#: rhino-pkg:237
-msgid "No packages found matching '$*'!"
-msgstr "لا يوجد حزمة مطابقة '$*'!"
-
-#: rhino-pkg:241
-msgid "Found packages matching '${BPurple}$*${NC}':"
-msgstr "حزم متوفرة مطابقة '${BPurple}$*${NC}':"
-
-#: rhino-pkg:286
+#: rhino-pkg:108
+#, python-brace-format
 msgid "Select which package to install"
 msgstr "إختر الحزمة المراد تنصيبها"
 
-#: rhino-pkg:292
+#: rhino-pkg:109
+#, python-brace-format
+msgid "Selecting '{pkg}' from package manager '{provider}'"
+msgstr ""
+
+#: rhino-pkg:115
+#, python-brace-format
+msgid "Failed to install '{pkg}'."
+msgstr ""
+
+#: rhino-pkg:131
+#, python-brace-format
 msgid "Select which package to remove"
 msgstr "إختر الحزمة المراد حذفها"
 
-#: rhino-pkg:298
-msgid "'${entered_input[*]}' is not a valid number"
-msgstr "'${entered_input[*]}' رقم غير مطابق"
-
-#: rhino-pkg:303
-msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
+#: rhino-pkg:133
+#, python-brace-format
+msgid "Removing '{part}' from '{provider}'"
 msgstr ""
-"إختيار '${BPurple}${pkgs[i]}${NC}' من مدير الحزم "
-"'${BPurple}${pkgrepo[i]}${NC}'"
 
-#: rhino-pkg:306
-msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "هل أنت متأكد ؟ (${BGreen}y${NC}/${BRed}N${NC}). "
+#: rhino-pkg:142
+#, python-brace-format
+msgid ""
+"Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
+"{n}) "
+msgstr ""
 
-#: rhino-pkg:341
-msgid "Invalid repository name!"
-msgstr "اسم المستودع خاطئ !"
+#: cmd.nu:28
+#, python-brace-format
+msgid "No valid inputs given"
+msgstr ""
+
+#: search.nu:9 search.nu:33
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr "جار البحث عن Pacstall…"
+
+#: search.nu:12
+#, python-brace-format
+msgid "Searching Flatpak…"
+msgstr "جار البحث عن Flatpak…"
+
+#: search.nu:15 search.nu:39
+#, python-brace-format
+msgid "Searching APT…"
+msgstr "جار البحث عن APT…"
+
+#: search.nu:17 search.nu:41
+#, python-brace-format
+msgid "Searching Snap…"
+msgstr "جار البحث عن Snap…"

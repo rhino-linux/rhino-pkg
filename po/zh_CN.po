@@ -15,55 +15,80 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.7-dev\n"
 
-#: rhino-pkg:186
-msgid "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "确定更新全部软件包？ (${BGreen}y${NC}/${BRed}N${NC}) "
+#: rhino-pkg:83
+#, python-brace-format
+msgid ""
+"Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
+msgstr ""
 
-#: rhino-pkg:218
-msgid "Searching Pacstall…"
-msgstr "正在检索Pacstall…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "No valid subcommand passed"
+msgstr ""
 
-#: rhino-pkg:222
-msgid "Searching apt…"
-msgstr "正在检索apt…"
+#: rhino-pkg:84
+#, python-brace-format
+msgid "Failed here"
+msgstr ""
 
-#: rhino-pkg:226
-msgid "Searching flatpak…"
-msgstr "正在检索flatpak…"
+#: rhino-pkg:105 rhino-pkg:128
+#, python-brace-format
+msgid "No packages found matching '{rest}'"
+msgstr ""
 
-#: rhino-pkg:231
-msgid "Searching snap…"
-msgstr "正在检索snap…"
-
-#: rhino-pkg:237
-msgid "No packages found matching '$*'!"
-msgstr "未找到匹配 '$*' 的软件包！"
-
-#: rhino-pkg:241
-msgid "Found packages matching '${BPurple}$*${NC}':"
-msgstr "找到匹配 '${BPurple}$*${NC}' 的软件包："
-
-#: rhino-pkg:286
+#: rhino-pkg:108
+#, python-brace-format
 msgid "Select which package to install"
 msgstr "选择要安装的软件包"
 
-#: rhino-pkg:292
+#: rhino-pkg:109
+#, python-brace-format
+msgid "Selecting '{pkg}' from package manager '{provider}'"
+msgstr ""
+
+#: rhino-pkg:115
+#, python-brace-format
+msgid "Failed to install '{pkg}'."
+msgstr ""
+
+#: rhino-pkg:131
+#, python-brace-format
 msgid "Select which package to remove"
 msgstr "选择要移除的软件包"
 
-#: rhino-pkg:298
-msgid "'${entered_input[*]}' is not a valid number"
-msgstr "'${entered_input[*]}' 不是一个有效数字"
+#: rhino-pkg:133
+#, python-brace-format
+msgid "Removing '{part}' from '{provider}'"
+msgstr ""
 
-#: rhino-pkg:303
-msgid "Selecting '${BPurple}${pkgs[i]}${NC}' from package manager '${BPurple}${pkgrepo[i]}${NC}'"
-msgstr "从软件包管理器 '${BPurple}${pkgrepo[i]}${NC}' 中选择 "
-"'${BPurple}${pkgs[i]}${NC}'"
+#: rhino-pkg:142
+#, python-brace-format
+msgid ""
+"Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
+"{n}) "
+msgstr ""
 
-#: rhino-pkg:306
-msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
-msgstr "是否确定？ (${BGreen}y${NC}/${BRed}N${NC}) "
+#: cmd.nu:28
+#, python-brace-format
+msgid "No valid inputs given"
+msgstr ""
 
-#: rhino-pkg:341
-msgid "Invalid repository name!"
-msgstr "无效仓库名称！"
+#: search.nu:9 search.nu:33
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr "正在检索Pacstall…"
+
+#: search.nu:12
+#, python-brace-format
+msgid "Searching Flatpak…"
+msgstr "正在检索Flatpak…"
+
+#: search.nu:15 search.nu:39
+#, python-brace-format
+msgid "Searching APT…"
+msgstr "正在检索APT…"
+
+#: search.nu:17 search.nu:41
+#, python-brace-format
+msgid "Searching Snap…"
+msgstr "正在检索Snap…"
