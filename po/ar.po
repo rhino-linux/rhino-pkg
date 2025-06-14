@@ -3,17 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-25 23:52+0200\n"
-"PO-Revision-Date: 2024-02-08 13:02+0000\n"
-"Last-Translator: 7A9Oo <med.ahk.2018@gmail.com>\n"
-"Language-Team: Arabic <https://hosted.weblate.org/projects/rhino-linux/rhino-"
-"pkg/ar/>\n"
+"PO-Revision-Date: 2025-06-14 18:20+0000\n"
+"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-pkg/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
@@ -21,8 +21,7 @@ msgid "No packages found matching '{rest}'!"
 msgstr "لا يوجد حزمة مطابقة '{rest}'!"
 
 #: rhino-pkg:254
-#, fuzzy, python-brace-format
-#| msgid "Select which package to install"
+#, python-brace-format
 msgid "Select which packages to install"
 msgstr "إختر الحزمة المراد تنصيبها"
 
