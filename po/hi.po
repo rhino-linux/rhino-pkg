@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-06 11:11-0500\n"
-"PO-Revision-Date: 2025-06-14 18:20+0000\n"
-"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"PO-Revision-Date: 2025-06-15 19:01+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/hi/>\n"
 "Language: hi\n"
@@ -30,41 +30,42 @@ msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr "पैकेज मैनेजर '{pkg}' से '{provider}' चुने गए हैं"
 
 #: rhino-pkg:264 rhino-pkg:345
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Are you sure? ({y}/{n}) "
-msgstr ""
+msgstr "क्या आप निश्चित हैं? (X15X) "
 
 #: rhino-pkg:293
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Failed to install '{pkg}'."
-msgstr ""
+msgstr "\"{pkg}\" स्थापित करने में विफल रहा।।"
 
 #: rhino-pkg:336
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Select which package to remove"
-msgstr ""
+msgstr "निकालने के लिए कौन से पैकेज चुनें"
 
 #: rhino-pkg:338
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
-msgstr ""
+msgstr "'{part}\" से '{provider}]' को हटा दें '"
 
 #: rhino-pkg:377
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
+"निर्भरता की मरम्मत करने और अप्रयुक्त पैकेज को हटाने का प्रयास करना। जारी रखें? ({y}/{n}) "
 
 #: rhino-pkg:428
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Are you sure you want to update all packages? ({y}/{n}) "
-msgstr ""
+msgstr "क्या आप सभी पैकेज को अपडेट करना चाहते हैं? {y} / {n} "
 
 #: cmd.nu:38 cmd.nu:48
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "No valid inputs given!"
-msgstr ""
+msgstr "कोई वैध इनपुट नहीं!"
 
 #: search.nu:12 search.nu:47
 #, python-brace-format
@@ -87,6 +88,6 @@ msgid "Searching Snap…"
 msgstr "स्नैप में खोजा जा रहा है…"
 
 #: apt.nu:51
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "`aptitude` not installed."
-msgstr ""
+msgstr "`aptitude` स्थापित नहीं है।।"
