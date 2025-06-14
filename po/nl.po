@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-26 07:06-0500\n"
-"PO-Revision-Date: 2023-02-26 15:03+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
-"Language-Team: Dutch <https://weblate.makedeb.org/projects/rhino-linux/rhino-"
-"pkg/nl/>\n"
+"PO-Revision-Date: 2025-06-14 18:20+0000\n"
+"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-pkg/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.2\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
@@ -20,8 +20,7 @@ msgid "No packages found matching '{rest}'!"
 msgstr "Er zijn geen pakketten gevonden die overeenkomen met '{rest}'!"
 
 #: rhino-pkg:254
-#, fuzzy, python-brace-format
-#| msgid "Select which package to install"
+#, python-brace-format
 msgid "Select which packages to install"
 msgstr "Kies de te installeren pakketten"
 

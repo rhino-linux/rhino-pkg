@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-15 21:00+0200\n"
-"PO-Revision-Date: 2023-06-16 19:51+0000\n"
+"PO-Revision-Date: 2025-06-14 18:20+0000\n"
 "Last-Translator: Dan <jonweblin2205@protonmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/uk/>\n"
@@ -11,9 +11,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.18.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
@@ -21,10 +21,9 @@ msgid "No packages found matching '{rest}'!"
 msgstr "Не знайдено пакунків, що відповідають '{rest}'!"
 
 #: rhino-pkg:254
-#, fuzzy, python-brace-format
-#| msgid "Select which package to install"
+#, python-brace-format
 msgid "Select which packages to install"
-msgstr "Виберіть, який пакунок встановити"
+msgstr "Виберіть, які пакунки встановити"
 
 #: rhino-pkg:256
 #, python-brace-format
@@ -39,7 +38,7 @@ msgstr "Ви впевнені? ({y}/{n}) "
 #: rhino-pkg:293
 #, python-brace-format
 msgid "Failed to install '{pkg}'."
-msgstr ""
+msgstr "Не вдалося встановити «{pkg}»."
 
 #: rhino-pkg:336
 #, python-brace-format
@@ -49,7 +48,7 @@ msgstr "Виберіть, який пакунок видалити"
 #: rhino-pkg:338
 #, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
-msgstr ""
+msgstr "Видалення «{part}» з «{provider}»"
 
 #: rhino-pkg:377
 #, python-brace-format
@@ -57,6 +56,8 @@ msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
+"Спроба виправити залежності та видалити невикористані пакунки. Продовжити? "
+"({y}/{n}) "
 
 #: rhino-pkg:428
 #, python-brace-format
@@ -66,7 +67,7 @@ msgstr "Ви впевнені, що хочете оновити всі паку�
 #: cmd.nu:38 cmd.nu:48
 #, python-brace-format
 msgid "No valid inputs given!"
-msgstr ""
+msgstr "Не надано дійсних даних!"
 
 #: search.nu:12 search.nu:47
 #, python-brace-format
@@ -91,4 +92,4 @@ msgstr "Пошук Snap…"
 #: apt.nu:51
 #, python-brace-format
 msgid "`aptitude` not installed."
-msgstr ""
+msgstr "`aptitude` не встановлено."

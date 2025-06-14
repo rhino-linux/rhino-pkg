@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-13 14:51+0200\n"
-"PO-Revision-Date: 2025-06-13 18:08+0000\n"
+"PO-Revision-Date: 2025-06-14 18:20+0000\n"
 "Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/cs/>\n"
@@ -67,10 +67,9 @@ msgid "No valid inputs given!"
 msgstr ""
 
 #: search.nu:12 search.nu:47
-#, fuzzy, python-brace-format
-#| msgid "Searching apt…"
+#, python-brace-format
 msgid "Searching APT…"
-msgstr "Hledám apt…"
+msgstr "Hledám APT…"
 
 #: search.nu:15 search.nu:50
 #, python-brace-format
@@ -78,16 +77,14 @@ msgid "Searching Pacstall…"
 msgstr "Hledám Pacstall…"
 
 #: search.nu:18 search.nu:53
-#, fuzzy, python-brace-format
-#| msgid "Searching flatpak…"
+#, python-brace-format
 msgid "Searching Flatpak…"
-msgstr "Hledám flatpak…"
+msgstr "Hledám Flatpak…"
 
 #: search.nu:21 search.nu:56
-#, fuzzy, python-brace-format
-#| msgid "Searching snap…"
+#, python-brace-format
 msgid "Searching Snap…"
-msgstr "Hledám snap…"
+msgstr "Hledám Snap…"
 
 #: apt.nu:51
 #, python-brace-format
