@@ -93,12 +93,3 @@ msgstr "Hledám snap…"
 #, python-brace-format
 msgid "`aptitude` not installed."
 msgstr ""
-
-#~ msgid "Found packages matching '${BPurple}$*${NC}':"
-#~ msgstr "Nalezeny balíčky odpovídající '${BPurple}$*${NC}':"
-
-#~ msgid "'${entered_input[*]}' is not a valid number"
-#~ msgstr "'${entered_input[*]}' není platné číslo"
-
-#~ msgid "Invalid repository name!"
-#~ msgstr "Neplatný název repozitáře!"

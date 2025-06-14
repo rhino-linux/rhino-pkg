@@ -17,7 +17,7 @@ msgstr ""
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
 msgid "No packages found matching '{rest}'!"
-msgstr ""
+msgstr "ვერ ვიპოვე პაკეტი, რომელიც ემთხვევა სტრიქონს '{rest}'!"
 
 #: rhino-pkg:254
 #, fuzzy, python-brace-format
@@ -28,12 +28,12 @@ msgstr "აირჩიეთ, რომელი პაკეტი დავ�
 #: rhino-pkg:256
 #, python-brace-format
 msgid "Selecting '{pkg}' from package manager '{provider}'"
-msgstr ""
+msgstr "ავირჩიე '{pkg}' პაკეტების მმართველიდან '{provider}'"
 
 #: rhino-pkg:264 rhino-pkg:345
 #, python-brace-format
 msgid "Are you sure? ({y}/{n}) "
-msgstr ""
+msgstr "დარწმუნებულ ბრძანდებით? ({y}/{n}) "
 
 #: rhino-pkg:293
 #, python-brace-format
@@ -60,7 +60,7 @@ msgstr ""
 #: rhino-pkg:428
 #, python-brace-format
 msgid "Are you sure you want to update all packages? ({y}/{n}) "
-msgstr ""
+msgstr "მართლა გნებავთ ყველა პაკეტის განახლება? ({y}/{n}) "
 
 #: cmd.nu:38 cmd.nu:48
 #, python-brace-format
