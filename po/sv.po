@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-14 00:52+0200\n"
-"PO-Revision-Date: 2024-12-29 13:01+0000\n"
-"Last-Translator: Patrik Nilsson <perfecttaste@pm.me>\n"
+"PO-Revision-Date: 2025-06-14 18:20+0000\n"
+"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/sv/>\n"
 "Language: sv\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
@@ -20,8 +20,7 @@ msgid "No packages found matching '{rest}'!"
 msgstr "Inga paket hittas som liknar '{rest}'!"
 
 #: rhino-pkg:254
-#, fuzzy, python-brace-format
-#| msgid "Select which package to install"
+#, python-brace-format
 msgid "Select which packages to install"
 msgstr "Välj vilket paket att installera"
 
