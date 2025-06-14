@@ -12,80 +12,80 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: rhino-pkg:83
+#: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
-msgid ""
-"Valid subcommands are 'install', 'remove', 'search', 'update', 'cleanup'."
+msgid "No packages found matching '{rest}'!"
 msgstr ""
 
-#: rhino-pkg:84
-#, python-brace-format
-msgid "No valid subcommand passed"
-msgstr ""
-
-#: rhino-pkg:84
-#, python-brace-format
-msgid "Failed here"
-msgstr ""
-
-#: rhino-pkg:105 rhino-pkg:128
-#, python-brace-format
-msgid "No packages found matching '{rest}'"
-msgstr ""
-
-#: rhino-pkg:108
-#, python-brace-format
-msgid "Select which package to install"
+#: rhino-pkg:254
+#, fuzzy, python-brace-format
+#| msgid "Select which package to install"
+msgid "Select which packages to install"
 msgstr "Memilih paket yang akan dipasang"
 
-#: rhino-pkg:109
+#: rhino-pkg:256
 #, python-brace-format
 msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr ""
 
-#: rhino-pkg:115
+#: rhino-pkg:264 rhino-pkg:345
+#, python-brace-format
+msgid "Are you sure? ({y}/{n}) "
+msgstr ""
+
+#: rhino-pkg:293
 #, python-brace-format
 msgid "Failed to install '{pkg}'."
 msgstr ""
 
-#: rhino-pkg:131
+#: rhino-pkg:336
 #, python-brace-format
 msgid "Select which package to remove"
 msgstr ""
 
-#: rhino-pkg:133
+#: rhino-pkg:338
 #, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
 msgstr ""
 
-#: rhino-pkg:142
+#: rhino-pkg:377
 #, python-brace-format
 msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
 
-#: cmd.nu:28
+#: rhino-pkg:428
 #, python-brace-format
-msgid "No valid inputs given"
+msgid "Are you sure you want to update all packages? ({y}/{n}) "
 msgstr ""
 
-#: search.nu:9 search.nu:33
+#: cmd.nu:38 cmd.nu:48
 #, python-brace-format
-msgid "Searching Pacstall…"
-msgstr "Mencari Pacstall…"
+msgid "No valid inputs given!"
+msgstr ""
 
-#: search.nu:12
-#, python-brace-format
-msgid "Searching Flatpak…"
-msgstr "Mencari Flatpak…"
-
-#: search.nu:15 search.nu:39
+#: search.nu:12 search.nu:47
 #, python-brace-format
 msgid "Searching APT…"
 msgstr "Mencari APT…"
 
-#: search.nu:17 search.nu:41
+#: search.nu:15 search.nu:50
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr "Mencari Pacstall…"
+
+#: search.nu:18 search.nu:53
+#, python-brace-format
+msgid "Searching Flatpak…"
+msgstr "Mencari Flatpak…"
+
+#: search.nu:21 search.nu:56
 #, python-brace-format
 msgid "Searching Snap…"
 msgstr "Mencari Snap…"
+
+#: apt.nu:51
+#, python-brace-format
+msgid "`aptitude` not installed."
+msgstr ""
