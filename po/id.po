@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-06-14 18:20+0000\n"
-"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"PO-Revision-Date: 2025-06-15 19:01+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/id/>\n"
 "Language: id\n"
@@ -29,41 +29,43 @@ msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr "Memilih'{pkg}' dari manajemen paket '{provider}'"
 
 #: rhino-pkg:264 rhino-pkg:345
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Are you sure? ({y}/{n}) "
-msgstr ""
+msgstr "Apakah Anda yakin? ({y}/{n}) "
 
 #: rhino-pkg:293
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Failed to install '{pkg}'."
-msgstr ""
+msgstr "Kegagalan untuk menginstal '{pkg}'."
 
 #: rhino-pkg:336
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Select which package to remove"
-msgstr ""
+msgstr "Pilih paket mana untuk menghapus"
 
 #: rhino-pkg:338
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
-msgstr ""
+msgstr "Menghapus '{part}' dari '{provider} Sitemap"
 
 #: rhino-pkg:377
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
+"Mencoba untuk memperbaiki ketergantungan dan menghapus paket yang tidak "
+"digunakan. ({y}/{n}) "
 
 #: rhino-pkg:428
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Are you sure you want to update all packages? ({y}/{n}) "
-msgstr ""
+msgstr "Apakah Anda yakin Anda ingin memperbarui semua paket? ({y}/{n}) "
 
 #: cmd.nu:38 cmd.nu:48
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "No valid inputs given!"
-msgstr ""
+msgstr "Tidak ada input yang valid yang diberikan!"
 
 #: search.nu:12 search.nu:47
 #, python-brace-format
@@ -86,6 +88,6 @@ msgid "Searching Snap…"
 msgstr "Mencari Snap…"
 
 #: apt.nu:51
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "`aptitude` not installed."
-msgstr ""
+msgstr "tidak dipasang."
