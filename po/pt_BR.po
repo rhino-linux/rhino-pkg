@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-05 08:57-0500\n"
-"PO-Revision-Date: 2025-06-14 18:37+0000\n"
-"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"PO-Revision-Date: 2025-06-15 19:01+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "rhino-linux/rhino-pkg/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -35,9 +35,9 @@ msgid "Are you sure? ({y}/{n}) "
 msgstr "Tem certeza? ({y}/{n}) "
 
 #: rhino-pkg:293
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Failed to install '{pkg}'."
-msgstr ""
+msgstr "Não foi possível instalar '{pkg}'."
 
 #: rhino-pkg:336
 #, python-brace-format
@@ -45,16 +45,18 @@ msgid "Select which package to remove"
 msgstr "Selecione qual pacote remover"
 
 #: rhino-pkg:338
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
-msgstr ""
+msgstr "Removendo '{part}' de '{provider} '"
 
 #: rhino-pkg:377
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
+"Tentando reparar dependências e remover pacotes não utilizados. Continuar? "
+"({y}/{n}) "
 
 #: rhino-pkg:428
 #, python-brace-format
@@ -62,9 +64,9 @@ msgid "Are you sure you want to update all packages? ({y}/{n}) "
 msgstr "Tem certeza de que deseja atualizar todos os pacotes? ({y}/{n}) "
 
 #: cmd.nu:38 cmd.nu:48
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "No valid inputs given!"
-msgstr ""
+msgstr "Nenhuma entrada válida dada!"
 
 #: search.nu:12 search.nu:47
 #, python-brace-format
@@ -87,6 +89,6 @@ msgid "Searching Snap…"
 msgstr "Procurando Snap…"
 
 #: apt.nu:51
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "`aptitude` not installed."
-msgstr ""
+msgstr "`aptitude` não instalado."
