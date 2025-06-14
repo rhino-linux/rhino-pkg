@@ -42,5 +42,5 @@ USAGE:
 #### Supported languages
 
 <a href="https://hosted.weblate.org/engage/rhino-linux/">
-<img src="https://hosted.weblate.org/widgets/rhino-linux/-/rhino-pkg/multi-blue.svg" alt="Translation status" />
+<img src="https://hosted.weblate.org/widget/rhino-linux/rhino-pkg/multi-blue.svg" alt="Translation status" />
 </a>
