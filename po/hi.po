@@ -17,7 +17,7 @@ msgstr ""
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
 msgid "No packages found matching '{rest}'!"
-msgstr ""
+msgstr "'{rest}' से मेल खाता कोई पैकेज नहीं मिला!"
 
 #: rhino-pkg:254
 #, fuzzy, python-brace-format
@@ -29,6 +29,8 @@ msgstr "इनस्टॉल करने के लिए एक पैके�
 #, python-brace-format
 msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr ""
+"पैकेज मैनेजर '{pkg}' से "
+"'${Bpurple}${pkgrepo[i]}${NC}' चुने गए हैं"
 
 #: rhino-pkg:264 rhino-pkg:345
 #, python-brace-format

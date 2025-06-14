@@ -18,7 +18,7 @@ msgstr ""
 #, fuzzy, python-brace-format
 #| msgid "No packages found matching '$*'!"
 msgid "No packages found matching '{rest}'!"
-msgstr "'$*' பொருந்தக்கூடிய தொகுப்புகள் எதுவும் காணப்படவில்லை!"
+msgstr "'{rest}' பொருந்தக்கூடிய தொகுப்புகள் எதுவும் காணப்படவில்லை!"
 
 #: rhino-pkg:254
 #, fuzzy, python-brace-format
@@ -33,14 +33,13 @@ msgstr "எந்த தொகுப்பை நிறுவ வேண்டு
 #| "'${BPurple}${pkgrepo[i]}${NC}'"
 msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr ""
-"'$ {BPurple} $ {pkgs [i]} $ {NC}' தொகுப்பு மேலாளரிடமிருந்து '$ {BPurple} $ "
-"{pkgrepo [i]} $ {NC}'"
+"'{pkg}' தொகுப்பு மேலாளரிடமிருந்து '{provider}'"
 
 #: rhino-pkg:264 rhino-pkg:345
 #, fuzzy, python-brace-format
 #| msgid "Are you sure? (${BGreen}y${NC}/${BRed}N${NC}) "
 msgid "Are you sure? ({y}/{n}) "
-msgstr "நீங்கள் உறுதியாக இருக்கிறீர்களா? ($ {BGreen} ஒய் $ {NC}/$ {BRed} n $ {NC}) "
+msgstr "நீங்கள் உறுதியாக இருக்கிறீர்களா? ({y}/{n}) "
 
 #: rhino-pkg:293
 #, python-brace-format
@@ -70,9 +69,7 @@ msgstr ""
 #| "Are you sure you want to update all packages? (${BGreen}y${NC}/${BRed}"
 #| "N${NC}) "
 msgid "Are you sure you want to update all packages? ({y}/{n}) "
-msgstr ""
-"எல்லா தொகுப்புகளையும் புதுப்பிக்க விரும்புகிறீர்களா? ($ {BGreen} ஒய் $ {NC}/$ {BRed} "
-"n $ {NC}) "
+msgstr "எல்லா தொகுப்புகளையும் புதுப்பிக்க விரும்புகிறீர்களா? ({y}/{n})"
 
 #: cmd.nu:38 cmd.nu:48
 #, python-brace-format
@@ -106,12 +103,3 @@ msgstr "ச்னாப் தேடுகிறது…"
 #, python-brace-format
 msgid "`aptitude` not installed."
 msgstr ""
-
-#~ msgid "Found packages matching '${BPurple}$*${NC}':"
-#~ msgstr "'$ {BPurple} $*$ {NC}' உடன் பொருந்தக்கூடிய தொகுப்புகள் கிடைத்தன:"
-
-#~ msgid "'${entered_input[*]}' is not a valid number"
-#~ msgstr "'$ {ented_input [*]}' என்பது சரியான எண் அல்ல"
-
-#~ msgid "Invalid repository name!"
-#~ msgstr "தவறான களஞ்சிய பெயர்!"

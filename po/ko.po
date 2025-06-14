@@ -18,7 +18,7 @@ msgstr ""
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
 msgid "No packages found matching '{rest}'!"
-msgstr ""
+msgstr "'{rest}'와 일치하는 패키지를 찾을 수 없습니다!"
 
 #: rhino-pkg:254
 #, fuzzy, python-brace-format
@@ -30,6 +30,8 @@ msgstr "설치할 패키지를 선택해주세요"
 #, python-brace-format
 msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr ""
+"패키지 관리자 '{provider}'에서 Selecting "
+"'{pkg}'를 선택했습니다"
 
 #: rhino-pkg:264 rhino-pkg:345
 #, python-brace-format

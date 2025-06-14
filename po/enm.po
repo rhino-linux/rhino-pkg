@@ -17,7 +17,7 @@ msgstr ""
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
 msgid "No packages found matching '{rest}'!"
-msgstr ""
+msgstr "No packages found matching doth name '{rest}'!"
 
 #: rhino-pkg:254
 #, fuzzy, python-brace-format
@@ -28,7 +28,7 @@ msgstr "Select doth packages to which to install"
 #: rhino-pkg:256
 #, python-brace-format
 msgid "Selecting '{pkg}' from package manager '{provider}'"
-msgstr ""
+msgstr "Selecting '{pkg}' from thine package manager '{provider}'"
 
 #: rhino-pkg:264 rhino-pkg:345
 #, python-brace-format
