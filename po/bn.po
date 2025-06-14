@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-06 11:12-0500\n"
-"PO-Revision-Date: 2023-02-06 20:02+0000\n"
-"Last-Translator: Sourajyoti Basak <wiz28@protonmail.com>\n"
-"Language-Team: Bengali <https://weblate.makedeb.org/projects/rhino-linux/"
+"PO-Revision-Date: 2025-06-14 18:20+0000\n"
+"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"Language-Team: Bengali <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/bn/>\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.15.2\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
@@ -20,8 +20,7 @@ msgid "No packages found matching '{rest}'!"
 msgstr "'{rest}' এর সাথে মিলিত কোনো প্যাকেজ পাওয়া যায়নি!"
 
 #: rhino-pkg:254
-#, fuzzy, python-brace-format
-#| msgid "Select which package to install"
+#, python-brace-format
 msgid "Select which packages to install"
 msgstr "কোন প্যাকেজ ইনস্টল করতে হবে তা নির্বাচন করুন"
 
