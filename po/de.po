@@ -1,19 +1,18 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-09 14:06+0200\n"
-"PO-Revision-Date: 2024-01-09 13:06+0000\n"
-"Last-Translator: Oliver Schantz <frequency403@gmail.com>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/rhino-linux/rhino-"
-"pkg/de/>\n"
+"PO-Revision-Date: 2025-06-14 18:20+0000\n"
+"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-pkg/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
@@ -21,8 +20,7 @@ msgid "No packages found matching '{rest}'!"
 msgstr "Keine passenden Pakete zu '{rest}' gefunden!"
 
 #: rhino-pkg:254
-#, fuzzy, python-brace-format
-#| msgid "Select which package to install"
+#, python-brace-format
 msgid "Select which packages to install"
 msgstr "Wählen Sie Pakete aus, welche Installiert werden sollen"
 
