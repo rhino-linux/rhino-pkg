@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-08 11:52+0200\n"
-"PO-Revision-Date: 2025-06-14 18:20+0000\n"
-"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"PO-Revision-Date: 2025-06-15 19:01+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/it/>\n"
 "Language: it\n"
@@ -30,41 +30,43 @@ msgid "Selecting '{pkg}' from package manager '{provider}'"
 msgstr "Seleziono '{pkg}' dal gestore di pacchetti '{provider}'"
 
 #: rhino-pkg:264 rhino-pkg:345
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Are you sure? ({y}/{n}) "
-msgstr ""
+msgstr "Sei sicuro? ({y}/{n}) "
 
 #: rhino-pkg:293
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Failed to install '{pkg}'."
-msgstr ""
+msgstr "Non installare '{pkg}'."
 
 #: rhino-pkg:336
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Select which package to remove"
-msgstr ""
+msgstr "Selezionare quale pacchetto per rimuovere"
 
 #: rhino-pkg:338
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
-msgstr ""
+msgstr "Rimuovere '{part}' da '{provider} '"
 
 #: rhino-pkg:377
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
+"Tentare di riparare le dipendenze e rimuovere i pacchetti inutilizzati. "
+"({y}/{n}) "
 
 #: rhino-pkg:428
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Are you sure you want to update all packages? ({y}/{n}) "
-msgstr ""
+msgstr "Sei sicuro di voler aggiornare tutti i pacchetti? ({y}/{n}) "
 
 #: cmd.nu:38 cmd.nu:48
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "No valid inputs given!"
-msgstr ""
+msgstr "Nessun input valido dato!"
 
 #: search.nu:12 search.nu:47
 #, python-brace-format
@@ -87,6 +89,6 @@ msgid "Searching Snap…"
 msgstr "Cerco su Snap…"
 
 #: apt.nu:51
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "`aptitude` not installed."
-msgstr ""
+msgstr "`aptitude` non installato."
