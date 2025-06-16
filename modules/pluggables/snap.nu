@@ -24,6 +24,7 @@ export def search [input: string, description: bool] : nothing -> table {
                     | reject Publisher Version
                     | rename --column { Name: pkg }
                     | rename --column { Summary: desc }
+                    | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
                     | insert provider 'snap'
             } else {
                 $raw

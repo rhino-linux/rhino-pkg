@@ -19,6 +19,7 @@ export def search [input: string, description: bool] : nothing -> table {
                 | where $it != "No matches found"
                 | parse -r '^([\w.-]+)\s+(\w+)\s+(.*)$'
                 | rename pkg remote desc
+                | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
                 | insert provider 'flatpak'
         } else {
             ^sudo flatpak search $input --columns=application:f,remotes:f
