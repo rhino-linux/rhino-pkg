@@ -34,10 +34,11 @@ export def search [input: string, description: bool] : nothing -> table {
     if (exists "aptitude") {
         if $description {
             # We are searching for something in description
-            ^aptitude search --quiet --disable-columns $"?name\(($input)\) ?architecture\(native\) !?section\(Pacstall\) | ?description\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p|%d"
+            ^aptitude search --quiet --disable-columns $"\(?name\(($input)\) | ?description\(($input)\)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p|%d"
                 | lines
                 | parse "{pkg}|{desc}"
                 | insert provider 'apt'
+                | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
                 | filter {|pkg| $pkg.pkg not-in (get-pacstall-debs) }
         } else {
             ^aptitude search --quiet --disable-columns $"?name\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p"
