@@ -1,0 +1,86 @@
+msgid ""
+msgstr ""
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: enm\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
+#, python-brace-format
+msgid "No packages found matching '{rest}'!"
+msgstr ""
+
+#: rhino-pkg:254
+#, python-brace-format
+msgid "Select which packages to install"
+msgstr ""
+
+#: rhino-pkg:256
+#, python-brace-format
+msgid "Selecting '{pkg}' from package manager '{provider}'"
+msgstr ""
+
+#: rhino-pkg:264 rhino-pkg:345
+#, python-brace-format
+msgid "Are you sure? ({y}/{n}) "
+msgstr ""
+
+#: rhino-pkg:293
+#, python-brace-format
+msgid "Failed to install '{pkg}'."
+msgstr ""
+
+#: rhino-pkg:336
+#, python-brace-format
+msgid "Select which package to remove"
+msgstr ""
+
+#: rhino-pkg:338
+#, python-brace-format
+msgid "Removing '{part}' from '{provider}'"
+msgstr ""
+
+#: rhino-pkg:377
+#, python-brace-format
+msgid ""
+"Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
+"{n}) "
+msgstr ""
+
+#: rhino-pkg:428
+#, python-brace-format
+msgid "Are you sure you want to update all packages? ({y}/{n}) "
+msgstr ""
+
+#: cmd.nu:38 cmd.nu:48
+#, python-brace-format
+msgid "No valid inputs given!"
+msgstr ""
+
+#: search.nu:12 search.nu:47
+#, python-brace-format
+msgid "Searching APT…"
+msgstr ""
+
+#: search.nu:15 search.nu:50
+#, python-brace-format
+msgid "Searching Pacstall…"
+msgstr ""
+
+#: search.nu:18 search.nu:53
+#, python-brace-format
+msgid "Searching Flatpak…"
+msgstr ""
+
+#: search.nu:21 search.nu:56
+#, python-brace-format
+msgid "Searching Snap…"
+msgstr ""
+
+#: apt.nu:51
+#, python-brace-format
+msgid "`aptitude` not installed."
+msgstr ""
