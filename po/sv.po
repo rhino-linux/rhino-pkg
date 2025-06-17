@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-14 00:52+0200\n"
 "PO-Revision-Date: 2025-06-18 06:01+0000\n"
-"Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/sv/>\n"
 "Language: sv\n"
@@ -32,7 +32,7 @@ msgstr "Väljer '{pkg}' från pakethanterare '{provider}'"
 #: rhino-pkg:264 rhino-pkg:345
 #, python-brace-format
 msgid "Are you sure? ({y}/{n}) "
-msgstr ""
+msgstr "Är du säker? ({y}/{n}) "
 
 #: rhino-pkg:293
 #, python-brace-format
@@ -42,7 +42,7 @@ msgstr "Misslyckades med att installera '{pkg}'."
 #: rhino-pkg:336
 #, python-brace-format
 msgid "Select which package to remove"
-msgstr ""
+msgstr "Välj vilket paket som ska tas bort"
 
 #: rhino-pkg:338
 #, python-brace-format
@@ -55,11 +55,13 @@ msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
+"Försök att reparera beroenden och ta bort oanvända paket. Fortsätt? ({y}/{n})"
+" "
 
 #: rhino-pkg:428
 #, python-brace-format
 msgid "Are you sure you want to update all packages? ({y}/{n}) "
-msgstr ""
+msgstr "Är du säker på att du vill uppdatera alla paket? ({y}/{n}) "
 
 #: cmd.nu:38 cmd.nu:48
 #, python-brace-format
