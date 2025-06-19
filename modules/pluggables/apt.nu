@@ -2,7 +2,7 @@ use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 
 export def list-installed [search: string] {
     if (exists "aptitude") {
-        ^aptitude search $"~i($search) !?section\(Pacstall\)" -F '%p|%v'
+        LANG=C ^aptitude search $"~i($search) !?section\(Pacstall\)" -F '%p|%v'
             | lines
             | parse "{pkg}|{version}"
             | insert provider "apt"
@@ -34,14 +34,14 @@ export def search [input: string, description: bool] : nothing -> table {
     if (exists "aptitude") {
         if $description {
             # We are searching for something in description
-            ^aptitude search --quiet --disable-columns $"\(?name\(($input)\) | ?description\(($input)\)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p|%d"
+            LANG=C ^aptitude search --quiet --disable-columns $"\(?name\(($input)\) | ?description\(($input)\)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p|%d"
                 | lines
                 | parse "{pkg}|{desc}"
                 | insert provider 'apt'
                 | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
                 | filter {|pkg| $pkg.pkg not-in (get-pacstall-debs) }
         } else {
-            ^aptitude search --quiet --disable-columns $"?name\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p"
+            LANG=C ^aptitude search --quiet --disable-columns $"?name\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p"
                 | lines
                 | parse "{pkg}"
                 | insert desc ''

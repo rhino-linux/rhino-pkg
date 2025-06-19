@@ -14,7 +14,7 @@ export def list-installed [search: string] {
 
 export def search [input: string, description: bool] : nothing -> table {
     if (exists "snap") {
-        let raw = (^snap search $input)
+        let raw = (LANG=C ^snap search $input)
         if ($raw | is-empty) {
             []
         } else {

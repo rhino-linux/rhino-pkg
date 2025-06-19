@@ -2,7 +2,7 @@ use "/usr/share/rhino-pkg/modules/lib/cmd.nu" [exists]
 
 export def list-installed [search: string] {
     if (exists "flatpak") {
-        try { ^flatpak list --columns=application:f,version:f --app
+        try { LANG=C ^flatpak list --columns=application:f,version:f --app
             | lines
             | uniq
             | parse "{pkg}\t{version}"
@@ -14,7 +14,7 @@ export def list-installed [search: string] {
 export def search [input: string, description: bool] : nothing -> table {
     if (exists "flatpak") {
         if $description {
-            ^sudo flatpak search $input --columns=application:f,remotes:f,description:f
+            LANG=C ^sudo flatpak search $input --columns=application:f,remotes:f,description:f
                 | lines
                 | where $it != "No matches found"
                 | parse -r '^([\w.-]+)\s+(\w+)\s+(.*)$'
@@ -22,7 +22,7 @@ export def search [input: string, description: bool] : nothing -> table {
                 | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
                 | insert provider 'flatpak'
         } else {
-            ^sudo flatpak search $input --columns=application:f,remotes:f
+            LANC=C ^sudo flatpak search $input --columns=application:f,remotes:f
                 | lines
                 | where $it != "No matches found"
                 | parse -r '^([\w.-]+)\s+(\w+)$'
