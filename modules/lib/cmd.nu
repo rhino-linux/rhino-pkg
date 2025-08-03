@@ -40,9 +40,9 @@ export def prompt [ask: string, pkgs: list] : nothing -> table {
         }
         let parsed = ($input
             | split row ' '
-            | find --regex "[0-9]+" --regex "^[0-9]+"
-            | into int
-            | where {|key| $key in 0..<($pkgs | length)}
+            | each {|i| try {$i | into int} catch {null}}
+            | compact
+            | where {|key| $key >= 0 and $key < ($pkgs | length)}
         )
         if ($parsed | is-empty) {
             tprint -e "No valid inputs given!"
@@ -51,7 +51,7 @@ export def prompt [ask: string, pkgs: list] : nothing -> table {
         $pkgs
             | enumerate
             | where index in $parsed
-            | flatten
+            | get item
     }
 }
 
