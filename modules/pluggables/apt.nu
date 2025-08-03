@@ -21,11 +21,13 @@ def get-pacstall-debs [] : nothing -> list<string> {
                 | lines
                 | find '_gives'
                 # We assume that every single -deb package has logged gives.
-                | get 0?
+                | get 0
                 # This is somewhat volatile, as it depends on how `declare -p _gives` is formatted.
                 | parse '_gives="{apt_name}"'
         } | flatten
-          | get apt_name
+          | values
+          # Pull out the list.
+          | get 0?
 }
 
 export def search [input: string, description: bool] : nothing -> table {
