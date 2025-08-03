@@ -7,7 +7,7 @@ export def list-installed [search: string] {
             | parse "{pkg}|{version}"
             | insert provider "apt"
             # Reject packages that exist in pacstall (hence should be handled by pacstall).
-            | filter {|pkg| $pkg.pkg not-in (get-pacstall-debs) }
+            | where {|pkg| $pkg.pkg not-in (get-pacstall-debs) }
     }
 }
 
@@ -39,14 +39,14 @@ export def search [input: string, description: bool] : nothing -> table {
                 | parse "{pkg}|{desc}"
                 | insert provider 'apt'
                 | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
-                | filter {|pkg| $pkg.pkg not-in (get-pacstall-debs) }
+                | where {|pkg| $pkg.pkg not-in (get-pacstall-debs) }
         } else {
             LANG=C ^aptitude search --quiet --disable-columns $"?name\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p"
                 | lines
                 | parse "{pkg}"
                 | insert desc ''
                 | insert provider 'apt'
-                | filter {|pkg| $pkg.pkg not-in (get-pacstall-debs) }
+                | where {|pkg| $pkg.pkg not-in (get-pacstall-debs) }
         }
     } else {
         error make -u { msg: (_ "`aptitude` not installed.") }
