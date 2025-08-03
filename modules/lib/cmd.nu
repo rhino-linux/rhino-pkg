@@ -42,7 +42,7 @@ export def prompt [ask: string, pkgs: list] : nothing -> table {
             | split row ' '
             | find --regex "[0-9]+" --regex "^[0-9]+"
             | into int
-            | filter {|key| $key in 0..<($pkgs | length)}
+            | where {|key| $key in 0..<($pkgs | length)}
         )
         if ($parsed | is-empty) {
             tprint -e "No valid inputs given!"
