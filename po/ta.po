@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-28 10:46+0200\n"
-"PO-Revision-Date: 2025-06-14 18:20+0000\n"
-"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"PO-Revision-Date: 2025-09-08 11:02+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/ta/>\n"
 "Language: ta\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
@@ -37,7 +37,7 @@ msgstr "நீங்கள் உறுதியாக இருக்கிற�
 #: rhino-pkg:293
 #, python-brace-format
 msgid "Failed to install '{pkg}'."
-msgstr ""
+msgstr "'{pkg}' ஐ நிறுவுவதில் தோல்வி."
 
 #: rhino-pkg:336
 #, python-brace-format
@@ -47,7 +47,7 @@ msgstr "எந்த தொகுப்பை அகற்ற வேண்டு
 #: rhino-pkg:338
 #, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
-msgstr ""
+msgstr "'{part}' இலிருந்து '{provider}' நீக்குகிறது"
 
 #: rhino-pkg:377
 #, python-brace-format
@@ -55,6 +55,8 @@ msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
+"சார்புகளை சரிசெய்யவும் பயன்படுத்தப்படாத தொகுப்புகளை அகற்றவும் முயற்சிக்கிறது. தொடரவா? "
+"({y}/{n}) "
 
 #: rhino-pkg:428
 #, python-brace-format
@@ -64,11 +66,10 @@ msgstr "எல்லா தொகுப்புகளையும் புத�
 #: cmd.nu:38 cmd.nu:48
 #, python-brace-format
 msgid "No valid inputs given!"
-msgstr ""
+msgstr "சரியான உள்ளீடுகள் எதுவும் கொடுக்கப்படவில்லை!"
 
 #: search.nu:12 search.nu:47
-#, fuzzy, python-brace-format
-#| msgid "Searching apt…"
+#, python-brace-format
 msgid "Searching APT…"
 msgstr "பொருத்தமாகத் தேடுகிறது…"
 
@@ -78,18 +79,16 @@ msgid "Searching Pacstall…"
 msgstr "பேக்ச்டால் தேடுகிறது…"
 
 #: search.nu:18 search.nu:53
-#, fuzzy, python-brace-format
-#| msgid "Searching flatpak…"
+#, python-brace-format
 msgid "Searching Flatpak…"
 msgstr "பிளாட்பேக்கைத் தேடுகிறது…"
 
 #: search.nu:21 search.nu:56
-#, fuzzy, python-brace-format
-#| msgid "Searching snap…"
+#, python-brace-format
 msgid "Searching Snap…"
 msgstr "ச்னாப் தேடுகிறது…"
 
 #: apt.nu:51
 #, python-brace-format
 msgid "`aptitude` not installed."
-msgstr ""
+msgstr "`அப்டிட்யூட்` நிறுவப்படவில்லை."
