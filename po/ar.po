@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-25 23:52+0200\n"
-"PO-Revision-Date: 2025-06-14 18:20+0000\n"
-"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"PO-Revision-Date: 2025-09-11 23:01+0000\n"
+"Last-Translator: Ziad El-sayed <ziadelsayed1797@tutamail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-pkg/ar/>\n"
 "Language: ar\n"
@@ -13,12 +13,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
 msgid "No packages found matching '{rest}'!"
-msgstr "لا يوجد حزمة مطابقة '{rest}'!"
+msgstr "لم يتم العثور علي حزمة مطابقة ل '{rest}'!"
 
 #: rhino-pkg:254
 #, python-brace-format
@@ -28,9 +28,7 @@ msgstr "إختر الحزمة المراد تنصيبها"
 #: rhino-pkg:256
 #, python-brace-format
 msgid "Selecting '{pkg}' from package manager '{provider}'"
-msgstr ""
-"إختيار '{pkg}' من مدير الحزم "
-"'{provider}'"
+msgstr "جاري إختيار '{pkg}' من مدير الحزم '{provider}'"
 
 #: rhino-pkg:264 rhino-pkg:345
 #, python-brace-format
@@ -40,17 +38,17 @@ msgstr "هل أنت متأكد ؟ ({y}/{n}). "
 #: rhino-pkg:293
 #, python-brace-format
 msgid "Failed to install '{pkg}'."
-msgstr ""
+msgstr "فشل تثبيت '{pkg}'."
 
 #: rhino-pkg:336
 #, python-brace-format
 msgid "Select which package to remove"
-msgstr "إختر الحزمة المراد حذفها"
+msgstr "إختر الحزمة المراد إزالتها"
 
 #: rhino-pkg:338
 #, python-brace-format
 msgid "Removing '{part}' from '{provider}'"
-msgstr ""
+msgstr "جاري إزالة '{part}' من'{provider}'"
 
 #: rhino-pkg:377
 #, python-brace-format
@@ -58,16 +56,18 @@ msgid ""
 "Attempting to repair dependencies and remove unused packages. Continue? ({y}/"
 "{n}) "
 msgstr ""
+"محاولة إصلاح التبعيات والحزم وإزالة الحزم الغير مستخدمة. هل تريد المتابعة؟ "
+"{y}{n}. "
 
 #: rhino-pkg:428
 #, python-brace-format
 msgid "Are you sure you want to update all packages? ({y}/{n}) "
-msgstr "هل أنت متأكد من تحديث كل الحزم؟ ({y}/{n}). "
+msgstr "هل تريد تحديث جميع الحزم؟ ({y}/{n}) "
 
 #: cmd.nu:38 cmd.nu:48
 #, python-brace-format
 msgid "No valid inputs given!"
-msgstr ""
+msgstr "لم يتم إدخال بيانات صالحة!"
 
 #: search.nu:12 search.nu:47
 #, python-brace-format
@@ -92,4 +92,4 @@ msgstr "جار البحث عن Snap…"
 #: apt.nu:51
 #, python-brace-format
 msgid "`aptitude` not installed."
-msgstr ""
+msgstr "`aptitude` غير مثبت."
