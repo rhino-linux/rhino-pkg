@@ -147,15 +147,16 @@ def "main search" [
         if $description {
             return (
                 $dummy
-                | select index pkg provider desc
-                | rename index Package Provider Description
+                | select index pkg provider version desc
+                | rename index Package Provider Version Description
                 | table -t thin
             )
         } else {
             return (
                 $dummy
-                | select index pkg provider
-                | rename index Package Provider
+                | select index pkg provider version
+                | rename index Package Provider Version
+                | table -t thin
             )
         }
     }
@@ -239,15 +240,16 @@ def "main install" [
         if $description {
             print (
                 $dummy
-                | select index pkg provider desc
-                | rename index Package Provider Description
+                | select index pkg provider version desc
+                | rename index Package Provider Version Description
                 | table -t thin
             )
         } else {
             print (
                 $dummy
-                | select index pkg provider
-                | rename index Package Provider
+                | select index pkg provider version
+                | rename index Package Provider Version
+                | table -t thin
             )
         }
     }

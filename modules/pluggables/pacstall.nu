@@ -25,6 +25,20 @@ export def search [input: string, description: bool] : nothing -> table {
                 | lines
                 | parse "{pkg} - {desc} @ {repo}"
                 | insert provider 'pacstall'
+                | each {|pkg|
+                    try {
+                        let info = (^pacstall -Si $pkg.pkg)
+                        let version_lines = ($info | lines | where ($it | str contains "pkgver ="))
+                        let version = if ($version_lines | is-empty) {
+                            ""
+                        } else {
+                            ($version_lines | first | str replace "pkgver =" "" | str trim)
+                        }
+                        $pkg | insert version $version
+                    } catch {
+                        $pkg | insert version ""
+                    }
+                }
         } else {
             # Searching by name
             ^pacstall -S $input
@@ -33,6 +47,20 @@ export def search [input: string, description: bool] : nothing -> table {
                 | parse "{pkg} @ {repo}"
                 | insert desc ''
                 | insert provider 'pacstall'
+                | each {|pkg|
+                    try {
+                        let info = (^pacstall -Si $pkg.pkg)
+                        let version_lines = ($info | lines | where ($it | str contains "pkgver ="))
+                        let version = if ($version_lines | is-empty) {
+                            ""
+                        } else {
+                            ($version_lines | first | str replace "pkgver =" "" | str trim)
+                        }
+                        $pkg | insert version $version
+                    } catch {
+                        $pkg | insert version ""
+                    }
+                }
         }
     } else {
         []

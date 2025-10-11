@@ -29,16 +29,16 @@ export def search [input: string, description: bool] : nothing -> table {
     if (exists "aptitude") {
         if $description {
             # We are searching for something in description
-            LANG=C ^aptitude search --quiet --disable-columns $"\(?name\(($input)\) | ?description\(($input)\)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p|%d"
+            LANG=C ^aptitude search --quiet --disable-columns $"\(?name\(($input)\) | ?description\(($input)\)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p|%v|%d"
                 | lines
-                | parse "{pkg}|{desc}"
+                | parse "{pkg}|{version}|{desc}"
                 | insert provider 'apt'
                 | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
                 | where {|pkg| $pkg.pkg not-in (get-pacstall-debs) }
         } else {
-            LANG=C ^aptitude search --quiet --disable-columns $"?name\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p"
+            LANG=C ^aptitude search --quiet --disable-columns $"?name\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p|%v"
                 | lines
-                | parse "{pkg}"
+                | parse "{pkg}|{version}"
                 | insert desc ''
                 | insert provider 'apt'
                 | where {|pkg| $pkg.pkg not-in (get-pacstall-debs) }

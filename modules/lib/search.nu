@@ -33,6 +33,7 @@ export def search-pkgs [
                 index: $"($le_color)($row.index)(ansi reset)",
                 pkg: $"(ansi attr_normal)($row.item.pkg)(ansi reset)",
                 provider: $"($le_color)($row.item.provider)(ansi reset)",
+                version: ($row.item | get -o version | default ""),
                 remote: ($row.item | get -o remote | default ""),
                 repo: ($row.item | get -o repo | default ""),
                 desc: ($row.item | get -o desc | default ""),
