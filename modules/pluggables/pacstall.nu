@@ -20,47 +20,37 @@ export def search [input: string, description: bool] : nothing -> table {
     if (exists "pacstall") {
         if $description {
             # We are searching for something in description
-            ^pacstall -Sd $input
+            (^pacstall -Sd $input
                 | ansi strip
                 | lines
                 | parse "{pkg} - {desc} @ {repo}"
                 | insert provider 'pacstall'
-                | each {|pkg|
+                | par-each {|pkg|
                     try {
                         let info = (^pacstall -Si $pkg.pkg)
-                        let version_lines = ($info | lines | where ($it | str contains "pkgver ="))
-                        let version = if ($version_lines | is-empty) {
-                            ""
-                        } else {
-                            ($version_lines | first | str replace "pkgver =" "" | str trim)
-                        }
+                        let version = ($info | lines | where ($it | str contains "pkgver =") | first | str replace "pkgver =" "" | str trim)
                         $pkg | insert version $version
                     } catch {
                         $pkg | insert version ""
                     }
-                }
+                })
         } else {
             # Searching by name
-            ^pacstall -S $input
+            (^pacstall -S $input
                 | ansi strip
                 | lines
                 | parse "{pkg} @ {repo}"
                 | insert desc ''
                 | insert provider 'pacstall'
-                | each {|pkg|
+                | par-each {|pkg|
                     try {
                         let info = (^pacstall -Si $pkg.pkg)
-                        let version_lines = ($info | lines | where ($it | str contains "pkgver ="))
-                        let version = if ($version_lines | is-empty) {
-                            ""
-                        } else {
-                            ($version_lines | first | str replace "pkgver =" "" | str trim)
-                        }
+                        let version = ($info | lines | where ($it | str contains "pkgver =") | first | str replace "pkgver =" "" | str trim)
                         $pkg | insert version $version
                     } catch {
                         $pkg | insert version ""
                     }
-                }
+                })
         }
     } else {
         []
