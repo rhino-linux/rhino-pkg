@@ -21,16 +21,18 @@ export def search [input: string, description: bool] : nothing -> table {
             if $description {
                 $raw
                     | detect columns --guess
-                    | reject Publisher Version
+                    | reject Publisher
                     | rename --column { Name: pkg }
+                    | rename --column { Version: version }
                     | rename --column { Summary: desc }
                     | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
                     | insert provider 'snap'
             } else {
                 $raw
                     | detect columns --guess
-                    | reject Publisher Version
+                    | reject Publisher
                     | rename --column { Name: pkg }
+                    | rename --column { Version: version }
                     | rename --column { Summary: desc }
                     | where ($it.pkg | str downcase) =~ ($input | str downcase)
                     | insert provider 'snap'

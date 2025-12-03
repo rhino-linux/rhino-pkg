@@ -14,19 +14,19 @@ export def list-installed [search: string] {
 export def search [input: string, description: bool] : nothing -> table {
     if (exists "flatpak") {
         if $description {
-            LANG=C ^sudo flatpak search $input --columns=application:f,remotes:f,description:f
+            LANG=C ^sudo flatpak search $input --columns=application:f,version:f,remotes:f,description:f
                 | lines
                 | where $it != "No matches found"
-                | parse -r '^([\w.-]+)\s+(\w+)\s+(.*)$'
-                | rename pkg remote desc
+                | parse -r '^([\w.-]+)\s+([\w.-]+)\s+(\w+)\s+(.*)$'
+                | rename pkg version remote desc
                 | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
                 | insert provider 'flatpak'
         } else {
-            LANC=C ^sudo flatpak search $input --columns=application:f,remotes:f
+            LANG=C ^sudo flatpak search $input --columns=application:f,version:f,remotes:f
                 | lines
                 | where $it != "No matches found"
-                | parse -r '^([\w.-]+)\s+(\w+)$'
-                | rename pkg remote
+                | parse -r '^([\w.-]+)\s+([\w.-]+)\s+(\w+)$'
+                | rename pkg version remote
                 | where ($it.pkg | str downcase) =~ ($input | str downcase)
                 | insert provider 'flatpak'
         }
