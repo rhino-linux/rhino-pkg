@@ -1,12 +1,15 @@
 msgid ""
 msgstr ""
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-03-28 11:09+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
+"Language-Team: Finnish <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-pkg/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
@@ -58,27 +61,27 @@ msgstr ""
 #: cmd.nu:38 cmd.nu:48
 #, python-brace-format
 msgid "No valid inputs given!"
-msgstr ""
+msgstr "Ei kelvollisia syöttöjä annettu!"
 
 #: search.nu:12 search.nu:47
 #, python-brace-format
 msgid "Searching APT…"
-msgstr ""
+msgstr "APT:n etsiminen.."
 
 #: search.nu:15 search.nu:50
 #, python-brace-format
 msgid "Searching Pacstall…"
-msgstr ""
+msgstr "Pacstallin etsiminen.."
 
 #: search.nu:18 search.nu:53
 #, python-brace-format
 msgid "Searching Flatpak…"
-msgstr ""
+msgstr "Flatpakin etsiminen.."
 
 #: search.nu:21 search.nu:56
 #, python-brace-format
 msgid "Searching Snap…"
-msgstr ""
+msgstr "Snapin etsiminen.."
 
 #: apt.nu:51
 #, python-brace-format
