@@ -11,7 +11,7 @@ export def list-installed [search: string] {
                     "version": (^pacstall -Ci $pkg pacversion)
                 }
             } | sort-by pkg
-            | where ($it.pkg | str downcase) =~ ($search | str downcase)
+            | where ($it.pkg | str lowercase) =~ ($search | str lowercase)
             | insert provider "pacstall" } catch { [] }
     }
 }

@@ -33,7 +33,7 @@ export def search [input: string, description: bool] : nothing -> table {
                 | lines
                 | parse "{pkg}|{desc}"
                 | insert provider 'apt'
-                | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
+                | where (($it.pkg | str lowercase) =~ ($input | str lowercase)) or (($it.desc | str lowercase) =~ ($input | str lowercase))
                 | where {|pkg| $pkg.pkg not-in (get-pacstall-debs) }
         } else {
             LANG=C ^aptitude search --quiet --disable-columns $"?name\(($input)\) ?architecture\(native\) !?section\(Pacstall\)" -F "%p"
