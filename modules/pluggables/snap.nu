@@ -7,7 +7,7 @@ export def list-installed [search: string] {
             | reject Rev Tracking Publisher Notes
             | rename --column { Name: pkg }
             | rename --column { Version: version }
-            | where ($it.pkg | str downcase) =~ ($search | str downcase)
+            | where ($it.pkg | str lowercase) =~ ($search | str lowercase)
             | insert provider "snap" } catch { [] }
     }
 }
@@ -24,7 +24,7 @@ export def search [input: string, description: bool] : nothing -> table {
                     | reject Publisher Version
                     | rename --column { Name: pkg }
                     | rename --column { Summary: desc }
-                    | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
+                    | where (($it.pkg | str lowercase) =~ ($input | str lowercase)) or (($it.desc | str lowercase) =~ ($input | str lowercase))
                     | insert provider 'snap'
             } else {
                 $raw
@@ -32,7 +32,7 @@ export def search [input: string, description: bool] : nothing -> table {
                     | reject Publisher Version
                     | rename --column { Name: pkg }
                     | rename --column { Summary: desc }
-                    | where ($it.pkg | str downcase) =~ ($input | str downcase)
+                    | where ($it.pkg | str lowercase) =~ ($input | str lowercase)
                     | insert provider 'snap'
             }
         }
