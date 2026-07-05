@@ -265,7 +265,7 @@ def "main install" [
                     y: $"(ansi green_bold)y(ansi reset)",
                     n: $"(ansi red_bold)N(ansi reset)" }
                 )
-                | str downcase
+                | str lowercase
                 | str starts-with "y"
             }
         )
@@ -347,7 +347,7 @@ def "main remove" [
                     y: $"(ansi green_bold)y(ansi reset)",
                     n: $"(ansi red_bold)N(ansi reset)" }
                 )
-                | str downcase
+                | str lowercase
                 | str starts-with "y"
             }
         )
@@ -380,7 +380,7 @@ def "main cleanup" [
                     y: $"(ansi green_bold)y(ansi reset)",
                     n: $"(ansi red_bold)N(ansi reset)" }
                 )
-                | str downcase
+                | str lowercase
                 | str starts-with "y"
             }
         )
@@ -431,7 +431,7 @@ def "main update" [
                     y: $"(ansi green_bold)y(ansi reset)",
                     n: $"(ansi red_bold)N(ansi reset)" }
                 )
-                | str downcase
+                | str lowercase
                 | str starts-with "y"
             }
         )

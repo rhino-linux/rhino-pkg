@@ -6,7 +6,7 @@ export def list-installed [search: string] {
             | lines
             | uniq
             | parse "{pkg}\t{version}"
-            | where ($it.pkg | str downcase) =~ ($search | str downcase)
+            | where ($it.pkg | str lowercase) =~ ($search | str lowercase)
             | insert provider "flatpak" } catch { [] }
     }
 }
@@ -19,7 +19,7 @@ export def search [input: string, description: bool] : nothing -> table {
                 | where $it != "No matches found"
                 | parse -r '^([\w.-]+)\s+(\w+)\s+(.*)$'
                 | rename pkg remote desc
-                | where (($it.pkg | str downcase) =~ ($input | str downcase)) or (($it.desc | str downcase) =~ ($input | str downcase))
+                | where (($it.pkg | str lowercase) =~ ($input | str lowercase)) or (($it.desc | str lowercase) =~ ($input | str lowercase))
                 | insert provider 'flatpak'
         } else {
             LANC=C ^sudo flatpak search $input --columns=application:f,remotes:f
@@ -27,7 +27,7 @@ export def search [input: string, description: bool] : nothing -> table {
                 | where $it != "No matches found"
                 | parse -r '^([\w.-]+)\s+(\w+)$'
                 | rename pkg remote
-                | where ($it.pkg | str downcase) =~ ($input | str downcase)
+                | where ($it.pkg | str lowercase) =~ ($input | str lowercase)
                 | insert provider 'flatpak'
         }
     } else {
