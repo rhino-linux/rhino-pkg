@@ -20,19 +20,19 @@ export def search [input: string, description: bool] : nothing -> table {
     if (exists "pacstall") {
         if $description {
             # We are searching for something in description
-            ^pacstall -Sd $input
+            try { ^pacstall -Sd $input
                 | ansi strip
                 | lines
                 | parse "{pkg} - {desc} @ {repo}"
-                | insert provider 'pacstall'
+                | insert provider 'pacstall' } catch { [] }
         } else {
             # Searching by name
-            ^pacstall -S $input
+            try { ^pacstall -S $input
                 | ansi strip
                 | lines
                 | parse "{pkg} @ {repo}"
                 | insert desc ''
-                | insert provider 'pacstall'
+                | insert provider 'pacstall' } catch { [] }
         }
     } else {
         []
