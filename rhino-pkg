@@ -63,8 +63,8 @@ def "main help" [] {
             Command: "update",
             Description: "Refresh repository data and update all packages",
             Usage: "update",
-            Flags: "--yes",
-            Variants: "{u|up|upgrade} (-y)"
+            Flags: "--yes, --dist-upgrade",
+            Variants: "{u|up|upgrade} (-y -D)"
         },
         {
             Command: "help",
@@ -87,6 +87,10 @@ def "main help" [] {
         {
             Flag: "-y, --yes",
             Description: "Skip confirmation prompts"
+        },
+        {
+            Flag: "-D, --dist-upgrade",
+            Description: "Use apt dist-upgrade for held back packages"
         }
     ]
 
@@ -393,36 +397,64 @@ def "main cleanup" [
 
 def "main u" [
     --yes (-y)
+    --dist-upgrade (-D)
 ] {
     if $yes {
-        main update --yes
+        if $dist_upgrade {
+            main update --yes --dist-upgrade
+        } else {
+            main update --yes
+        }
     } else {
-        main update
+        if $dist_upgrade {
+            main update --dist-upgrade
+        } else {
+            main update
+        }
     }
 }
 
 def "main up" [
     --yes (-y)
+    --dist-upgrade (-D)
 ] {
     if $yes {
-        main update --yes
+        if $dist_upgrade {
+            main update --yes --dist-upgrade
+        } else {
+            main update --yes
+        }
     } else {
-        main update
+        if $dist_upgrade {
+            main update --dist-upgrade
+        } else {
+            main update
+        }
     }
 }
 
 def "main upgrade" [
     --yes (-y)
+    --dist-upgrade (-D)
 ] {
     if $yes {
-        main update --yes
+        if $dist_upgrade {
+            main update --yes --dist-upgrade
+        } else {
+            main update --yes
+        }
     } else {
-        main update
+        if $dist_upgrade {
+            main update --dist-upgrade
+        } else {
+            main update
+        }
     }
 }
 
 def "main update" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
+    --dist-upgrade (-D) # Use apt dist-upgrade for held back packages
 ] {
     if (not $yes) {
         let response = (
@@ -439,7 +471,7 @@ def "main update" [
             exit 1
         }
     }
-    apt upgrade $yes
+    apt upgrade $yes $dist_upgrade
     pacstall upgrade $yes
     flatpak upgrade $yes
     snap upgrade $yes

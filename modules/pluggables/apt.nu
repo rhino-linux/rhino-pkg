@@ -49,7 +49,7 @@ export def search [input: string, description: bool] : nothing -> table {
     }
 }
 
-export def upgrade [promptless: bool] {
+export def upgrade [promptless: bool, full: bool] {
     if (exists "nala") {
         if $promptless {
             ^sudo nala upgrade -y --full --no-autoremove -o Acquire::AllowReleaseInfoChange="true"
@@ -59,10 +59,18 @@ export def upgrade [promptless: bool] {
     } else if (exists "apt") {
         if $promptless {
             ^sudo apt update --allow-releaseinfo-change -y
-            ^sudo apt upgrade -y
+            if $full {
+                ^sudo apt dist-upgrade -y
+            } else {
+                ^sudo apt upgrade -y
+            }
         } else {
             ^sudo apt update --allow-releaseinfo-change
-            ^sudo apt upgrade
+            if $full {
+                ^sudo apt dist-upgrade
+            } else {
+                ^sudo apt upgrade
+            }
         }
     }
 }
