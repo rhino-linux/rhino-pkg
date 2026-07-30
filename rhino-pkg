@@ -63,8 +63,8 @@ def "main help" [] {
             Command: "update",
             Description: "Refresh repository data and update all packages",
             Usage: "update",
-            Flags: "--yes, --dist-upgrade",
-            Variants: "{u|up|upgrade} (-y -D)"
+            Flags: "--yes, --full",
+            Variants: "{u|up|upgrade} (-y -f)"
         },
         {
             Command: "help",
@@ -89,7 +89,7 @@ def "main help" [] {
             Description: "Skip confirmation prompts"
         },
         {
-            Flag: "-D, --dist-upgrade",
+            Flag: "-f, --full",
             Description: "Use apt dist-upgrade for held back packages"
         }
     ]
@@ -397,17 +397,17 @@ def "main cleanup" [
 
 def "main u" [
     --yes (-y)
-    --dist-upgrade (-D)
+    --full (-f)
 ] {
     if $yes {
         if $dist_upgrade {
-            main update --yes --dist-upgrade
+            main update --yes --full
         } else {
             main update --yes
         }
     } else {
         if $dist_upgrade {
-            main update --dist-upgrade
+            main update --full
         } else {
             main update
         }
@@ -416,17 +416,17 @@ def "main u" [
 
 def "main up" [
     --yes (-y)
-    --dist-upgrade (-D)
+    --full (-f)
 ] {
     if $yes {
         if $dist_upgrade {
-            main update --yes --dist-upgrade
+            main update --yes --full
         } else {
             main update --yes
         }
     } else {
         if $dist_upgrade {
-            main update --dist-upgrade
+            main update --full
         } else {
             main update
         }
@@ -435,17 +435,17 @@ def "main up" [
 
 def "main upgrade" [
     --yes (-y)
-    --dist-upgrade (-D)
+    --full (-f)
 ] {
     if $yes {
         if $dist_upgrade {
-            main update --yes --dist-upgrade
+            main update --yes --full
         } else {
             main update --yes
         }
     } else {
         if $dist_upgrade {
-            main update --dist-upgrade
+            main update --full
         } else {
             main update
         }
@@ -454,7 +454,7 @@ def "main upgrade" [
 
 def "main update" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
-    --dist-upgrade (-D) # Use apt dist-upgrade for held back packages
+    --full (-f) # Use apt dist-upgrade for held back packages
 ] {
     if (not $yes) {
         let response = (
