@@ -63,8 +63,8 @@ def "main help" [] {
             Command: "update",
             Description: "Refresh repository data and update all packages",
             Usage: "update",
-            Flags: "--yes",
-            Variants: "{u|up|upgrade} (-y)"
+            Flags: "--yes, --full",
+            Variants: "{u|up|upgrade} (-y -f)"
         },
         {
             Command: "help",
@@ -87,6 +87,10 @@ def "main help" [] {
         {
             Flag: "-y, --yes",
             Description: "Skip confirmation prompts"
+        },
+        {
+            Flag: "-f, --full",
+            Description: "Use apt dist-upgrade for held back packages"
         }
     ]
 
@@ -393,36 +397,64 @@ def "main cleanup" [
 
 def "main u" [
     --yes (-y)
+    --full (-f)
 ] {
     if $yes {
-        main update --yes
+        if $dist_upgrade {
+            main update --yes --full
+        } else {
+            main update --yes
+        }
     } else {
-        main update
+        if $dist_upgrade {
+            main update --full
+        } else {
+            main update
+        }
     }
 }
 
 def "main up" [
     --yes (-y)
+    --full (-f)
 ] {
     if $yes {
-        main update --yes
+        if $dist_upgrade {
+            main update --yes --full
+        } else {
+            main update --yes
+        }
     } else {
-        main update
+        if $dist_upgrade {
+            main update --full
+        } else {
+            main update
+        }
     }
 }
 
 def "main upgrade" [
     --yes (-y)
+    --full (-f)
 ] {
     if $yes {
-        main update --yes
+        if $dist_upgrade {
+            main update --yes --full
+        } else {
+            main update --yes
+        }
     } else {
-        main update
+        if $dist_upgrade {
+            main update --full
+        } else {
+            main update
+        }
     }
 }
 
 def "main update" [
     --yes (-y) # Makes functions with confirmation prompts run promptless
+    --full (-f) # Use apt dist-upgrade for held back packages
 ] {
     if (not $yes) {
         let response = (
@@ -439,7 +471,7 @@ def "main update" [
             exit 1
         }
     }
-    apt upgrade $yes
+    apt upgrade $yes $dist_upgrade
     pacstall upgrade $yes
     flatpak upgrade $yes
     snap upgrade $yes
