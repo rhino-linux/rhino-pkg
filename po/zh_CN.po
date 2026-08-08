@@ -3,8 +3,9 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-14 00:43+0200\n"
-"PO-Revision-Date: 2025-06-14 18:20+0000\n"
-"Last-Translator: Oren Klopfer <oren@taumoda.com>\n"
+"PO-Revision-Date: 2026-08-08 05:51+0000\n"
+"Last-Translator: reducedradius "
+"<137701630+flytothehighest@users.noreply.github.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/rhino-linux/rhino-pkg/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 #: rhino-pkg:144 rhino-pkg:236 rhino-pkg:328
 #, python-brace-format
@@ -37,7 +38,7 @@ msgstr "是否确定？ ({y}/{n}) "
 #: rhino-pkg:293
 #, python-brace-format
 msgid "Failed to install '{pkg}'."
-msgstr ""
+msgstr "未能安装'{pkg}'。"
 
 #: rhino-pkg:336
 #, python-brace-format
@@ -89,4 +90,4 @@ msgstr "正在检索Snap…"
 #: apt.nu:51
 #, python-brace-format
 msgid "`aptitude` not installed."
-msgstr ""
+msgstr "`aptitude`未安装。"
